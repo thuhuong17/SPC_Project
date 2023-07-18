@@ -28,7 +28,7 @@ export function Home() {
                 color="white"
                 className="mb-6 font-black"
               >
-                Welcome to our social protection center !
+                Welcome to our social protection center !jjj
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80">
                 This is a homepage of our website. Including about introduction, events information, donation and more information. 
