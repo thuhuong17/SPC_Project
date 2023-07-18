@@ -28,12 +28,10 @@ export function Home() {
                 color="white"
                 className="mb-6 font-black"
               >
-                Your story starts with us.
+                Welcome to our social protection center !
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80">
-                This is a simple example of a Landing Page you can build using
-                Material Tailwind. It features multiple components based on the
-                Tailwind CSS and Material Design by Google.
+                This is a homepage of our website. Including about introduction, events information, donation and more information. 
               </Typography>
             </div>
           </div>

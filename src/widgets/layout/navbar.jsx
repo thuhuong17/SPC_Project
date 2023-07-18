@@ -75,7 +75,7 @@ export function Navbar({ brandName, routes, action }) {
             target="_blank"
           >
             <Button variant="text" size="sm" color="white" fullWidth>
-              pro version
+              Login
             </Button>
           </a>
           {React.cloneElement(action, {
@@ -108,7 +108,7 @@ export function Navbar({ brandName, routes, action }) {
             className="mb-2 block"
           >
             <Button variant="text" size="sm" fullWidth>
-              pro version
+              login
             </Button>
           </a>
           {React.cloneElement(action, {
@@ -128,7 +128,7 @@ Navbar.defaultProps = {
       target="_blank"
     >
       <Button variant="gradient" size="sm" fullWidth>
-        free download
+        Log out
       </Button>
     </a>
   ),
