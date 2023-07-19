@@ -1,12 +1,10 @@
-import { Home, Profile, SignIn, SignUp } from "@/pages";
+import { Home, About, Event, Service, Profile, SignIn, SignUp, Contact } from "@/pages";
 import {
   HomeIcon,
   UserCircleIcon,
   CalendarDaysIcon,
   WrenchScrewdriverIcon,
-  ArrowRightOnRectangleIcon,
-  UserPlusIcon,
-  DocumentTextIcon,
+  PhoneIcon,
 } from "@heroicons/react/24/solid";
 
 export const routes = [
@@ -20,33 +18,35 @@ export const routes = [
     icon: CalendarDaysIcon,
     name: "events",
     path: "/event",
-    element: <Profile />,
+    element: <Event />,
   },
   {
     icon: WrenchScrewdriverIcon,
     name: "services",
     path: "/service",
-    element: <SignIn />,
+    element: <Service />,
   },
+  
   {
-    icon: UserPlusIcon,
-    name: "impact",
-    path: "/impact",
-    element: <SignUp />,
-  },
-  {
-    icon: UserPlusIcon,
+    icon: UserCircleIcon,
     name: "about",
     path: "/about",
     element: <About />,
   },
+
   {
-    icon: DocumentTextIcon,
-    name: "about",
-    href: "",
-    target: "_blank",
-    element: "",
+    icon: PhoneIcon,
+    name: "Contact",
+    path: "/contact",
+    element: <Contact />,
   },
+  // {
+  //   icon: DocumentTextIcon,
+  //   name: "about",
+  //   href: "",
+  //   target: "_blank",
+  //   element: "",
+  // },
 ];
 
 export default routes;

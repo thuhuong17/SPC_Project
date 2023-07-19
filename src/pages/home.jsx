@@ -13,7 +13,6 @@ import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
-
 export function Home() {
   return (
     <>
@@ -28,11 +27,10 @@ export function Home() {
                 color="white"
                 className="mb-6 font-black"
               >
-                Welcome to our social protection center !jj
-{/*                 Hello world */}
+                Welcome to our social protection center!
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80">
-                This is a homepage of our website. Including about introduction, events information, donation and more information. 
+                This is a homepage of our website. Including about introduction, events information, donation and more information.
               </Typography>
             </div>
           </div>
@@ -183,5 +181,4 @@ export function Home() {
     </>
   );
 }
-
 export default Home;
