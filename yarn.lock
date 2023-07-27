@@ -1169,6 +1169,44 @@
   resolved "https://registry.npmmirror.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@ckeditor/ckeditor5-core@>=37.0.0":
+  version "38.1.1"
+  resolved "https://registry.npmmirror.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-38.1.1.tgz"
+  integrity sha512-5yC+oSoCnjfOrvmECbwtu4zBt9S5dJfOYsAzfIGEbmD9DVGIyLBDKEjJ9IbAKAy1HG6CgAkZyv1YyEc5G5g3ew==
+  dependencies:
+    "@ckeditor/ckeditor5-engine" "38.1.1"
+    "@ckeditor/ckeditor5-utils" "38.1.1"
+    lodash-es "^4.17.15"
+
+"@ckeditor/ckeditor5-engine@>=37.0.0", "@ckeditor/ckeditor5-engine@38.1.1":
+  version "38.1.1"
+  resolved "https://registry.npmmirror.com/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-38.1.1.tgz"
+  integrity sha512-Z0LYg7B4vN3ZNUf3utmBRXQBn3JNy81Xs+45sQ09Fpf5p6aKer37vxEA315O17PnWYndildeKNRUNdjI942HcQ==
+  dependencies:
+    "@ckeditor/ckeditor5-utils" "38.1.1"
+    lodash-es "^4.17.15"
+
+"@ckeditor/ckeditor5-react@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmmirror.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-6.1.0.tgz"
+  integrity sha512-uwJ89pOJnjlMgfluGJhxatt6zV5ZavuV7AaRvJpxzAU7SjoC3sNumohDRmI0KGDGoyCVPMJO9fgE3ijIb3gHlQ==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@ckeditor/ckeditor5-utils@>=37.0.0", "@ckeditor/ckeditor5-utils@38.1.1":
+  version "38.1.1"
+  resolved "https://registry.npmmirror.com/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-38.1.1.tgz"
+  integrity sha512-+dSCchr8sseqWSfCuuOk5uajCo2Tr71IXmn3EGalEHE6Fc1GjWElO90GAA4Pbezrt1zG1tDqhh+bZHULAcK8wQ==
+  dependencies:
+    lodash-es "^4.17.15"
+
+"@ckeditor/ckeditor5-watchdog@>=37.0.0":
+  version "38.1.1"
+  resolved "https://registry.npmmirror.com/@ckeditor/ckeditor5-watchdog/-/ckeditor5-watchdog-38.1.1.tgz"
+  integrity sha512-NijdWJsl+vnzdtyhI0u0Ln2TEVaSLa2VEHyB7J1r57cUN9Bq5tqRH4/BhvvqGKGc9lkpbvcSFduH2c6StHm0rw==
+  dependencies:
+    lodash-es "^4.17.15"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.npmmirror.com/@cnakazawa/watch/-/watch-1.0.4.tgz"
@@ -3518,6 +3556,10 @@ cjs-module-lexer@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmmirror.com/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz"
   integrity sha512-uc2Vix1frTfnuzxxu1Hp4ktSvM3QaI4oXl4ZUqL1wjTu/BGki9TrCWoqLTg/drR1KwAEarXuRFCG2Svr1GxPFw==
+
+"ckeditor5-custom-build@file:../CKedit_lib/ckeditor5":
+  version "0.0.1"
+  resolved "file:../CKedit_lib/ckeditor5"
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -7871,6 +7913,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.15:
+  version "4.17.21"
+  resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
@@ -8527,6 +8574,33 @@ normalize-url@1.9.1:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+"notus-react@file:":
+  version "1.1.0"
+  resolved "file:"
+  dependencies:
+    "@ckeditor/ckeditor5-react" "^6.1.0"
+    "@fortawesome/fontawesome-free" "5.15.3"
+    "@popperjs/core" "2.9.1"
+    "@tailwindcss/forms" "0.2.1"
+    autoprefixer "10.2.5"
+    axios "^1.4.0"
+    chart.js "2.9.4"
+    ckeditor5-custom-build "file:../CKedit_lib/ckeditor5"
+    cors "^2.8.5"
+    gulp "4.0.2"
+    gulp-append-prepend "1.0.8"
+    notus-react "file:"
+    postcss "8.2.8"
+    react "17.0.1"
+    react-dom "17.0.1"
+    react-icons "^4.10.1"
+    react-router "5.2.0"
+    react-router-dom "5.2.0"
+    react-scripts "4.0.3"
+    tailwindcss "2.0.4"
+  optionalDependencies:
+    typescript "4.2.3"
 
 now-and-later@^2.0.0:
   version "2.0.1"
@@ -10031,7 +10105,7 @@ prompts@^2.0.1, prompts@2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.0.0, prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.0.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -10380,7 +10454,7 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react@*, "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@>= 16", react@>=15, react@17.0.1:
+react@*, "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.13.1 || ^17.0.0 || ^18.0.0", "react@>= 16", react@>=15, react@17.0.1:
   version "17.0.1"
   resolved "https://registry.npmmirror.com/react/-/react-17.0.1.tgz"
   integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==

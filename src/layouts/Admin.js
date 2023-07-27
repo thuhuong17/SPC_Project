@@ -14,6 +14,7 @@ import Dashboard from "views/admin/Dashboard.js";
 
 import TablesAccount from "views/admin/TablesAccount";
 import TablesWebsite from "views/admin/TablesWebsite";
+import AddPage from "views/admin/AddPage";
 
 export default function Admin() {
   return (
@@ -28,6 +29,7 @@ export default function Admin() {
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/accounts" exact component={TablesAccount} />
             <Route path="/admin/website" exact component={TablesWebsite} />
+            <Route path="/admin/add-page" exact component={AddPage} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
