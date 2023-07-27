@@ -4,7 +4,7 @@ import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
 import CardTable from "components/Cards/CardTableAccount.js";
-import { Modal } from "components/Modals/Modal";
+import { Modal } from "components/Modals/ModalAccountList";
 
 export default function TablesAccount() {
   const [modalOpen, setModalOpen] = useState(false);

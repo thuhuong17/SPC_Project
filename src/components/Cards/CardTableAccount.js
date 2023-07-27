@@ -9,13 +9,13 @@ import "../../assets/styles/tableItems.css"
 export default function CardTable({ color, rows, deleteRow, editRow }) {
   return (
     <>
-    {/* Bảng 1: Danh sách tài khoản Admin */}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
         }
       >
+        {/* Bảng 1: Danh sách tài khoản Admin */}
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
@@ -73,9 +73,6 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
           </div>
         </div>
       </div>
-      
-      {/* Bảng 2: Danh sách tài khoản Quản lý */}
-      
     </>
   );
 }
