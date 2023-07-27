@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-export default function Event() {
+export default function Donate_monthly() {
   return (
     <>
       <Navbar transparent />

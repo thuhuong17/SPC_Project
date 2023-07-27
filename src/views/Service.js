@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-export default function Event() {
+export default function Service() {
   return (
     <>
       <Navbar transparent />
@@ -29,10 +29,10 @@ export default function Event() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Event
+                    Services
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                    Day la cac su kien cua chuong trinh
+                    Day la cac dich vu cua chuong trinh
                   </p>
                 </div>
               </div>
