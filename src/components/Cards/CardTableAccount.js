@@ -16,9 +16,9 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
         }
       >
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+        <div className="rounded mb-0 py-3 border-1">
+          <div className="flex flex-wrap">
+            <div className="relative w-full px-1 margin-top: 10 max-w-full flex-grow flex-1" align="center">
               <h3
                 className={
                   "font-semibold text-lg " +
