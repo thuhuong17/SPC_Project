@@ -106,7 +106,7 @@ export default function Sidebar() {
                   Dashboard
                 </Link>
               </li>
-
+              {/* Start manager account list */}
               <li className="items-center">
                 <Link
                   className={
@@ -129,7 +129,9 @@ export default function Sidebar() {
                 </Link>
                 {/* <ChildDropdown/> */}
               </li>
+              {/* End manager account list */}
 
+              {/* Start Manager website list */}
               <li className="items-center">
                 <Link
                   className={
@@ -151,6 +153,7 @@ export default function Sidebar() {
                   Quản lý nhân viên
                 </Link>
               </li>
+              {/* End manager website */}
 
               <li className="items-center">
                 
@@ -185,10 +188,16 @@ export default function Sidebar() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+              {/* Thêm bài bài viết */}
               <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/add-page") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/admin/add-page"
                 >
                   <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                   Quan ly admin

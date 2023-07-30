@@ -34,10 +34,18 @@ const Users = () => {
             {users.map((user, i)=> <li key={i}>{user?.username}</li>)}
           </ul>
         ): <p>No users to display</p>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> fa5bb244d20c5f5b8e55d4afde21994d841e7dc7
       }
     </article>
   )
 }
 
+<<<<<<< HEAD
 export default Users;
+=======
+export default Users
+>>>>>>> fa5bb244d20c5f5b8e55d4afde21994d841e7dc7

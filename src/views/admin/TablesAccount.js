@@ -4,7 +4,11 @@ import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
 import CardTable from "components/Cards/CardTableAccount.js";
+<<<<<<< HEAD
 import { Modal } from "components/Modals/Modal";
+=======
+import { Modal } from "components/Modals/ModalAccountList";
+>>>>>>> fa5bb244d20c5f5b8e55d4afde21994d841e7dc7
 
 export default function TablesAccount() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -55,7 +59,14 @@ export default function TablesAccount() {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
 
     </>
   );
 }
+=======
+      
+    </>
+  );
+}
+>>>>>>> fa5bb244d20c5f5b8e55d4afde21994d841e7dc7
