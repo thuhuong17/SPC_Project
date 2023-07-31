@@ -5,16 +5,20 @@
   "repository": "https://github.com/creativetimofficial/notus-react",
   "license": "MIT",
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^6.1.0",
     "@fortawesome/fontawesome-free": "5.15.3",
+    "@material-tailwind/react": "^2.0.7",
     "@popperjs/core": "2.9.1",
-    "@tailwindcss/forms": "0.2.1",
     "autoprefixer": "10.2.5",
     "axios": "^1.4.0",
     "chart.js": "2.9.4",
-    "cors": "^2.8.5",
+    "ckeditor5-custom-build": "file:../CKeditor_lib/ckeditor5",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "postcss": "8.2.14",
+    "heroicons": "^2.0.18",
+    "heroicons-react": "^1.4.1",
+    "notus-react": "file:",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.10.1",
@@ -48,5 +52,8 @@
   },
   "optionalDependencies": {
     "typescript": "4.2.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }

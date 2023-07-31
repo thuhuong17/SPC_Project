@@ -4,7 +4,7 @@ import apiConfig from "./apiConfig";
 const axiosPrivate = axios.create({
   baseURL: apiConfig.baseUrl,
   headers: {
-    // 'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     // 'Content-Type': 'multipart/form-data',
     // Accept: '*/*',
   },

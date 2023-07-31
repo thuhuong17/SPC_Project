@@ -149,7 +149,7 @@ export default function Footer() {
                   href="https://www.creative-tim.com?ref=nr-footer"
                   className="text-blueGray-500 hover:text-blueGray-800"
                 >
-                  Creative Tim
+                  Social Protection Center - SPC
                 </a>
                 .
               </div>

@@ -5,18 +5,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import React, { Fragment } from "react";
-import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
-import Landing from "views/Landing.js";
-import Event from "views/Event.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
 import PersistLogin from "components/PersistLogin";
 import Login from "views/auth/Login";
-import Dashboard from "views/admin/Dashboard";
 import RequireAuth from "RequiredAuth";
 import { publicRoutes, privateRoutes } from "./config/routes";
-import Roles from "./constant/Roles";
 
 function App() {
   document.title = "Social Protecion Senter";

@@ -43,7 +43,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          Xem thông báo
         </a>
         <a
           href="#pablo"
@@ -52,7 +52,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Another action
+          Hồ sơ
         </a>
         <a
           href="#pablo"
@@ -61,7 +61,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Something else here
+          Đăng xuất
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
