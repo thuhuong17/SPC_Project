@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Routes, Navigate } from "react-router-dom";
 
 // components
 
@@ -15,7 +15,7 @@ import Dashboard from "views/admin/Dashboard.js";
 import TablesAccount from "views/admin/TablesAccount";
 import TablesWebsite from "views/admin/TablesWebsite";
 
-export default function Admin() {
+export default function Admin({ children }) {
   return (
     <>
       <Sidebar />
@@ -24,12 +24,16 @@ export default function Admin() {
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
-          <Switch>
+          {/* <Routes>
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/accounts" exact component={TablesAccount} />
             <Route path="/admin/website" exact component={TablesWebsite} />
-            <Redirect from="/admin" to="/admin/dashboard" />
-          </Switch>
+            <Route
+              path="/admin/*"
+              element={<Navigate to="/admin/dashboard" replace />}
+            />
+          </Routes> */}
+          {children}
           <FooterAdmin />
         </div>
       </div>

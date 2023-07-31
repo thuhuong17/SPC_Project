@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import useAuth from "hooks/useAuth";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const { auth } = useAuth();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -92,7 +94,7 @@ export default function Sidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/dashboard"
+                  to="/admin"
                 >
                   <i
                     className={
@@ -106,27 +108,32 @@ export default function Sidebar() {
                 </Link>
               </li>
               {/* Start manager account list */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/accounts") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/accounts"
-                >
-                  <i
+              {auth.roles == "SUPER_ADMIN" ? (
+                <li className="items-center">
+                  <Link
                     className={
-                      "fas fa-tools mr-2 text-sm " +
+                      "text-xs uppercase py-3 font-bold block " +
                       (window.location.href.indexOf("/admin/accounts") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
                     }
-                  ></i>{" "}
-                  Quản lý tài khoản
-                </Link>
-              </li>
+                    to="/admin/accounts"
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (window.location.href.indexOf("/admin/accounts") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Quản lý tài khoản
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
+
               {/* End manager account list */}
 
               {/* Start Manager website list */}
@@ -152,7 +159,6 @@ export default function Sidebar() {
                 </Link>
               </li>
               {/* End manager website */}
-
 
               {/* <li className="items-center">
                 <Link

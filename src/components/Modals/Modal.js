@@ -1,80 +1,136 @@
-import React, { useState } from 'react'
-import "../../assets/styles/modal.css"
+import React, { useEffect, useState } from "react";
+import "../../assets/styles/modal.css";
+import apiMethod from "api/apiMethod";
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
-    const [formState, setFormState] = useState(defaultValue || {
-        username: "",
-        password: "",
-        description: "",
-        status: "live",
-    });
+  const [formState, setFormState] = useState(
+    defaultValue || {
+      userName: "",
+      passWord: "",
+      role: { roleId: "" },
+    }
+  );
 
-    const [errors, setErrors] = useState("")
-    const validateForm = () => {
-        if(formState.username && formState.password && formState.description && formState.status){
-            setErrors("")
-            return true;
-        } else {
-            let errorFields = [];
-            for(const [key, value] of Object.entries(formState)){
-                if(!value){
-                    errorFields.push(key)
-                }
-            }
-            setErrors(errorFields.join(", "));
-            return false;
+  const [roles, setRoles] = useState([]);
+
+  useEffect(() => {
+    const getRole = async () => {
+      try {
+        const response = await apiMethod.getAllRoles();
+        setRoles(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRole();
+  }, []);
+
+  useEffect(() => {
+    if (roles.length > 0) {
+      var newRole = { roleId: roles[0].roleId };
+      setFormState({
+        ...formState,
+        role: newRole,
+      });
+    }
+  }, [roles]);
+
+  const [errors, setErrors] = useState("");
+  const validateForm = () => {
+    if (formState.userName && formState.passWord && formState.role) {
+      setErrors("");
+      return true;
+    } else {
+      let errorFields = [];
+      for (const [key, value] of Object.entries(formState)) {
+        if (!value) {
+          errorFields.push(key);
         }
+      }
+      setErrors(errorFields.join(", "));
+      return false;
     }
-    // update danh sách 
-    const handleChange = (e) => {
-        setFormState({
-            ...formState,
-            [e.target.name]: e.target.value
-        })
-    }
-    // submit account vừa thêm
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!validateForm()) return;
-        onSubmit(formState);
-        closeModal();
-    }
+  };
+  // update danh sách
+  const handleChange = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    
+  const handleRoleChange = (e) => {
+    const newRole = formState.role;
+    newRole.roleId = e.target.value;
+    setFormState({
+      ...formState,
+      role: newRole,
+    });
+  };
+  // submit account vừa thêm
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    try {
+      const response = await apiMethod.saveUser(formState);
+      console.log(response.status);
+      onSubmit();
+    } catch (error) {
+      if (!error?.response) {
+        console.log("No Serve Response");
+      }
+    }
+    closeModal();
+  };
+
   return (
-    <div className='modal-container' 
-    onClick={(e) => {
-        if(e.target.className === "modal-container")
-            closeModal();
-    }}>
-        <div className="modal">
-            <form>
-                <div className='form-group'>
-                    <label htmlFor="username">Tên tài khoản</label>
-                    <input name='username' value={formState.username} onChange={handleChange} />
-                </div>
+    <div
+      className="modal-container"
+      onClick={(e) => {
+        if (e.target.className === "modal-container") closeModal();
+      }}
+    >
+      <div className="modal">
+        <form>
+          <div className="form-group">
+            <label htmlFor="userName">Tên tài khoản</label>
+            <input
+              name="userName"
+              value={formState.userName}
+              onChange={handleChange}
+            />
+          </div>
 
-                <div className='form-group'>
-                    <label htmlFor="password">Mật khẩu</label>
-                    <input name='password' value={formState.password} onChange={handleChange} />
-                </div>
+          <div className="form-group">
+            <label htmlFor="passWord">Mật khẩu</label>
+            <input
+              name="passWord"
+              value={formState.passWord}
+              onChange={handleChange}
+            />
+          </div>
 
-                <div className='form-group'>
-                    <label htmlFor="description">Mô tả</label>
-                    <textarea name='description' value={formState.description} onChange={handleChange} />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor="status">Trạng thái</label>
-                    <select name='status' value={formState.status} onChange={handleChange}>
-                        <option value="live">Live</option>
-                        <option value="off">Off</option>
-                        <option value="error">Error</option>
-                    </select>
-                </div>
-                {errors && <div className='error'>{`Vui lòng điền: ${errors}`}</div>}
-                <button type='submit' className='btn' onClick={handleSubmit}>Submit</button>
-            </form>
-        </div>
+          <div className="form-group">
+            <label htmlFor="role">Quyền</label>
+            <select
+              name="role"
+              value={formState.role.roleId}
+              onChange={handleRoleChange}
+            >
+              {roles.map((role, index) => {
+                return (
+                  <option key={index} value={role.roleId}>
+                    {role.roleName}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
+          <button type="submit" className="btn" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
