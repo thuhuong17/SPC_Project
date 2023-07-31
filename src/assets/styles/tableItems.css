@@ -2,16 +2,16 @@
     width: 100%;
 }
 
-.table{
+.table {
     display: block;
     overflow: hidden;
     table-layout: auto;
     border-collapse: collapse;
     box-shadow: 0px 10px 10px #ccc;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     white-space: nowrap;
     width: 100%;
-    max-width: 80%;
+    min-width: 80%;
     margin: auto;
     overflow-x: auto;
 }
@@ -24,6 +24,7 @@
 .table th,
 .table td {
     padding: 0.8rem;
+    text-align: center;
 }
 
 .table td {
@@ -37,8 +38,20 @@
 
 }
 
-.Expand {
+.expand {
     width: 100%;
+}
+
+.expand4 {
+    width: calc(100% / 4);
+}
+
+.expand5 {
+    width: calc(100% / 5);
+}
+
+.expand6 {
+    width: calc(100% / 6);
 }
 
 .label {
