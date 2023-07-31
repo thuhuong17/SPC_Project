@@ -7,6 +7,7 @@ import BouncingLoader from "components/BoucingLoader";
 const PersistLogin = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUserSaved, setIsUserSaved] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const { auth, setAuth, setIsUnexpired } = useAuth();
   const privateApi = usePrivateApi();
   const [isChecked, setIsChecked] = useState(false);
@@ -24,6 +25,8 @@ const PersistLogin = ({ children }) => {
         if (userName && accessToken) {
           setAuth({ userName, accessToken, roles });
           isMounted && setIsUserSaved(true);
+        } else {
+          setIsDone(true);
         }
       } catch (err) {
         console.error(err);
@@ -79,6 +82,9 @@ const PersistLogin = ({ children }) => {
   if (isUserSaved) {
     return <Outlet />;
   } else {
+    if (isDone) {
+      return <Outlet />;
+    }
     return <BouncingLoader />;
   }
 };
