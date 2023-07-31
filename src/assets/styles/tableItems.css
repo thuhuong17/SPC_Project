@@ -1,5 +1,5 @@
-.table-wrapper{
-    width: 100%;
+.table-wrapper {
+  width: 100%;
 }
 
 .table {
@@ -17,8 +17,9 @@
 }
 
 .table thead {
-    background-color: #ccc;
-    color: #222;
+  background-color: #ccc;
+  color: #222;
+  white-space: nowrap;
 }
 
 .table th,
@@ -28,14 +29,13 @@
 }
 
 .table td {
-    border-top: 0.5px solid #ddd;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  border-top: 0.5px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table tbody tr:hover {
-    background-color: #eee;
-
+  background-color: #eee;
 }
 
 .expand {
@@ -55,32 +55,32 @@
 }
 
 .label {
-    border-radius: 3px;
-    padding: 0.3rem;
-    color: white;
+  border-radius: 3px;
+  padding: 0.3rem;
+  color: white;
 }
 
 .label-off {
-    background-color: #777;
+  background-color: #777;
 }
 
 .label-live {
-    background-color: #42a942;
+  background-color: #42a942;
 }
 
 .label-error {
-    background-color: #d9534f;
+  background-color: #d9534f;
 }
 
 .actions {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .actions svg {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .delete-btn {
-    color: #d9534f;
+  color: #d9534f;
 }

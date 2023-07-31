@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+
 import FinanceDropdown from "components/Dropdowns/FinanceDropdown.js";
 
 import "../../assets/styles/sidebar.css"
 
+import useAuth from "hooks/useAuth";
+import NavItem from "./NavItem";
+
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const { auth } = useAuth();
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function Sidebar() {
             className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             to="/"
           >
-            Social Protection Center - SPC
+            Social Protection Center
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -78,60 +83,29 @@ export default function Sidebar() {
                 />
               </div>
             </form>
-
-            {/* Divider */}
             <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
-            </h6> */}
-            {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/dashboard"
-                >
-                  <i
-                    className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Dashboard
-                </Link>
-              </li>
-              {/* Start manager account list */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/accounts") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/accounts"
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/accounts") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Quản lý tài khoản
-                </Link>
-              </li>
-              {/* End manager account list */}
+              <NavItem name="Thống kê" icon="fa-tv" url="/admin/dashboard" />
+              <NavItem
+                name="Quản lý trẻ em"
+                icon="fa-tools"
+                url="/admin/child"
+              />
+              <NavItem
+                name="Quản lý nhân viên"
+                icon="fa-table"
+                url="/admin/employee"
+              />
+              {auth.roles == "SUPER_ADMIN" ? (
+                <NavItem
+                  name="Quản lý tài khoản"
+                  icon="fa-tools"
+                  url="/admin/accounts"
+                />
+              ) : (
+                <></>
+              )}
 
               {/* Start Manager website list */}
               <li className="items-center">
@@ -362,6 +336,11 @@ export default function Sidebar() {
                   VueJS
                 </a>
               </li>
+              <NavItem
+                name="Quản lý website"
+                icon="fa-table"
+                url="/admin/website"
+              />
             </ul>
           </div>
         </div>

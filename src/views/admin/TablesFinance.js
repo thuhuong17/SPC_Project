@@ -3,7 +3,9 @@ import { useState } from "react";
 // components
 import CardTable from "components/Cards/CardTableFinance.js";
 import { Modal } from "components/Modals/Modal";
-import axios from "api/axios";
+import usePrivateApi from "api/usePrivateApi";
+// import axios from "api/axios";
+// import axios from "axios";
 // import "../../assets/styles/tableFinanceCard.css"
 
 export default function TablesFinance() {
@@ -13,27 +15,70 @@ export default function TablesFinance() {
   const [expense, setExpense] = useState([])
   const [accBank, setAccBank] = useState([])
 
+  const api = usePrivateApi()
+
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/social-protection-api/budgets")
-      .then((res) => {
-        setBudget(res.data)
-      });
-    axios
-      .get("http://localhost:8080/social-protection-api/incomes")
-      .then((res) => {
-        setIncome(res.data)
-      });
-    axios
-      .get("http://localhost:8080/social-protection-api/expenses")
-      .then((res) => {
-        setExpense(res.data)
-      });
-    axios
-      .get("http://localhost:8080/social-protection-api/bank-account")
-      .then((res) => {
-        setAccBank(res.data)
-      });
+    const getBudget = async () => {
+      try {
+        const response = await api.getBudget();
+        setBudget(response.data);
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getBudget();
+
+    const getIncome = async () => {
+      try {
+        const response = await api.getIncome();
+        setIncome(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getIncome();
+
+    const getExpense = async () => {
+      try {
+        const response = await api.getExpense();
+        setExpense(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getExpense();
+
+    const getBankAccount = async () => {
+      try {
+        const response = await api.getBankAccount();
+        setAccBank(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getBankAccount();
+
+    // axios
+    //   .get("http://localhost:8080/social-protection-api/budgets")
+    //   .then((res) => {
+    //     setBudget(res.data)
+    //   });
+    // axios
+    //   .get("http://localhost:8080/social-protection-api/incomes")
+    //   .then((res) => {
+    //     setIncome(res.data)
+    //   });
+    // axios
+    //   .get("http://localhost:8080/social-protection-api/expenses")
+    //   .then((res) => {
+    //     setExpense(res.data)
+    //   });
+    // axios
+    //   .get("http://localhost:8080/social-protection-api/bank-account")
+    //   .then((res) => {
+    //     setAccBank(res.data)
+    //   });
   }, [])
 
   const [rowToEdit, setRowToEdit] = useState(null);
