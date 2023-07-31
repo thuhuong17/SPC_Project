@@ -2,14 +2,14 @@ import React from "react";
 
 import {useState} from "react";
 // components
-import CardViewChild from "components/Cards/CardViewChild";
 import { ChildModal } from "components/Modals/ChildModals";
 import "../../assets/styles/tableAccountCard.css"
-import CardTable from "components/Cards/CardTableAccount.js";
+import CardTableChild from "components/Cards/CardTableChild.js";
+// import CardTable from "components/Cards/CardTableAccount.js";
 export default function Child() {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
-    {stt:"4", username:"Admin@04", password:"1234", description:"Super Manager", status:"live"}
+    {stt:"4", firstname:"Admin@04", lastname:"1234", birthday:"Super Manager", status:"live"}
   ])
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -40,8 +40,8 @@ export default function Child() {
     <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-              <CardTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Add</button>
+              <CardTableChild rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm trẻ em</button>
               {modalOpen && 
                 <ChildModal
                 closeModal ={()=> {
@@ -59,8 +59,7 @@ export default function Child() {
       <div className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
 
-          {/* <CardSettings /> */}
-          {/* <CardViewChild /> */}
+         
         </div>
       </div>
     </>

@@ -15,7 +15,32 @@
     border-radius: 5px;
     padding: 2rem;
     background-color: white;
-    width: 25em;
+    width: 40em;
+}
+.modal .firstname {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+.modal .lastname {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 20px;
+}
+.modal .birthday {
+    border-radius: 5px;
+    padding: 5px;
+    
+    text-align: center;
+}
+.modal .gender {
+    border-radius: 5px;
+    padding: 5px;
+    
+    text-align: center;
 }
 
 .modal .btn {
