@@ -39,8 +39,9 @@ export default function CardTableAdoption({ color, rows, deleteRow, editRow }) {
                       <th>STT</th>
                       <th>ID nhận nuôi</th>
                       <th>ID trẻ em</th>
-                      <th>Ngày đăng ký</th>
+                      <th className="Expand">Ngày đăng ký</th>
                       <th>Trạng thái</th>
+                      <th>Hành động</th>
                     </tr>
                   </thead>
                   <tbody>

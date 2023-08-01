@@ -12,7 +12,8 @@ export const ModalBudgets = ({ closeModal, onSubmit, defaultValue }) => {
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.adoptionID && formState.childId && formState.registerDate){
+        if(formState.budgetID && formState.budgetName && formState.budgetDesc
+            && formState.amount && formState.startDate && formState.endDate){
             setErrors("")
             return true;
         } else {
@@ -64,7 +65,7 @@ return (
                 </div>
                 <div className='form-group'>
                     <label htmlFor="amount">Số tiền</label>
-                    <input name='amount'  value={formState.amount} onChange={handleChange} />
+                    <input type='number' name='amount'  value={formState.amount} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
                     <label htmlFor="startDate">Ngày được cấp</label>

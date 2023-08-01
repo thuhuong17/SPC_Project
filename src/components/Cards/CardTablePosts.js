@@ -23,7 +23,7 @@ export default function CardTablePost({ color, rows, deleteRow, editRow }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách bài viết
+                DANH SÁCH BÀI VIẾT
               </h3>
             </div>
           </div>
