@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
-// import "../../assets/styles/tableAccountCard.css"
-// import TableDropdown from "components/Dropdowns/TableDropdown.js";
+
+
 
 export default function CardTableChild({ color, rows, deleteRow, editRow }) {
   return (

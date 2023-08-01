@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 // import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 // import React, { useState } from "react";
   // components
@@ -13,8 +13,6 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
       <div className="space-y-20">
         <div className="border-b border-gray-900/10 pb-12">
           <h1 className="relative text-base font-semibold leading-7 text-gray-900 mt-10 text-xl" align="center">NHẬP THÔNG TIN TRẺ EM</h1>
-    
-
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">

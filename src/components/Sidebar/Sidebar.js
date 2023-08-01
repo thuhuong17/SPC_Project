@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
-import ChildDropdown from "components/Dropdowns/ChildDropdown";
+import useAuth from "hooks/useAuth";
+import NavItem from "./NavItem";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const { auth } = useAuth();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -75,195 +77,50 @@ export default function Sidebar() {
                 />
               </div>
             </form>
-
-            {/* Divider */}
             <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
-            </h6> */}
-            {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/dashboard"
-                >
-                  <i
-                    className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Dashboard
-                </Link>
-              </li>
-              {/* Start manager account list */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/child") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/child"
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/child") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Quản lý trẻ em
-                </Link>
-                {/* <ChildDropdown/> */}
-              </li>
-              {/* End manager account list */}
+              <NavItem name="Thống kê" icon="fa-tv" url="/admin/dashboard" />
+              <NavItem
+                name="Quản lý trẻ em"
+                icon="fa-tools"
+                url="/admin/child"
+              />
+              <NavItem
+                name="Quản lý nhân viên"
+                icon="fa-table"
+                url="/admin/employee"
+              />
+              {auth.roles == "SUPER_ADMIN" ? (
+                <NavItem
+                  name="Quản lý tài khoản"
+                  icon="fa-tools"
+                  url="/admin/accounts"
+                />
+              ) : (
+                <></>
+              )}
 
-              {/* Start Manager website list */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/employee") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/employee"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/employee") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Quản lý nhân viên
-                </Link>
-              </li>
-              {/* End manager website */}
-
-              <li className="items-center">
-                
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/accounts") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/accounts"
-                >
-                  <i
-                    className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/accounts") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Quản lý tài khoản
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            Quản lý tài chinh
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              {/* Thêm bài bài viết */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/add-page") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/add-page"
-                >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Quan ly admin
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/register"
-                >
-                  <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              No Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/landing"
-                >
-                  <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Landing Page
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/profile"
-                >
-                  <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Profile Page
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Documentation
-            </h6>
-            {/* Navigation */}
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                    
-              {/* <li className="inline-flex"> */}
-                {/* <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-angular mr-2 text-blueGray-300 text-base"></i>
-                  Angular
-                </a> */}
-              {/* </li> */}
+              <NavItem
+                name="Quản lý website"
+                icon="fa-table"
+                url="/admin/website"
+              />
+              <NavItem
+                name="Quản lý nhận nuôi"
+                icon="fa-table"
+                url="/admin/adoption"
+              />
+              <NavItem
+                name="Quản lý ngân sách"
+                icon="fa-table"
+                url="/admin/budgets"
+              />
+              <NavItem
+                name="Quản lý người nhận nuôi"
+                icon="fa-table"
+                url="/admin/adopters"
+              />
             </ul>
           </div>
         </div>

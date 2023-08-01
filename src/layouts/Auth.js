@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { Children } from "react";
+import { Switch, Route, Redirect, Routes, Navigate } from "react-router-dom";
 
 // components
 
@@ -8,10 +8,10 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import Login from "views/auth/Login.js";
+import Login from "views/auth/Login";
 import Register from "views/auth/Register.js";
 
-export default function Auth() {
+export default function Auth({ children }) {
   return (
     <>
       <Navbar transparent />
@@ -24,11 +24,15 @@ export default function Auth() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-          <Switch>
-            <Route path="/auth/login" exact component={Login} />
-            <Route path="/auth/register" exact component={Register} />
-            <Redirect from="/auth" to="/auth/login" />
-          </Switch>
+          {children}
+          {/* <Routes>
+            <Route path="/auth/login" exact element={<Login />} />
+            <Route path="/auth/register" exact element={<Register />} />
+            <Route
+              path="/auth"
+              element={<Navigate to="/auth/login" replace />}
+            />
+          </Routes> */}
           <FooterSmall absolute />
         </section>
       </main>

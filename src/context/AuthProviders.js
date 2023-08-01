@@ -1,15 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-const AuthContext = createContext({})
+const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const [ auth, setAuth ] = useState({});
-    return (
-        <AuthContext.Provider value={{auth, setAuth}}>
-            {children}
-        </AuthContext.Provider>
-    )
-
-}
-
+  const [auth, setAuth] = useState({});
+  const [isUnexpired, setIsUnexpired] = useState(false);
+  return (
+    <AuthContext.Provider
+      value={{ auth, setAuth, isUnexpired, setIsUnexpired }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 export default AuthContext;
