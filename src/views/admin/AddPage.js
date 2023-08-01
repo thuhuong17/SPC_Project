@@ -145,7 +145,7 @@ const AddPage = (color) => {
                         <br /> <br />
                         <Form onSubmit={createPost}>
                             <div className="my-3">
-                                        <Label for="title" >Post title</Label>
+                                        <Label for="title" >Tiêu đề</Label>
                                         <Input
                                             type="text"
                                             id="title"
@@ -157,11 +157,12 @@ const AddPage = (color) => {
                             </div>
 
                             <div className="my-3">
-                                        <Label for="content" id="content">Post Content</Label>
+                                        <Label for="content" id="content">Nội dung</Label>
                                         <JoditEditor
+                                            id="editor"
                                             ref={editor}
                                             value={post.content}
-
+                                            placeholder="Nhập nội dung"
                                             onChange={(newContent) => contentFieldChanaged(newContent)}
                                         />
                             </div>
@@ -169,13 +170,13 @@ const AddPage = (color) => {
                                     {/* file field  */}
 
                             <div className="mt-3">
-                                        <Label for="image">Select Post banner</Label>
+                                        <Label for="image">Chọn ảnh</Label>
                                         <br />
                                         <Input id="image" type="file" onChange={handleFileChange} />
                             </div>
 
                             <div className="my-3">
-                                        <Label for="category" >Post Category</Label>
+                                        <Label for="category" >Danh mục</Label>
                                         <Input
                                             type="select"
                                             id="category"
@@ -187,7 +188,7 @@ const AddPage = (color) => {
 
                                         >
 
-                                            <option disabled value={0} >--Select category--</option>
+                                            <option disabled value={0} >--Chọn danh mục--</option>
 
                                             {
 
@@ -201,8 +202,8 @@ const AddPage = (color) => {
                                         </Input>
                             </div>
                             <Container className="text-center">
-                                        <Button type="submit" className="rounded-0" color="primary">Create Post</Button>
-                                        <Button className="rounded-0 ms-2" color="danger">Reset Content</Button>
+                                        <Button id="submit" type="submit" className="rounded-0" color="primary">Đăng bài</Button>
+                                        <Button id="reset" className="rounded-0 ms-2" color="danger">Reset</Button>
                             </Container>
                         </Form>
                     </CardBody>

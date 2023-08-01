@@ -4,11 +4,10 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
 
-
 export default function CardTable({ color, rows, deleteRow, editRow }) {
   return (
     <>
-    {/* Bảng 1: Danh sách tài khoản Admin */}
+    {/* Bảng 1: Danh sách bài viết */}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -24,7 +23,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách tài khoản Admin
+                Danh sách bài viết
               </h3>
             </div>
           </div>
@@ -36,8 +35,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Tên tài khoản</th>
-                      <th>Mật khẩu</th>
+                      <th>Tiêu đề bài viết</th>
                       <th className="Expand">Mô tả</th>
                       <th>Trạng thái</th>
                       <th>Action</th>
@@ -50,8 +48,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
 
                         return <tr key={idx}>
                           <td>{row.stt}</td>
-                          <td>{row.username}</td>
-                          <td>{row.password}</td>
+                          <td>{row.title}</td>
                           <td className="expand">{row.description}</td>
                           <td>
                             <span className={`label label-${row.status}`}>
@@ -72,9 +69,6 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
           </div>
         </div>
       </div>
-
-      {/* Bảng 2: Danh sách tài khoản Quản lý */}
-
     </>
   );
 }

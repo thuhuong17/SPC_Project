@@ -3,14 +3,20 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import CardTable from "components/Cards/CardTableAccount.js";
-import { Modal } from "components/Modals/ModalAccountList";
+import CardTable from "components/Cards/CardTablePosts";
+import { useHistory } from "react-router-dom";
+// import { Modal } from "components/Modals/ModalPostsList";
 
-export default function TablesAccount() {
+export default function TablesListPost() {
   const [modalOpen, setModalOpen] = useState(false);
+  const history = useHistory();
+  const routeChange = () => {
+    let path = `/admin/add-page`;
+    history.push(path);
+  }
 
   const [rows, setRows] = useState([
-    {stt:"4", username:"Admin@04", password:"1234", description:"Super Manager", status:"live"}
+    {stt:"1", title:"Hỗ trợ trẻ em miền núi", description:"Trẻ em thuộc dân tộc thiểu số, sinh sống ở vùng sâu vùng xa", status:"live"}
   ])
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -41,17 +47,7 @@ export default function TablesAccount() {
         <div className="w-full px-4">
           <div className="tableStyle">
               <CardTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm</button>
-              {modalOpen && 
-                <Modal 
-                closeModal ={()=> {
-                  setModalOpen(false);
-                  setRowToEdit(null);
-                }
-              } 
-              onSubmit = {handleSubmit}
-              defaultValue={rowToEdit !== null && rows[rowToEdit]}
-              />}
+              <button className="btn" onClick={routeChange}>Thêm</button>
           </div>
         </div>
       </div>

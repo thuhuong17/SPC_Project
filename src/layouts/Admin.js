@@ -20,6 +20,7 @@ import AddChild from "views/admin/AddChild";
 import TablesAccount from "views/admin/TablesAccount";
 import TablesWebsite from "views/admin/TablesWebsite";
 import AddPage from "views/admin/AddPage";
+import TablesListPost from "views/admin/TablesListPost";
 
 export default function Admin() {
   return (
@@ -43,6 +44,7 @@ export default function Admin() {
             <Route path="/admin/accounts" exact component={TablesAccount} />
             <Route path="/admin/website" exact component={TablesWebsite} />
             <Route path="/admin/add-page" exact component={AddPage} />
+            <Route path="/admin/list-posts" exact component={TablesListPost} />
             <Redirect from="/admin" to="/admin/dashboard" />
           {/* </Switch> */}
           <FooterAdmin />

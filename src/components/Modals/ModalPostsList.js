@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import "../../assets/styles/modal.css"
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
-        username: "",
-        password: "",
+        title: "",
         description: "",
         status: "live",
     });
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.username && formState.password && formState.description && formState.status){
+        if(formState.title && formState.description && formState.status){
             setErrors("")
             return true;
         } else {
@@ -39,7 +38,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         closeModal();
     }
 
-
+    
   return (
     <div className='modal-container' 
     onClick={(e) => {
@@ -49,13 +48,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         <div className="modal">
             <form>
                 <div className='form-group'>
-                    <label htmlFor="username">Tên tài khoản</label>
-                    <input name='username' value={formState.username} onChange={handleChange} />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor="password">Mật khẩu</label>
-                    <input name='password' value={formState.password} onChange={handleChange} />
+                    <label htmlFor="title">Tiêu đề</label>
+                    <input name='title' value={formState.title} onChange={handleChange} />
                 </div>
 
                 <div className='form-group'>
@@ -67,7 +61,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                     <label htmlFor="status">Trạng thái</label>
                     <select name='status' value={formState.status} onChange={handleChange}>
                         <option value="live">Live</option>
-                        <option value="off">Off</option>
+                        <option value="draft">Draft</option>
                         <option value="error">Error</option>
                     </select>
                 </div>
