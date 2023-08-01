@@ -1,0 +1,49 @@
+#title {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#image, #content{
+    margin: 8px 0;
+}
+
+#content{
+    width: 100%;
+}
+
+#category{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#submit{
+    color: white;
+    width: 10em;
+    background-color: blue;
+    margin: 10px;
+}
+#submit:hover{
+    background-color: #3366CC;
+}
+
+#reset{
+    color: white;
+    width: 10em;
+    background-color: #EE0000;
+    margin: 10px;
+}
+
+#reset:hover{
+    background-color: #CD0000;
+}

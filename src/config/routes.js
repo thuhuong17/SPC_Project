@@ -8,9 +8,11 @@ import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
 import TablesAdoption from "views/admin/TableAdoption";
 import TablesAdopters from "views/admin/TableAdopter";
-import TablesWebsite from "views/admin/TablesWebsite";
+// import TablesWebsite from "views/admin/TablesWebsite";
 import Child from "views/admin/Child";
 import TableEmployee from "views/admin/TableEmployee";
+import TablesListPost from "views/admin/TablesListPost";
+import AddPage from "views/admin/AddPage";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -64,7 +66,12 @@ const publicRoutes = [
   },
   {
     path: "/admin/website",
-    component: TablesWebsite,
+    component: TablesListPost,
+    layout: Admin,
+  },
+  {
+    path: "/admin/add-page",
+    component: AddPage,
     layout: Admin,
   },
   {
