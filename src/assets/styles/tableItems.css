@@ -51,6 +51,10 @@
     background-color: #777;
 }
 
+.label-draft {
+    background-color: #777;
+}
+
 .label-live {
     background-color: #42a942;
 }

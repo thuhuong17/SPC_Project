@@ -177,6 +177,29 @@ export default function Sidebar() {
                   Quản lý tài khoản
                 </Link>
               </li>
+
+              <li className="items-center">
+                
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/website") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/admin/website"
+                >
+                  <i
+                    className={
+                      "fas fa-map-marked mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/website") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Quản lý trang web
+                </Link>
+              </li>
             </ul>
 
             {/* Divider */}
@@ -190,6 +213,7 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               {/* Thêm bài bài viết */}
               <li className="items-center">
+                
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
@@ -199,8 +223,15 @@ export default function Sidebar() {
                   }
                   to="/admin/add-page"
                 >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Quan ly admin
+                  <i
+                    className={
+                      "fas fa-map-marked mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/add-page") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Thêm bài viết
                 </Link>
               </li>
 
