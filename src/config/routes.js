@@ -9,10 +9,8 @@ import TableBudgets from "views/admin/TableBudgets";
 import TablesAdoption from "views/admin/TableAdoption";
 import TablesAdopters from "views/admin/TableAdopter";
 import TablesWebsite from "views/admin/TablesWebsite";
-import Employee from "views/admin/Employee";
-import AddChild from "views/admin/AddChild";
 import Child from "views/admin/Child";
-import Settings from "views/admin/Settings";
+import TableEmployee from "views/admin/TableEmployee";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -44,24 +42,24 @@ const publicRoutes = [
     component: Maps,
     layout: Admin,
   },
-  {
-    path: "/admin/settings",
-    component: Settings,
-    layout: Admin,
-  },
+  // {
+  //   path: "/admin/settings",
+  //   component: Settings,
+  //   layout: Admin,
+  // },
   {
     path: "/admin/child",
     component: Child,
     layout: Admin,
   },
-  {
-    path: "/admin/addchild",
-    component: AddChild,
-    layout: Admin,
-  },
+  // {
+  //   path: "/admin/addchild",
+  //   component: AddChild,
+  //   layout: Admin,
+  // },
   {
     path: "/admin/employee",
-    component: Employee,
+    component: TableEmployee,
     layout: Admin,
   },
   {
@@ -151,7 +149,7 @@ const privateRoutes = [
       // },
       // {
       //   path: "/admin/employee",
-      //   component: Employee,
+      //   component: TableEmployee,
       //   layout: Admin,
       // },
       // {

@@ -6,7 +6,7 @@ import "../../assets/styles/tableItems.css";
 // import "../../assets/styles/tableAccountCard.css"
 // import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color, rows, deleteRow, editRow }) {
+export default function CardTableAccount({ color, rows, deleteRow, editRow }) {
   return (
     <>
       {/* Bảng 1: Danh sách tài khoản Admin */}
@@ -25,7 +25,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách tài khoản Admin
+                DANH SÁCH TÀI KHOẢN ADMIN
               </h3>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   <th>Vai trò</th>
                   <th className="Expand">Mô tả</th>
                   <th>Trạng thái</th>
-                  <th>Action</th>
+                  <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,10 +78,10 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
   );
 }
 
-CardTable.defaultProps = {
+CardTableAccount.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+CardTableAccount.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };
