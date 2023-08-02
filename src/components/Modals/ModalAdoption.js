@@ -49,15 +49,15 @@ return (
         <div className="modal">
             <form>
                 <div className='form-group'>
-                    <label htmlFor="adoptionID">adoptionID</label>
+                    <label htmlFor="adoptionID">ID nhận nuôi</label>
                     <input name='adoptionID' value={formState.adoptionID} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="childId">childId</label>
+                    <label htmlFor="childId">ID trẻ em</label>
                     <input name='childId' value={formState.childId} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="registerDate">registerDate</label>
+                    <label htmlFor="registerDate">Ngày đăng ký</label>
                     <input name='registerDate' type = 'date' value={formState.registerDate} onChange={handleChange} />
                 </div>
                 

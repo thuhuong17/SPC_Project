@@ -18,14 +18,14 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1" align="center">
               <h3
                 className={
                   "font-semibold text-lg " +
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách Citizen ID
+                DANH SÁCH QUẢN LÝ CĂN CƯỚC CÔNG DÂN
               </h3>
             </div>
           </div>

@@ -3,14 +3,16 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import { ModalAdoption } from "components/Modals/ModalAdoption";
-import CardTableAdoption from "components/Cards/CardTableAdoption";
+import CardTableEmployee from "components/Cards/CardTableEmployee";
+import { ModalEmployee } from "components/Modals/ModalEmployee";
 
-export default function TablesAdoption() {
+export default function TableEmployee() {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [rows, setRows] = useState([
-    {stt:"1", adoptionID:"1", childId :"123123",registerDate : "17-12-2001",status:"live"}
+    // {stt:"1", employee_id:"1", first_name :"Nguyen",last_name  : "Kim",gender : "Nam", address_temporary: "abc", 
+    // address_permanent:"abc", nationality: "VN", email: "huong@gmail.com", from_date :"",
+    // phone_number : "039854540", to_date : ""}
   ])
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -40,10 +42,10 @@ export default function TablesAdoption() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-              <CardTableAdoption rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm</button>
+              <CardTableEmployee rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm nhân viên</button>
               {modalOpen && 
-                <ModalAdoption   
+                <ModalEmployee
                 closeModal ={()=> {
                   setModalOpen(false);
                   setRowToEdit(null);

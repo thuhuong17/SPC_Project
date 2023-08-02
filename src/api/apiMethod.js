@@ -17,8 +17,12 @@ const apiMethod = {
     const url = "login";
     return axiosClient.post(url, params);
   },
-  postDonation: (params, amount) => {
-    const url = "donations/" + amount + "/abc";
+  postDonation: (params) => {
+    const url = "donations";
+    return axiosClient.post(url, params);
+  },
+  postDonationResult: (params) => {
+    const url = "donations/return";
     return axiosClient.post(url, params);
   },
 };

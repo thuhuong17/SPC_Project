@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css";
-import CardTable from "components/Cards/CardTableAccount.js";
-import { Modal } from "components/Modals/Modal";
 import apiMethod from "api/apiMethod";
 import usePrivateApi from "api/usePrivateApi";
 
@@ -70,16 +68,16 @@ export default function TablesAccount() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-            <CardTable
+            <CardTableAccount
               rows={rows}
               deleteRow={handleDeleteRow}
               editRow={handleEditRow}
             />
             <button className="btn" onClick={() => setModalOpen(true)}>
-              Add
+              Thêm
             </button>
             {modalOpen && (
-              <Modal
+              <ModalAccount
                 closeModal={() => {
                   setModalOpen(false);
                   setRowToEdit(null);

@@ -3,29 +3,27 @@ import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
-// import "../../assets/styles/tableAccountCard.css"
-// import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTableAdoption({ color, rows, deleteRow, editRow }) {
+export default function CardTablePost({ color, rows, deleteRow, editRow }) {
   return (
     <>
-    {/* Bảng 1: Danh sách tài khoản Admin */}
+    {/* Bảng 1: Danh sách bài viết */}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
         }
       >
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1" align="center">
+        <div className="rounded mb-0 py-3 border-1">
+          <div className="flex flex-wrap">
+            <div className="relative w-full px-1 margin-top: 10 max-w-full flex-grow flex-1" align="center">
               <h3
                 className={
                   "font-semibold text-lg " +
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                DANH SÁCH NHẬN NUÔI
+                DANH SÁCH BÀI VIẾT
               </h3>
             </div>
           </div>
@@ -37,11 +35,10 @@ export default function CardTableAdoption({ color, rows, deleteRow, editRow }) {
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>ID nhận nuôi</th>
-                      <th>ID trẻ em</th>
-                      <th className="Expand">Ngày đăng ký</th>
+                      <th>Tiêu đề bài viết</th>
+                      <th className="Expand">Mô tả</th>
                       <th>Trạng thái</th>
-                      <th>Hành động</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -51,10 +48,8 @@ export default function CardTableAdoption({ color, rows, deleteRow, editRow }) {
 
                         return <tr key={idx}>
                           <td>{row.stt}</td>
-                          <td>{row.adoptionID}</td>
-                          <td>{row.childId}</td>
-                          <td>{row.registerDate}</td>
-                          
+                          <td>{row.title}</td>
+                          <td className="expand">{row.description}</td>
                           <td>
                             <span className={`label label-${row.status}`}>
                               {statusText}
@@ -74,17 +69,14 @@ export default function CardTableAdoption({ color, rows, deleteRow, editRow }) {
           </div>
         </div>
       </div>
-      
-      {/* Bảng 2: Danh sách tài khoản Quản lý */}
-      
     </>
   );
 }
 
-CardTableAdoption.defaultProps = {
+CardTablePost.defaultProps = {
   color: "light",
 };
 
-CardTableAdoption.propTypes = {
+CardTablePost.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

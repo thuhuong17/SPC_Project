@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import CardTable from "components/Cards/CardTableBudgets";
 import { ModalBudgets } from "components/Modals/ModalBudgets";
+import CardTableBudgets from "components/Cards/CardTableBudgets";
 
 export default function TableBudgets() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -40,8 +40,8 @@ export default function TableBudgets() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-              <CardTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Add</button>
+              <CardTableBudgets rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm ngân sách</button>
               {modalOpen && 
                 <ModalBudgets 
                 closeModal ={()=> {

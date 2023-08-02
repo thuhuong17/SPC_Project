@@ -53,7 +53,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    Social Protection Center - SPC
+                    Social Protection Center
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -105,6 +105,21 @@ export default function Sidebar() {
                 name="Quản lý website"
                 icon="fa-table"
                 url="/admin/website"
+              />
+              <NavItem
+                name="Quản lý nhận nuôi"
+                icon="fa-table"
+                url="/admin/adoption"
+              />
+              <NavItem
+                name="Quản lý ngân sách"
+                icon="fa-table"
+                url="/admin/budgets"
+              />
+              <NavItem
+                name="Quản lý người nhận nuôi"
+                icon="fa-table"
+                url="/admin/adopters"
               />
             </ul>
           </div>

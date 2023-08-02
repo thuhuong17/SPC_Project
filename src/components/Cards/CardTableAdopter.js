@@ -6,7 +6,7 @@ import "../../assets/styles/tableItems.css"
 // import "../../assets/styles/tableAccountCard.css"
 // import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color, rows, deleteRow, editRow }) {
+export default function CardTableAdopter({ color, rows, deleteRow, editRow }) {
   return (
     <>
     {/* Bảng 1: Danh sách tài khoản Adopter */}
@@ -18,14 +18,14 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1" align="center">
               <h3
                 className={
                   "font-semibold text-lg " +
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách Adopter
+                DANH SÁCH NGƯỜI NHẬN NUÔI
               </h3>
             </div>
           </div>
@@ -47,6 +47,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                       <th>Thu Nhập</th>
                       <th>Hôn nhân</th>
                       <th>Trạng thái</th>
+                      <th>Hành động</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,10 +92,10 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
   );
 }
 
-CardTable.defaultProps = {
+CardTableAdopter.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+CardTableAdopter.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

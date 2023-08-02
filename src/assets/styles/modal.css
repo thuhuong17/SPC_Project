@@ -9,13 +9,86 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,0.4);
+    margin-bottom: 20px;
 }
 
 .modal {
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1rem;
     background-color: white;
-    width: 25em;
+    width: 40em;
+    margin-bottom: 20px;
+    overflow: auto;
+    height: 450px;
+}
+.modal .firstname {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    width: 45%;
+}
+.modal .lastname {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    width: 45%;
+}
+.modal .birthday {
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    width: 36%;  
+}
+.modal .gender {
+    margin-left: 5px;
+    width: 15%;
+}
+.modal .form{
+    width: 100%;
+
+}
+.modal .female{
+    width: 5%;
+}
+.modal .male{
+    width: 5%;
+}
+.modal .nationality{
+    width: 30%;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.modal .date_in {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    justify-content: center;
+    width: 40%;  
+}
+.modal .citizen {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-radius:5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    justify-content: center;
+    width: 39.4%;  
 }
 
 .modal .btn {

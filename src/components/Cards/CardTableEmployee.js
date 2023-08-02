@@ -6,7 +6,7 @@ import '../../assets/styles/tableItems.css'
 // import "../../assets/styles/tableAccountCard.css"
 // import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTableBudgets ({ color, rows, deleteRow, editRow }) {
+export default function CardTableEmployee ({ color, rows, deleteRow, editRow }) {
   return (
     <>
       {/* Bảng 1: Danh sách tài khoản Admin */}
@@ -25,7 +25,7 @@ export default function CardTableBudgets ({ color, rows, deleteRow, editRow }) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                DANH SÁCH NGÂN SÁCH
+                DANH SÁCH NHÂN VIÊN
               </h3>
             </div>
           </div>
@@ -37,12 +37,18 @@ export default function CardTableBudgets ({ color, rows, deleteRow, editRow }) {
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Id Ngân sách</th>
-                  <th>Tên ngân sách</th>
-                  <th>Thông tin ngân sách</th>
-                  <th>Tiền </th>
-                  <th>Ngày được cấp</th>
-                  <th>Ngày hết hạn</th>
+                  <th>ID nhân viên</th>
+                  <th>Họ</th>
+                  <th>Tên</th>
+                  <th>Giới tính</th>
+                  <th>Địa chỉ tạm trú</th>
+                  <th>Địa chỉ thường trú</th>
+                  <th>Quốc tịch</th>
+                  <th>Email</th>
+                  <th>Ngày bắt đầu</th>
+                  <th>Số điện thoại</th>
+                  <th>Ngày kết thúc</th>
+                  <th>Ảnh</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -53,12 +59,19 @@ export default function CardTableBudgets ({ color, rows, deleteRow, editRow }) {
                   return (
                     <tr key={idx}>
                       <td>{row.stt}</td>
-                      <td>{row.budgetID}</td>
-                      <td>{row.budgetName}</td>
-                      <td>{row.budgetDesc}</td>
-                      <td>{row.amount}</td>
-                      <td>{row.startDate}</td>
-                      <td>{row.endDate}</td>
+                      <td>{row.employee_id}</td>
+                      <td>{row.first_name}</td>
+                      <td>{row.last_name}</td>
+                      <td>{row.gender}</td>
+                      <td>{row.address_temporary}</td>
+                      <td>{row.address_permanent}</td>
+                      <td>{row.nationality}</td>
+                      <td>{row.email}</td>
+                      <td>{row.from_date}</td>
+                      <td>{row.phone_number}</td>
+                      <td>{row.to_date}</td>
+                      <td>{row.image_id}</td>
+                      
                       <td>
                             <span className="actions">
                               <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)}/>
@@ -79,10 +92,10 @@ export default function CardTableBudgets ({ color, rows, deleteRow, editRow }) {
   )
 }
 
-CardTableBudgets.defaultProps = {
+CardTableEmployee.defaultProps = {
   color: 'light'
 }
 
-CardTableBudgets.propTypes = {
+CardTableEmployee.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 }

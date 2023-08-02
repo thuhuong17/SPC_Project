@@ -8,14 +8,13 @@ import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
 import TablesAdoption from "views/admin/TableAdoption";
 import TablesAdopters from "views/admin/TableAdopter";
-import TablesWebsite from "views/admin/TablesWebsite";
-import Employee from "views/admin/Employee";
-import AddChild from "views/admin/AddChild";
+// import TablesWebsite from "views/admin/TablesWebsite";
 import Child from "views/admin/Child";
 import Settings from "views/admin/Settings";
 import Service from "views/Service";
 import Contact from "views/Contact";
 import Donate from "views/Donate";
+import DonationResult from "views/DonationResult";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -48,6 +47,10 @@ const publicRoutes = [
   {
     path: "/donate",
     component: Donate,
+  },
+  {
+    path: "/donate/return",
+    component: DonationResult,
   },
 ];
 
@@ -99,21 +102,21 @@ const privateRoutes = [
         component: Child,
         layout: Admin,
       },
-      {
-        path: "/admin/addchild",
-        component: AddChild,
-        layout: Admin,
-      },
-      {
-        path: "/admin/employee",
-        component: Employee,
-        layout: Admin,
-      },
-      {
-        path: "/admin/website",
-        component: TablesWebsite,
-        layout: Admin,
-      },
+      // {
+      //   path: "/admin/addchild",
+      //   component: AddChild,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/employee",
+      //   component: TableEmployee,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/website",
+      //   component: TablesWebsite,
+      //   layout: Admin,
+      // },
       {
         path: "/admin/adopters",
         component: TablesAdopters,

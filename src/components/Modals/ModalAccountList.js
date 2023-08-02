@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../../assets/styles/modal.css"
-export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
+export const ModalAccount= ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
         username: "",
         password: "",
