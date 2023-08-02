@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import "../../assets/styles/modal.css"
 export const ModalAccount= ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
-        username: "",
-        password: "",
+        userName: "",
+        roleName: "",
         description: "",
         status: "live",
     });
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.username && formState.password && formState.description && formState.status){
+        if(formState.userName && formState.roleName && formState.description && formState.status){
             setErrors("")
             return true;
         } else {
@@ -49,13 +49,13 @@ export const ModalAccount= ({ closeModal, onSubmit, defaultValue }) => {
         <div className="modal">
             <form>
                 <div className='form-group'>
-                    <label htmlFor="username">Tên tài khoản</label>
-                    <input name='username' value={formState.username} onChange={handleChange} />
+                    <label htmlFor="userName">Tên tài khoản</label>
+                    <input name='userName' value={formState.userName} onChange={handleChange} />
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="password">Mật khẩu</label>
-                    <input name='password' value={formState.password} onChange={handleChange} />
+                    <label htmlFor="roleName">Vai trò</label>
+                    <input name='roleName' value={formState.roleName} onChange={handleChange} />
                 </div>
 
                 <div className='form-group'>
