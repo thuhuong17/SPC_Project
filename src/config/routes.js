@@ -13,6 +13,9 @@ import Employee from "views/admin/Employee";
 import AddChild from "views/admin/AddChild";
 import Child from "views/admin/Child";
 import Settings from "views/admin/Settings";
+import Service from "views/Service";
+import Contact from "views/Contact";
+import Donate from "views/Donate";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -33,6 +36,18 @@ const publicRoutes = [
   {
     path: "/profile",
     component: Profile,
+  },
+  {
+    path: "/service",
+    component: Service,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+  },
+  {
+    path: "/donate",
+    component: Donate,
   },
 ];
 

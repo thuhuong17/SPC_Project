@@ -73,9 +73,9 @@ const PersistLogin = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
-      if (err.status === 401 || err.status === 403) {
-        // logout();
-      }
+      // if (err.status === 401 || err.status === 403) {
+      //   // logout();
+      // }
     }
   };
 

@@ -6,24 +6,40 @@ import "../../assets/styles/tableAccountCard.css";
 import CardTable from "components/Cards/CardTableAccount.js";
 import { Modal } from "components/Modals/Modal";
 import apiMethod from "api/apiMethod";
+import usePrivateApi from "api/usePrivateApi";
 
 export default function TablesAccount() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isAddUser, setIsAddUser] = useState(0);
   const [rows, setRows] = useState([]);
 
+  const privateApi = usePrivateApi();
+
   useEffect(() => {
     const getUsers = async () => {
       try {
         const response = await apiMethod.getAllUsers();
         setRows(response);
-        // console.log(response);
+        console.log(response);
       } catch (err) {
         console.log(err);
       }
     };
     getUsers();
   }, [isAddUser]);
+
+  useEffect(() => {
+    const getBudget = async () => {
+      try {
+        const response = await privateApi.getBudget();
+        // setRows(response);
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getBudget();
+  }, []);
 
   const [rowToEdit, setRowToEdit] = useState(null);
 

@@ -1,12 +1,140 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import DatePicker from "react-datepicker";
+import * as moment from "moment";
 
 // components
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import "../assets/styles/donation.css";
+import apiMethod from "api/apiMethod";
 
 export default function Donate() {
+  const navigate = useNavigate();
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState({});
+  const [districts, setDistricts] = useState([]);
+  const [district, setDistrict] = useState({});
+  const [wards, setWards] = useState([]);
+  const [ward, setWard] = useState({});
+
+  const [amountInputState, setAmountInputState] = useState(false);
+  const [amount, setAmount] = useState(300000);
+
+  const [formInfor, setFormInfor] = useState({
+    firstName: "",
+    lastName: "",
+    fullName: "",
+    gender: "nam",
+    birthDay: "",
+    addressPermanent: "",
+    phoneNumber: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const getCity = async () => {
+      axios
+        .get(
+          "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json"
+        )
+        .then((res) => {
+          const data = res.data;
+          setCities(data);
+        })
+        .catch((error) => console.log(error));
+    };
+    getCity();
+  }, []);
+
+  useEffect(() => {
+    const dist = city.Districts;
+    if (dist != undefined) {
+      setDistrict({});
+      setDistricts(dist);
+    }
+  }, [city]);
+
+  useEffect(() => {
+    const war = district.Wards;
+    if (war != undefined) {
+      setWard({});
+      setWards(war);
+    }
+  }, [district]);
+
+  const handleCityChange = (e) => {
+    const index = e.target.value;
+    setCity(cities.at(index));
+  };
+
+  const handleDistrictChange = (e) => {
+    const index = e.target.value;
+    setDistrict(districts.at(index));
+  };
+
+  const handleWardChange = (e) => {
+    const index = e.target.value;
+    setWard(wards.at(index));
+  };
+
+  const handleBtnAmoutIpClick = () => {
+    setAmountInputState(true);
+  };
+
+  const handleBtnAmoutDefaultClick = () => {
+    setAmountInputState(false);
+    setAmount(300000);
+  };
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
+
+  const handleInputChange = (e) => {
+    setFormInfor({
+      ...formInfor,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleBtnClick = async () => {
+    // window.location.replace(
+    //   "https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html#danh-s%C3%A1ch-tham-s%E1%BB%91-1"
+    // );
+
+    let address = formInfor.addressPermanent;
+    if (ward.Name != undefined) address = address + ", " + ward.Name;
+    if (district.Name != undefined) address = address + ", " + district.Name;
+    if (city.Name != undefined) address = address + ", " + city.Name;
+    formInfor.addressPermanent = address;
+
+    formInfor.fullName = formInfor.lastName + " " + formInfor.firstName;
+
+    var newDate = new Date(formInfor.birthDay);
+    let dateMDY = `${newDate.getDate()}-${
+      newDate.getMonth() + 1
+    }-${newDate.getFullYear()}`;
+    formInfor.birthDay = dateMDY;
+
+    // console.log(formInfor);
+    // console.log(amount);
+    try {
+      const response = await apiMethod.postDonation(formInfor, amount);
+      console.log(response);
+      window.location.replace(response.urlRedirect);
+    } catch (error) {
+      if (!error?.response) {
+        console.log("No server response");
+      } else {
+        console.log(error.response);
+      }
+    }
+    // console.log(response);
+  };
+
   return (
     <>
       <Navbar transparent />
@@ -29,10 +157,13 @@ export default function Donate() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Donate
+                    Đăng ký tài trợ
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                    Day la trang donate cua chuong trinh
+                    Khoản tiền tài trợ của bạn, dù lớn hay nhỏ, đều quan trọng
+                    với chúng tôi trên hành trình mang lại nụ cười và tương lai
+                    cho trẻ em mồ côi, bị bỏ rơi và có hoàn cảnh đặc biệt khó
+                    khăn.
                   </p>
                 </div>
               </div>
@@ -59,21 +190,249 @@ export default function Donate() {
           </div>
         </div>
 
-       
-
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap">
-            </div>
-
+            <div className="flex flex-wrap"></div>
             <div className="flex flex-wrap items-center mt-32">
-              <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-                <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                  <i className="fas fa-user-friends text-xl"></i>
-                </div>
+              <div className="w-full md:w-6/12 px-4 mr-auto ml-auto">
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                  Working with us is a pleasure
+                  Đăng ký tài trợ
                 </h3>
+                <h3 className="text-xl mb-2 font-semibold leading-normal">
+                  Mức tài trợ (VND)
+                </h3>
+                <div className="form-group">
+                  <div className="flex justify-between flex-row">
+                    <button
+                      className={
+                        (amountInputState
+                          ? "bg-white text-black btn-border-baleBlue"
+                          : "bg-lightBlue-500 text-white") +
+                        " active:bg-lightBlue-600 text-md font-bold px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ease-linear transition-all duration-150"
+                      }
+                      onClick={handleBtnAmoutDefaultClick}
+                      type="button"
+                    >
+                      300.000 VND
+                    </button>
+                    <button
+                      className={
+                        (amountInputState
+                          ? "bg-lightBlue-500 text-white"
+                          : "bg-white text-black btn-border-baleBlue") +
+                        " hover:bg-lightBlue-600 active:bg-lightBlue-600 text-md font-bold px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ease-linear transition-all duration-150"
+                      }
+                      onClick={handleBtnAmoutIpClick}
+                      type="button"
+                    >
+                      Mức khác
+                    </button>
+                    <div className="ip-donate">
+                      <input
+                        style={
+                          amountInputState
+                            ? { visibility: "visible" }
+                            : { visibility: "hidden" }
+                        }
+                        id="input-amount"
+                        name="amount"
+                        min="300000"
+                        value={amount}
+                        onChange={handleAmountChange}
+                        type="number"
+                        placeholder="300.000 VND"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <select name="bankcode" id="bankcode" class="form-control">
+                    <option value="">Chọn ngân hàng </option>
+                    <option value="MBAPP">Ung dung MobileBanking</option>
+                    <option value="VNPAYQR">VNPAYQR</option>
+                    <option value="VNBANK">LOCAL BANK</option>
+                    <option value="IB">INTERNET BANKING</option>
+                    <option value="ATM">ATM CARD</option>
+                    <option value="INTCARD">INTERNATIONAL CARD</option>
+                    <option value="VISA">VISA</option>
+                    <option value="MASTERCARD"> MASTERCARD</option>
+                    <option value="JCB">JCB</option>
+                    <option value="UPI">UPI</option>
+                    <option value="VIB">VIB</option>
+                    <option value="VIETCAPITALBANK">VIETCAPITALBANK</option>
+                    <option value="SCB">Ngan hang SCB</option>
+                    <option value="NCB">Ngan hang NCB</option>
+                    <option value="SACOMBANK">Ngan hang SacomBank </option>
+                    <option value="EXIMBANK">Ngan hang EximBank </option>
+                    <option value="MSBANK">Ngan hang MSBANK </option>
+                    <option value="NAMABANK">Ngan hang NamABank </option>
+                    <option value="VNMART"> Vi dien tu VnMart</option>
+                    <option value="VIETINBANK">Ngan hang Vietinbank </option>
+                    <option value="VIETCOMBANK">Ngan hang VCB </option>
+                    <option value="HDBANK">Ngan hang HDBank</option>
+                    <option value="DONGABANK">Ngan hang Dong A</option>
+                    <option value="TPBANK">Ngân hàng TPBank </option>
+                    <option value="OJB">Ngân hàng OceanBank</option>
+                    <option value="BIDV">Ngân hàng BIDV </option>
+                    <option value="TECHCOMBANK">Ngân hàng Techcombank </option>
+                    <option value="VPBANK">Ngan hang VPBank </option>
+                    <option value="AGRIBANK">Ngan hang Agribank </option>
+                    <option value="MBBANK">Ngan hang MBBank </option>
+                    <option value="ACB">Ngan hang ACB </option>
+                    <option value="OCB">Ngan hang OCB </option>
+                    <option value="IVB">Ngan hang IVB </option>
+                    <option value="SHB">Ngan hang SHB </option>
+                    <option value="APPLEPAY">Apple Pay </option>
+                  </select>
+                </div>
+
+                <h3 className="text-3xl mb-2 font-semibold leading-normal">
+                  Thông tin nhà tài trợ
+                </h3>
+                <form className="form-donate">
+                  <em>
+                    <small>
+                      Các trường có đánh dấu * là thông tin bắt buộc phải nhập.
+                    </small>
+                  </em>
+                  <div className="form-group">
+                    <select
+                      class="form-select"
+                      id="gender"
+                      name="gender"
+                      value={formInfor.gender}
+                      onChange={handleInputChange}
+                    >
+                      <option value="nam" selected>
+                        Nam/Male
+                      </option>
+                      <option value="nữ">Nữ/Female</option>
+                      <option value="khác">Khác/Other</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <div className="flex justify-between fl-inputs">
+                      <input
+                        name="firstName"
+                        value={formInfor.firstName}
+                        type="text"
+                        placeholder="Tên*"
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        name="lastName"
+                        value={formInfor.lastName}
+                        type="text"
+                        placeholder="Họ và tên đệm*"
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <input
+                      name="birthDay"
+                      value={formInfor.birthDay}
+                      placeholder="Ngày sinh*"
+                      type="text"
+                      onFocus={(e) => (e.target.type = "date")}
+                      onBlur={(e) => (e.target.type = "text")}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <select
+                      class="form-select"
+                      id="city"
+                      name="city"
+                      // value={city.Name}
+                      onChange={handleCityChange}
+                    >
+                      <option value="" selected>
+                        Chọn tỉnh thành
+                      </option>
+                      {cities.map((city, index) => (
+                        <option key={index} value={index}>
+                          {city.Name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <select
+                      class="form-select"
+                      id="district"
+                      name="district"
+                      onChange={handleDistrictChange}
+                      defaultValue={district}
+                    >
+                      <option value="-1">Chọn quận/huyện</option>
+                      {districts ? (
+                        districts.map((district, index) => (
+                          <option key={index} value={index}>
+                            {district.Name}
+                          </option>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <select
+                      class="form-select"
+                      id="ward"
+                      name="ward"
+                      onChange={handleWardChange}
+                      defaultValue={ward}
+                    >
+                      <option value="-1">Chọn xã/phường</option>
+                      {wards ? (
+                        wards.map((ward, index) => (
+                          <option key={index} value={index}>
+                            {ward.Name}
+                          </option>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      name="addressPermanent"
+                      placeholder="Địa chỉ (Số nhà, thôn, xã, phường)"
+                      type="text"
+                      value={formInfor.addressPermanent}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      name="phoneNumber"
+                      value={formInfor.phoneNumber}
+                      placeholder="Số điện thoại*"
+                      type="text"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      name="email"
+                      value={formInfor.email}
+                      placeholder="Địa chỉ Email"
+                      type="text"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <button
+                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={handleBtnClick}
+                  >
+                    Tài trợ ngay
+                  </button>
+                </form>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                   Don't let your uses guess by attaching tooltips and popoves to
                   any element. Just make sure you enable them first via
@@ -89,7 +448,12 @@ export default function Donate() {
                   <button variant="text">DONATE ONE</button>
                 </Link> */}
                 <Link to="/donate/donate_one">
-                <button className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION ONE</button>
+                  <button
+                    className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    DONATION ONE
+                  </button>
                 </Link>
               </div>
 
@@ -189,27 +553,28 @@ export default function Donate() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-blueGray-500">
-                            can ao am
-                          </h4>
+                          <h4 className="text-blueGray-500">can ao am</h4>
                         </div>
                       </div>
                     </li>
                     <li className="py-2">
                       <div className="flex items-center">
-                      <Link to="/donate//donate/donate_month">
-                        <button className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION MONTHLY</button>
-                      </Link>
+                        <Link to="/donate//donate/donate_month">
+                          <button
+                            className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1"
+                            type="button"
+                          >
+                            DONATION MONTHLY
+                          </button>
+                        </Link>
                       </div>
                     </li>
-                    
                   </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        
       </main>
       <Footer />
     </>
