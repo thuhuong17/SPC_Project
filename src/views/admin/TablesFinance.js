@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 // components
 import CardTable from "components/Cards/CardTableFinance.js";
-import { Modal } from "components/Modals/Modal";
+import { ModalFinance } from "components/Modals/ModalFinance";
 import usePrivateApi from "api/usePrivateApi";
-// import axios from "api/axios";
-// import axios from "axios";
-// import "../../assets/styles/tableFinanceCard.css"
+import CardBackAccount from "components/Cards/CardBankAccount";
+import { ModalBankAccount } from "components/Modals/ModalBankAccount";
+import CardTableIncome from "components/Cards/CardTableIncome";
+import { ModalIncome } from "components/Modals/ModalIncome";
 
 export default function TablesFinance() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,83 +18,84 @@ export default function TablesFinance() {
 
   const api = usePrivateApi()
 
+  const getBudget = async () => {
+    try {
+      const response = await api.getBudget();
+      setBudget(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getIncome = async () => {
+    try {
+      const response = await api.getIncome();
+      setIncome(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getExpense = async () => {
+    try {
+      const response = await api.getExpense();
+      setExpense(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getBankAccount = async () => {
+    try {
+      const response = await api.getBankAccount();
+      setAccBank(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const getBudget = async () => {
-      try {
-        const response = await api.getBudget();
-        setBudget(response.data);
-        console.log(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getBudget();
-
-    const getIncome = async () => {
-      try {
-        const response = await api.getIncome();
-        setIncome(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getIncome();
-
-    const getExpense = async () => {
-      try {
-        const response = await api.getExpense();
-        setExpense(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getExpense();
-
-    const getBankAccount = async () => {
-      try {
-        const response = await api.getBankAccount();
-        setAccBank(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getBankAccount();
-
-    // axios
-    //   .get("http://localhost:8080/social-protection-api/budgets")
-    //   .then((res) => {
-    //     setBudget(res.data)
-    //   });
-    // axios
-    //   .get("http://localhost:8080/social-protection-api/incomes")
-    //   .then((res) => {
-    //     setIncome(res.data)
-    //   });
-    // axios
-    //   .get("http://localhost:8080/social-protection-api/expenses")
-    //   .then((res) => {
-    //     setExpense(res.data)
-    //   });
-    // axios
-    //   .get("http://localhost:8080/social-protection-api/bank-account")
-    //   .then((res) => {
-    //     setAccBank(res.data)
-    //   });
   }, [])
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
-  const handleDeleteRow = (targetIndex) => {
-    setBudget(budget.filter((_, idx) => idx !== targetIndex))
+  const handleDeleteRow = async (targetIndex) => {
+    try {
+      await api.deleteBudget(budget[targetIndex].budgetId)
+      getBudget()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleDeleteAccBank = async (targetIndex) => {
+    try {
+      await api.deleteBankAccount(accBank[targetIndex].bankAccountId)
+      getBankAccount()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleDeleteIncome = async (targetIndex) => {
+    try {
+      await api.deleteIncome(income[targetIndex].incomeId)
+      getIncome()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
-
     setModalOpen(true);
   }
 
-  const handleSubmit = (newBudget) => {
+  const handleSubmitBudget = (newBudget) => {
     rowToEdit === null
       ? setBudget([...budget, newBudget])
       : setBudget(
@@ -102,26 +104,89 @@ export default function TablesFinance() {
 
           return newBudget;
         }))
+    getBudget();
   }
+
+  const handleSubmitAccBank = (newAccBank) => {
+    rowToEdit === null
+      ? setAccBank([...accBank, newAccBank])
+      : setAccBank(
+        accBank.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+
+          return newAccBank;
+        }))
+    getBankAccount();
+  }
+
+  const handleSubmitIncome = (newIncome) => {
+    rowToEdit === null
+      ? setIncome([...income, newIncome])
+      : setIncome(
+        income.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+
+          return newIncome;
+        }))
+    getIncome();
+  }
+
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-            <CardTable budget={budget} income={income} expense={expense} accBank={accBank}
-              deleteRow={handleDeleteRow}
-              editRow={handleEditRow} />
-            {/* <button className="btn" onClick={()=> setModalOpen(true)}>Add</button> */}
+            {(window.location.href.split("?")[1] === "budget" || window.location.href.split("?")[1] === "expense")
+              ? <CardTable budget={budget} income={income} expense={expense}
+                deleteRow={handleDeleteRow}
+                editRow={handleEditRow} />
+
+              // Table Income
+              : window.location.href.split("?")[1] === "income"
+                ? <CardTableIncome income={income}
+                  deleteRow={handleDeleteIncome}
+                  editRow={handleEditRow} />
+
+                // Table Bank Account
+                : window.location.href.split("?")[1] === "account"
+                  ? <CardBackAccount accBank={accBank}
+                    deleteRow={handleDeleteAccBank}
+                    editRow={handleEditRow} />
+                  : <></>
+            }
+            <button className="btn" onClick={() => setModalOpen(true)}>Add</button>
             {modalOpen &&
-              <Modal
-                closeModal={() => {
-                  setModalOpen(false);
-                  setRowToEdit(null);
-                }
-                }
-                onSubmit={handleSubmit}
-                defaultValue={rowToEdit !== null && budget[rowToEdit]}
-              />}
+              ((window.location.href.split("?")[1] === "budget" ||
+                window.location.href.split("?")[1] === "expense")
+                ? <ModalFinance
+                  closeModal={() => {
+                    setModalOpen(false);
+                    setRowToEdit(null);
+                  }}
+                  onSubmit={handleSubmitBudget}
+                  defaultValue={rowToEdit !== null && budget[rowToEdit]} />
+
+                // Modal Income
+                : (window.location.href.split("?")[1] === "income")
+                  ? <ModalIncome
+                    closeModal={() => {
+                      setModalOpen(false);
+                      setRowToEdit(null);
+                    }}
+                    onSubmit={handleSubmitIncome}
+                    defaultValue={rowToEdit !== null && income[rowToEdit]} />
+
+                  // Modal Bank Account
+                  : (window.location.href.split("?")[1] === "account")
+                    ? <ModalBankAccount
+                      closeModal={() => {
+                        setModalOpen(false);
+                        setRowToEdit(null);
+                      }}
+                      onSubmit={handleSubmitAccBank}
+                      defaultValue={rowToEdit !== null && accBank[rowToEdit]} />
+                    : <></>)
+            }
           </div>
         </div>
       </div>
