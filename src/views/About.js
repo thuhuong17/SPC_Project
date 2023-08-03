@@ -78,7 +78,7 @@ export default function About() {
                   triển xã hội độc lập, phi chính phủ, phi chính trị và phi tôn giáo. 
                   ​Chúng tôi bảo vệ và chăm sóc trẻ mồ côi, bị bỏ rơi hoặc không thể nhận được sự chăm sóc từ gia đình.
                   Làng trẻ em SOS Việt Nam được thành lập vào năm 1987. Từ 2 Làng trẻ em SOS tại hai thành phố theo hiệp định đã ký, đến 
-                nay Làng trẻ em SOS Việt Nam đã có mặt tại 17 tỉnh thành phố trong cả nước.
+                nay Làng trẻ em SOS Việt Nam đã có mặt tại 17 tỉnh thành phố trong cả nước. 
                   </p>
                
                 </div>
