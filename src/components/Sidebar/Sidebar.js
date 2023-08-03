@@ -102,7 +102,7 @@ export default function Sidebar() {
               )}
 
               <NavItem
-                name="Quản lý website"
+                name="Quản lý bài viết"
                 icon="fa-table"
                 url="/admin/website"
               />
