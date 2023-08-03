@@ -7,6 +7,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
     "@material-tailwind/react": "^2.0.7",
+    "@mobiscroll/react-lite": "^4.10.9",
     "@popperjs/core": "2.9.1",
     "autoprefixer": "10.2.5",
     "axios": "^1.4.0",
@@ -55,6 +56,7 @@
     "typescript": "4.2.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.3.3"
   }
 }

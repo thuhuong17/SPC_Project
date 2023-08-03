@@ -13,6 +13,7 @@ import Child from "views/admin/Child";
 import TableEmployee from "views/admin/TableEmployee";
 import TablesListPost from "views/admin/TablesListPost";
 import AddPage from "views/admin/AddPage";
+import Adoption from "views/Adoption";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -29,6 +30,10 @@ const publicRoutes = [
   {
     path: "/event",
     component: Event,
+  },
+  {
+    path: "/adoption",
+    component: Adoption,
   },
   {
     path: "/profile",
