@@ -16,6 +16,7 @@ import Contact from "views/Contact";
 import Donate from "views/Donate";
 import EventDetail from "views/Event_detail";
 import Adoption from "views/Adoption";
+import About from "views/About";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -48,7 +49,7 @@ const publicRoutes = [
   },
   {
     path: "/about",
-    component: Service,
+    component: About,
   },
   {
     path: "/donate",
