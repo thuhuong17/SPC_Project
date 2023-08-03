@@ -16,7 +16,7 @@ export default function Donate() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')",
+                "url('https://sldtbxh.bacgiang.gov.vn/documents/21423/16555458/1682048223663_20.4.23.jpg/557d4aa4-a634-4031-b364-2eaa0cd8d53e?t=1682048223666')",
             }}
           >
             <span
@@ -29,10 +29,10 @@ export default function Donate() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Donate
+                    Hãy quyên góp ngay để các em có một mái ấm hạnh phúc!
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                    Day la trang donate cua chuong trinh
+                   Quyên góp theo tháng và quyên góp một lần.
                   </p>
                 </div>
               </div>
@@ -72,19 +72,12 @@ export default function Donate() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                  Working with us is a pleasure
+                Mang đến cho trẻ một gia đình đầy ắp tình yêu thương
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                  Don't let your uses guess by attaching tooltips and popoves to
-                  any element. Just make sure you enable them first via
-                  JavaScript.
+                Tuổi thơ không chỉ đẹp nhất khi được chơi đùa thỏa thích mà còn là những ngày tháng ở bên cạnh anh chị em của mình. Những người anh, chị, em không cùng chung huyết thống nhưng cùng lớn lên dưới một mái nhà, cùng nhau sẻ chia, cùng nhau vượt qua bao niềm vui nỗi buồn. Sự giúp đỡ của bạn sẽ mang đến cơ hội cho những đứa trẻ mồ côi, những trẻ em có hoàn cảnh khó khăn được có một tuổi thơ vô giá bên cạnh anh chị em, cùng nhau chơi đùa dưới bầu trời xanh ngắt.
                 </p>
-                <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
-                  The kit comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go. Just make sure you enable them first via
-                  JavaScript.
-                </p>
+                
                 {/* <Link to="/donate/donate_one" className="font-bold text-blueGray-700 mt-8">
                   <button variant="text">DONATE ONE</button>
                 </Link> */}
@@ -97,7 +90,7 @@ export default function Donate() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
+                    src={require("assets/img/tre_em1.jpg").default}
                     className="w-full align-middle rounded-t-lg"
                   />
                   <blockquote className="relative p-8 mb-4">
@@ -116,9 +109,7 @@ export default function Donate() {
                       Cho tre em chung toi
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
-                      The Arctic Ocean freezes every winter and much of the
-                      sea-ice then thaws every summer, and that process will
-                      continue whatever happens.
+                    Tuổi thơ không chỉ đẹp nhất khi được chơi đùa thỏa thích mà còn là những ngày tháng ở bên cạnh anh chị em của mình. 
                     </p>
                   </blockquote>
                 </div>
@@ -154,7 +145,7 @@ export default function Donate() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                  src={require("assets/img/tre_em1.jpg").default}
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -198,7 +189,7 @@ export default function Donate() {
                     <li className="py-2">
                       <div className="flex items-center">
                       <Link to="/donate//donate/donate_month">
-                        <button className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION MONTHLY</button>
+                        <button className="bg-lightBlue-500 rounded border-black text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION MONTHLY</button>
                       </Link>
                       </div>
                     </li>

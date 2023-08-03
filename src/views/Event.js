@@ -77,10 +77,12 @@ export default function Event() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
+                    <Link to="/event/event_detail">
                     <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
+                    </Link>
                     <div className="mt-6">
                       <button
                         className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -112,10 +114,12 @@ export default function Event() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
+                  <Link to="/event/event_detail">
                     <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
+                    </Link>
                     <div className="mt-6">
                       <button
                         className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -147,10 +151,12 @@ export default function Event() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
+                  <Link to="/event/event_detail">
                     <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
+                    </Link>
                     <div className="mt-6">
                       <button
                         className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -182,10 +188,12 @@ export default function Event() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
+                  <Link to="/event/event_detail">
                     <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
+                    </Link>
                     <div className="mt-6">
                       <button
                         className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
