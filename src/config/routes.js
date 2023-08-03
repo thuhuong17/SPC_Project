@@ -15,6 +15,7 @@ import Service from "views/Service";
 import Contact from "views/Contact";
 import Donate from "views/Donate";
 import EventDetail from "views/Event_detail";
+import Adoption from "views/Adoption";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -52,6 +53,10 @@ const publicRoutes = [
   {
     path: "/donate",
     component: Donate,
+  },
+  {
+    path: "/adoption",
+    component: Adoption,
   },
   //for admin
   {
