@@ -19,6 +19,8 @@ import Employee from "views/admin/Employee";
 import AddChild from "views/admin/AddChild";
 import TablesAccount from "views/admin/TablesAccount";
 import TablesWebsite from "views/admin/TablesWebsite";
+import AddPage from "views/admin/AddPage";
+import TablesListPost from "views/admin/TablesListPost";
 
 export default function Admin({ children }) {
   return (
@@ -40,12 +42,19 @@ export default function Admin({ children }) {
             <Route path="/admin/tables" exact component={Tables} />
             <Route path="/admin/accounts" exact component={TablesAccount} />
             <Route path="/admin/website" exact component={TablesWebsite} />
+<<<<<<< HEAD
             <Route
               path="/admin/*"
               element={<Navigate to="/admin/dashboard" replace />}
             />
           </Routes> */}
           {children}
+=======
+            <Route path="/admin/add-page" exact component={AddPage} />
+            <Route path="/admin/list-posts" exact component={TablesListPost} />
+            <Redirect from="/admin" to="/admin/dashboard" />
+          {/* </Switch> */}
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
           <FooterAdmin />
         </div>
       </div>

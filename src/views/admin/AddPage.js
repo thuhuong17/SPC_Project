@@ -9,21 +9,44 @@ import { getCurrentUserDetail } from "../../auth"
 import { toast } from "react-toastify"
 import "../../assets/styles/FormEditor.css"
 const AddPage = (color) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
     const editor = useRef(null)
     // const [content,setContent] =useState('')
     const [categories, setCategories] = useState([])
     const [user, setUser] = useState(undefined)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
     const [post, setPost] = useState({
         title: '',
         content: '',
         categoryId: ''
     })
+<<<<<<< HEAD
     const [image, setImage] = useState(null)
     // const config={
     //     placeholder:"Start typing...",
     // }
     useEffect(
         () => {
+=======
+
+    const [image, setImage] = useState(null)
+
+
+    // const config={
+    //     placeholder:"Start typing...",
+
+    // }
+
+    useEffect(
+        () => {
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
             setUser(getCurrentUserDetail())
             loadAllCategories().then((data) => {
                 console.log(data)
@@ -34,39 +57,84 @@ const AddPage = (color) => {
         },
         []
     )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
     //field changed function
     const fieldChanged = (event) => {
         // console.log(event)
         setPost({ ...post, [event.target.name]: event.target.value })
     }
+<<<<<<< HEAD
     const contentFieldChanaged = (data) => {
         setPost({ ...post, 'content': data })
     }
     //create post function
     const createPost = (event) => {
         event.preventDefault();
+=======
+
+    const contentFieldChanaged = (data) => {
+
+        setPost({ ...post, 'content': data })
+
+
+    }
+
+
+    //create post function
+    const createPost = (event) => {
+
+        event.preventDefault();
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
         // console.log(post)
         if (post.title.trim() === '') {
             toast.error("post  title is required !!")
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
         if (post.content.trim() === '') {
             toast.error("post content is required !!")
             return
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
         if (post.categoryId === '') {
             toast.error("select some category !!")
             return;
         }
+<<<<<<< HEAD
         //submit the form one server
         post['userId'] = user.id
         doCreatePost(post).then(data => {
+=======
+
+
+        //submit the form one server
+        post['userId'] = user.id
+        doCreatePost(post).then(data => {
+
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
             uploadPostImage(image,data.postId).then(data=>{
                 toast.success("Image Uploaded !!")
             }).catch(error=>{
                 toast.error("Error in uploading image")
                 console.log(error)
             })
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
             toast.success("Post Created !!")
             // console.log(post)
             setPost({
@@ -78,12 +146,23 @@ const AddPage = (color) => {
             toast.error("Post not created due to some error !!")
             // console.log(error)
         })
+<<<<<<< HEAD
     }
+=======
+
+    }
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
     //handling file chagne event
     const handleFileChange=(event)=>{
         console.log(event.target.files[0])
         setImage(event.target.files[0])
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
     return (
         <>
             <div
@@ -142,7 +221,11 @@ const AddPage = (color) => {
                             <div className="mt-3">
                                         <Label for="image">Chọn ảnh</Label>
                                         <br />
+<<<<<<< HEAD
                                         <Input id="image" accept="image/*" type="file" onChange={handleFileChange} />
+=======
+                                        <Input id="image" type="file" onChange={handleFileChange} />
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
                             </div>
 
                             <div className="my-3">
@@ -150,7 +233,18 @@ const AddPage = (color) => {
                                         <Input
                                             type="select"
                                             id="category"
+<<<<<<< HEAD
                                         >
+=======
+                                            placeholder="Enter here"
+                                            className="rounded-0"
+                                            name="categoryId"
+                                            onChange={fieldChanged}
+                                            defaultValue={0}
+
+                                        >
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
                                             <option disabled value={0} >--Chọn danh mục--</option>
 
                                             {
@@ -160,6 +254,10 @@ const AddPage = (color) => {
                                                         {category.categoryTitle}
                                                     </option>
                                                 ))
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
                                             }
                                         </Input>
                             </div>
@@ -169,10 +267,19 @@ const AddPage = (color) => {
                             </Container>
                         </Form>
                     </CardBody>
+<<<<<<< HEAD
                     </Card>
+=======
+                </Card>
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
             </div>
         </>
         
     )
 }
+<<<<<<< HEAD
 export default AddPage;
+=======
+
+export default AddPage
+>>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
