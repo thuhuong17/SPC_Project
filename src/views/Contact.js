@@ -29,7 +29,7 @@ export default function Contact() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Event
+                    Contact
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
                     Day la cac su kien cua chuong trinh
