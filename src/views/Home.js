@@ -347,7 +347,7 @@ export default function Home() {
             <div className="flex flex-wrap text-center justify-center">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold text-white">
-                  ĐĂNG KÝ NHẬN NUÔI
+                  ĐĂNG KÝ ĐỠ ĐẦU NGAY
                 </h2>
               </div>
             </div>

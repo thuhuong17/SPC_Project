@@ -75,7 +75,16 @@ export default function Navbar(props) {
                   Giới thiệu
                 </a>
               </li>
+{/* search */}
+              <li className="flex items-center justify-between">
+              
+              <input type="text" placeholder="Search" name="search"/>
+              <div class="input-group-btn">
+                  <i className="lg:text-blueGray-200 far fa-solid fa-magnifying-glass text-blueGray-400 text-lg leading-lg mr-2"></i>
+              </div>
+              </li>
             </ul>
+
 
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               {/* <li className="flex items-center">

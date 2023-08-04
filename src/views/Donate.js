@@ -58,9 +58,7 @@ export default function Donate() {
             </svg>
           </div>
         </div>
-
-       
-
+        {/* start layout 1 */}
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
