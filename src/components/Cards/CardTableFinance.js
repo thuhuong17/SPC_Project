@@ -57,7 +57,7 @@ export default function CardTable({ color, budget, income, expense, accBank, del
                         <td>{idx + 1}</td>
                         <td className="expand5">{row?.budgetName}</td>
                         <td className="expand5">{row?.budgetDescription}</td>
-                        <td className="expand5">{(row?.amout).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                        <td className="expand5">{(row?.amout)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
                         <td className="expand5">{row?.startDate}</td>
                         <td className="expand5">{row?.endDate}</td>
                         <td>

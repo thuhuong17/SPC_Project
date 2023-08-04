@@ -45,7 +45,7 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
                                         <td className="expand4">{row?.accountName}</td>
                                         <td className="expand4">{row?.accountNumber}</td>
                                         <td className="expand4">{row?.bankName}</td>
-                                        <td className="expand4">{(row?.balance).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand4">{(row?.balance)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
                                         <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />

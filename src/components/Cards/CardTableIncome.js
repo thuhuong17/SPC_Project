@@ -46,7 +46,7 @@ export default function CardTableIncome({ color, income, deleteRow, editRow }) {
                                         <td>{idx + 1}</td>
                                         <td className="expand6">{row?.incomeName}</td>
                                         <td className="expand6">{row?.incomeDescription}</td>
-                                        <td className="expand6">{(row?.amount).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
                                         <td className="expand6">{row?.budget?.budgetName}</td>
                                         <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
                                         <td className="expand6">{row?.dateTime}</td>
