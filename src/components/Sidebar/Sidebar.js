@@ -152,7 +152,7 @@ export default function Sidebar() {
                     <i className="fa fa-chevron-down pl-4"></i>
                   </span>
                 </label>
-                <span className="dropdown-content" role="menu">
+                <span className="dropdown-content pl-3" role="menu">
                   <FinanceDropdown />
                 </span>
               </li>

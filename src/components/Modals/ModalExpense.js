@@ -22,6 +22,7 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
     const [errors, setErrors] = useState("");
     const validateForm = () => {
         if (formState.expenseName && formState.expenseDescription && formState.dateTime && formState.amount && formState.budget && formState.bankAccount) {
+
             setErrors("");
             return true;
         } else {
@@ -81,8 +82,6 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
         closeModal();
     };
 
-    console.log(defaultValue);
-
     return (
         <div
             className="modal-container"
@@ -139,7 +138,7 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
                     <div className="form-group">
                         <label htmlFor="dateTime">Ngày chi</label>
                         <DatePicker name="startDate"
-                            dateFormat = "dd/MM/yyyy"
+                            dateFormat="dd/MM/yyyy"
                             selected={new Date(moment(formState?.dateTime, "DD/MM/YYYY"))}
                             onChange={(date) => {
                                 changeDateExpense(date)

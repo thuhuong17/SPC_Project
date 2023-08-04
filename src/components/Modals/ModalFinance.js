@@ -129,15 +129,36 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
 
                     <div className="form-group">
                         <label htmlFor="startDate">Ngày bắt đầu</label>
+<<<<<<< HEAD
                         <DatePicker name="startDate" dateFormat="dd/MM/yyyy" 
                         selected={new Date(moment(formState?.startDate, "DD/MM/YYYY"))}
                             onChange={(date) => changeStartDate(date)} />
+=======
+                        {/* <input
+                            name="startDate"
+                            value={formState.startDate}
+                            onChange={handleChange}
+                        /> */}
+                        <DatePicker name="startDate" dateFormat="dd/MM/yyyy" selected={startDate}
+                            onChange={(date) => {
+                                changeStartDate(date)
+                            }} />
+>>>>>>> f293b0d340642b7e002e7e8e3adddbddce6cc6c6
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="endDate">Ngày kết thúc</label>
+<<<<<<< HEAD
                         <DatePicker name="endDate" dateFormat="dd/MM/yyyy" 
                         selected={new Date(moment(formState?.endDate, "DD/MM/YYYY"))}
+=======
+                        {/* <input
+                            name="endDate"
+                            value={formState.endDate}
+                            onChange={handleChange}
+                        /> */}
+                        <DatePicker name="endDate" dateFormat="dd/MM/yyyy" selected={endDate}
+>>>>>>> f293b0d340642b7e002e7e8e3adddbddce6cc6c6
                             onChange={(date) => changeEndDate(date)} />
                     </div>
                     {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}

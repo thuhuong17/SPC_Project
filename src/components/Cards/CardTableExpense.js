@@ -6,6 +6,7 @@ import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
 
 export default function CardTableExpense ({ color, expense, deleteRow, editRow }) {
+
     return (
         <>
             <div className={
