@@ -6,22 +6,22 @@ import "../../assets/styles/modal.css";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 
-export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValue }) => {
-    const [dateIncome, setDateIncome] = useState(new Date());
-    const endDateValue = `${dateIncome.getDate()}-${dateIncome.getMonth()}-${dateIncome.getFullYear()}`
+export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultValue }) => {
+    const [dateExpense, setDateExpense] = useState(new Date());
+    const endDateValue = `${dateExpense.getDate()}-${dateExpense.getMonth()}-${dateExpense.getFullYear()}`
 
     const [formState, setFormState] = useState(defaultValue || {
         budget: "",
         bankAccount: "",
-        incomeName: "",
-        incomeDescription: "",
+        expenseName: "",
+        expenseDescription: "",
         dateTime: endDateValue,
         amount: 0,
     });
 
     const [errors, setErrors] = useState("");
     const validateForm = () => {
-        if (formState.incomeName && formState.incomeDescription && formState.dateTime && formState.amount && formState.budget && formState.bankAccount) {
+        if (formState.expenseName && formState.expenseDescription && formState.dateTime && formState.amount && formState.budget && formState.bankAccount) {
             setErrors("");
             return true;
         } else {
@@ -42,12 +42,12 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
             [e.target.name]: e.target.value,
         });
     };
-    const changeDateIncome = (date) => {
+    const changeDateExpense = (date) => {
         setFormState({
             ...formState,
             dateTime: `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`,
         });
-        setDateIncome(date)
+        setDateExpense(date)
     };
 
     const api = usePrivateApi()
@@ -56,10 +56,10 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        if (defaultValue?.incomeId) {
+        if (defaultValue?.expenseId) {
             try {
                 const newForm = { ...formState, budget: JSON.parse(formState?.budget), bankAccount: JSON.parse(formState?.bankAccount), amount: Number(formState.amount) }
-                await api.putIncome(defaultValue?.incomeId, newForm)
+                await api.putExpense(defaultValue?.expenseId, newForm)
                 alert("Update Success!")
                 onSubmit();
             } catch (error) {
@@ -70,7 +70,7 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
         } else {
             try {
                 const newForm = { ...formState, budget: JSON.parse(formState?.budget), bankAccount: JSON.parse(formState?.bankAccount), amount: Number(formState.amount) }
-                await api.postIncome(newForm)
+                await api.postExpense(newForm)
                 onSubmit();
             } catch (error) {
                 if (!error?.response) {
@@ -93,19 +93,19 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
             <div className="modal">
                 <form>
                     <div className="form-group">
-                        <label htmlFor="incomeName">Tên khoản thu</label>
+                        <label htmlFor="expenseName">Tên khoản chi</label>
                         <input
-                            name="incomeName"
-                            value={formState?.incomeName}
+                            name="expenseName"
+                            value={formState?.expenseName}
                             onChange={handleChange}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="incomeDescription">Mô tả</label>
+                        <label htmlFor="expenseDescription">Mô tả</label>
                         <input
-                            name="incomeDescription"
-                            value={formState?.incomeDescription}
+                            name="expenseDescription"
+                            value={formState?.expenseDescription}
                             onChange={handleChange}
                         />
                     </div>
@@ -137,12 +137,12 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="dateTime">Ngày thu</label>
+                        <label htmlFor="dateTime">Ngày chi</label>
                         <DatePicker name="startDate"
                             dateFormat = "dd/MM/yyyy"
                             selected={new Date(moment(formState?.dateTime, "DD/MM/YYYY"))}
                             onChange={(date) => {
-                                changeDateIncome(date)
+                                changeDateExpense(date)
                             }} />
                     </div>
                     {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}

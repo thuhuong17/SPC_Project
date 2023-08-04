@@ -8,6 +8,8 @@ import CardBackAccount from "components/Cards/CardBankAccount";
 import { ModalBankAccount } from "components/Modals/ModalBankAccount";
 import CardTableIncome from "components/Cards/CardTableIncome";
 import { ModalIncome } from "components/Modals/ModalIncome";
+import { ModalExpense } from "components/Modals/ModalExpense";
+import CardTableExpense from "components/Cards/CardTableExpense";
 
 export default function TablesFinance() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -90,6 +92,15 @@ export default function TablesFinance() {
     }
   }
 
+  const handleDeleteExpense = async (targetIndex) => {
+    try {
+      await api.deleteExpense(expense[targetIndex].expenseId)
+      getExpense()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
     setModalOpen(true);
@@ -131,12 +142,24 @@ export default function TablesFinance() {
     getIncome();
   }
 
+  const handleSubmitExpense = (newExpense) => {
+    rowToEdit === null
+      ? setExpense([...expense, newExpense])
+      : setExpense(
+        expense.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+
+          return newExpense;
+        }))
+    getExpense();
+  }
+
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-            {(window.location.href.split("?")[1] === "budget" || window.location.href.split("?")[1] === "expense")
+            {(window.location.href.split("?")[1] === "budget")
               ? <CardTable budget={budget} income={income} expense={expense}
                 deleteRow={handleDeleteRow}
                 editRow={handleEditRow} />
@@ -147,17 +170,22 @@ export default function TablesFinance() {
                   deleteRow={handleDeleteIncome}
                   editRow={handleEditRow} />
 
-                // Table Bank Account
-                : window.location.href.split("?")[1] === "account"
-                  ? <CardBackAccount accBank={accBank}
-                    deleteRow={handleDeleteAccBank}
+                // Table Expense
+                : window.location.href.split("?")[1] === "expense"
+                  ? <CardTableExpense expense={expense}
+                    deleteRow={handleDeleteExpense}
                     editRow={handleEditRow} />
-                  : <></>
+
+                  // Table Bank Account
+                  : window.location.href.split("?")[1] === "account"
+                    ? <CardBackAccount accBank={accBank}
+                      deleteRow={handleDeleteAccBank}
+                      editRow={handleEditRow} />
+                    : <></>
             }
             <button className="btn" onClick={() => setModalOpen(true)}>Add</button>
             {modalOpen &&
-              ((window.location.href.split("?")[1] === "budget" ||
-                window.location.href.split("?")[1] === "expense")
+              ((window.location.href.split("?")[1] === "budget")
                 ? <ModalFinance
                   closeModal={() => {
                     setModalOpen(false);
@@ -168,7 +196,7 @@ export default function TablesFinance() {
 
                 // Modal Income
                 : (window.location.href.split("?")[1] === "income")
-                  ? <ModalIncome
+                  ? <ModalIncome budget={budget} accBank={accBank}
                     closeModal={() => {
                       setModalOpen(false);
                       setRowToEdit(null);
@@ -176,16 +204,26 @@ export default function TablesFinance() {
                     onSubmit={handleSubmitIncome}
                     defaultValue={rowToEdit !== null && income[rowToEdit]} />
 
-                  // Modal Bank Account
-                  : (window.location.href.split("?")[1] === "account")
-                    ? <ModalBankAccount
+                  // Modal Expense
+                  : (window.location.href.split("?")[1] === "expense")
+                    ? <ModalExpense budget={budget} accBank={accBank}
                       closeModal={() => {
                         setModalOpen(false);
                         setRowToEdit(null);
                       }}
-                      onSubmit={handleSubmitAccBank}
-                      defaultValue={rowToEdit !== null && accBank[rowToEdit]} />
-                    : <></>)
+                      onSubmit={handleSubmitExpense}
+                      defaultValue={rowToEdit !== null && expense[rowToEdit]} />
+
+                    // Modal Bank Account
+                    : (window.location.href.split("?")[1] === "account")
+                      ? <ModalBankAccount
+                        closeModal={() => {
+                          setModalOpen(false);
+                          setRowToEdit(null);
+                        }}
+                        onSubmit={handleSubmitAccBank}
+                        defaultValue={rowToEdit !== null && accBank[rowToEdit]} />
+                      : <></>)
             }
           </div>
         </div>

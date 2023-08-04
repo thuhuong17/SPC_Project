@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 
 import "../../assets/styles/modal.css";
 import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
 
 export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     const [startDate, setStartDate] = useState(new Date());
@@ -67,7 +68,8 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
         if (defaultValue?.budgetId) {
             try {
                 delete formState.budgetId;
-                await api.putBudget(defaultValue?.budgetId, formState)
+                const newForm = { ...formState, amout: Number(formState.amout) }
+                await api.putBudget(defaultValue?.budgetId, newForm)
                 alert("Update Success!")
                 onSubmit();
             } catch (error) {
@@ -127,25 +129,15 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
 
                     <div className="form-group">
                         <label htmlFor="startDate">Ngày bắt đầu</label>
-                        {/* <input
-                            name="startDate"
-                            value={formState.startDate}
-                            onChange={handleChange}
-                        /> */}
-                        <DatePicker name="startDate" dateFormat="dd/MM/yyyy" isClearable={true} selected={startDate}
-                            onChange={(date) => {
-                                changeStartDate(date)
-                            }} />
+                        <DatePicker name="startDate" dateFormat="dd/MM/yyyy" 
+                        selected={new Date(moment(formState?.startDate, "DD/MM/YYYY"))}
+                            onChange={(date) => changeStartDate(date)} />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="endDate">Ngày kết thúc</label>
-                        {/* <input
-                            name="endDate"
-                            value={formState.endDate}
-                            onChange={handleChange}
-                        /> */}
-                        <DatePicker name="endDate" dateFormat="dd/MM/yyyy" isClearable={true} selected={endDate}
+                        <DatePicker name="endDate" dateFormat="dd/MM/yyyy" 
+                        selected={new Date(moment(formState?.endDate, "DD/MM/YYYY"))}
                             onChange={(date) => changeEndDate(date)} />
                     </div>
                     {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}

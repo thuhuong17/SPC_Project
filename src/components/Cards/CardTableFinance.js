@@ -57,7 +57,7 @@ export default function CardTable({ color, budget, income, expense, accBank, del
                         <td>{idx + 1}</td>
                         <td className="expand5">{row?.budgetName}</td>
                         <td className="expand5">{row?.budgetDescription}</td>
-                        <td className="expand5">{row?.amout}</td>
+                        <td className="expand5">{(row?.amout).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
                         <td className="expand5">{row?.startDate}</td>
                         <td className="expand5">{row?.endDate}</td>
                         <td>
@@ -72,46 +72,7 @@ export default function CardTable({ color, budget, income, expense, accBank, del
                 </tbody>
               </table>
             </div>
-            // Expense
-            : (window.location.href.split("?")[1] === "expense") ?
-              <div className="table-main flex-1">
-                <table className="max-w-full table table-finance">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th className="expand6">Tên khoản chi</th>
-                      <th className="expand6">Mô tả</th>
-                      <th className="expand6">Số tiền</th>
-                      <th className="expand6">Ngân sách</th>
-                      <th className="expand6">Tài khoản ngân hàng</th>
-                      <th className="expand6">Ngày chi</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      expense.map((row, idx) => {
-                        return <tr key={idx}>
-                          <td>{idx + 1}</td>
-                          <td className="expand6">{row?.expenseName}</td>
-                          <td className="expand6">{row?.expenseDescription}</td>
-                          <td className="expand6">{row?.amount}</td>
-                          <td className="expand6">{row?.budget?.budgetName}</td>
-                          <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
-                          <td className="expand6">{row?.dateTime}</td>
-                          <td>
-                            <span className="actions">
-                              <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />
-                              <BsFillPencilFill onClick={() => editRow(idx)} />
-                            </span>
-                          </td>
-                        </tr>
-                      })
-                    }
-                  </tbody>
-                </table>
-              </div>
-              : <h2 className="p-3">Chọn mục muốn quản lý</h2>
+            : <h2 className="p-3">Chọn mục muốn quản lý</h2>
           }
         </div>
       </div>

@@ -17,6 +17,7 @@
     "gulp-append-prepend": "1.0.8",
     "heroicons": "^2.0.18",
     "heroicons-react": "^1.4.1",
+    "moment": "^2.29.4",
     "notus-react": "file:",
     "postcss": "8.2.14",
     "react": "17.0.1",

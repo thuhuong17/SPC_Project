@@ -47,6 +47,19 @@ const usePrivateApi = () => {
       const url = "expenses";
       return axiosPrivate.get(url, params);
     },
+    
+    postExpense: (params) => {
+      const url = "expenses";
+      return axiosPrivate.post(url, params);
+    },
+    putExpense: (id, params) => {
+      const url = `expenses/${id}`;
+      return axiosPrivate.put(url, params);
+    },
+    deleteExpense: (id) => {
+      const url = `expenses/${id}`;
+      return axiosPrivate.delete(url);
+    },
     getBankAccount: (params) => {
       const url = "bank-account";
       return axiosPrivate.get(url, params);

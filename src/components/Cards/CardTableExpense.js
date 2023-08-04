@@ -5,7 +5,7 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
 
-export default function CardBackAccount ({ color, accBank, deleteRow, editRow }) {
+export default function CardTableExpense ({ color, expense, deleteRow, editRow }) {
     return (
         <>
             <div className={
@@ -20,7 +20,7 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
                                     "font-semibold text-lg " +
                                     (color === "light" ? "text-blueGray-700" : "text-white")
                                 }
-                            >Tài khoản ngân hàng
+                            >Khoản chi
                             </h3>
                         </div>
                     </div>
@@ -31,21 +31,25 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th className="expand4">Tên tài khoản</th>
-                                    <th className="expand4">Số tài khoản</th>
-                                    <th className="expand4">Ngân hàng</th>
-                                    <th className="expand4">Số dư</th>
+                                    <th className="expand6">Tên khoản chi</th>
+                                    <th className="expand6">Mô tả</th>
+                                    <th className="expand6">Số tiền</th>
+                                    <th className="expand6">Ngân sách</th>
+                                    <th className="expand6">Tài khoản ngân hàng</th>
+                                    <th className="expand6">Ngày chi</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {accBank.map((row, idx) => {
+                                {expense.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
-                                        <td className="expand4">{row?.accountName}</td>
-                                        <td className="expand4">{row?.accountNumber}</td>
-                                        <td className="expand4">{row?.bankName}</td>
-                                        <td className="expand4">{(row?.balance).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand6">{row?.expenseName}</td>
+                                        <td className="expand6">{row?.expenseDescription}</td>
+                                        <td className="expand6">{(row?.amount).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand6">{row?.budget?.budgetName}</td>
+                                        <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
+                                        <td className="expand6">{row?.dateTime}</td>
                                         <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />
@@ -63,10 +67,10 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
     );
 }
 
-CardBackAccount.defaultProps = {
+CardTableExpense.defaultProps = {
     color: "light",
 };
 
-CardBackAccount.propTypes = {
+CardTableExpense.propTypes = {
     color: PropTypes.oneOf(["light", "dark"]),
 };

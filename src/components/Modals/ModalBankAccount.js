@@ -44,7 +44,8 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
         if (!validateForm()) return;
         if (defaultValue?.bankAccountId) {
             try {
-                await api.putBankAccount(defaultValue?.bankAccountId, formState)
+                const newForm = { ...formState, balance: Number(formState.balance) }
+                await api.putBankAccount(defaultValue?.bankAccountId, newForm)
                 alert("Update Success!")
                 onSubmit();
             } catch (error) {
