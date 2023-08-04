@@ -2,15 +2,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "assets/styles/nav.css";
 // components
 
-import PagesDropdown from "components/Dropdowns/PagesDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-      <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
+      <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-black">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             
@@ -61,10 +61,10 @@ export default function Navbar(props) {
               <li className="flex items-center justify-between">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-1 lg:py-2 flex items-center text-xs uppercase font-bold justify-between"
-                  href="/about"
+                  href="/adoption"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400 text-lg leading-lg mr-2" />{" "}
-                  Liên hệ
+                  Đỡ đầu ngay
                 </a>
               </li>
               <li className="flex items-center justify-between">
