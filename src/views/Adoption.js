@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> Huong
 import "../assets/styles/FormAdoption.css"
 // components
 import Navbar from "components/Navbars/AuthNavbar.js";
@@ -452,14 +455,22 @@ export default function Adoption() {
                               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 {/* Your SVG code */}
                               </svg>
+<<<<<<< HEAD
                               Yes.
+=======
+                              Đồng ý.
+>>>>>>> Huong
                             </button>
 
                             <button className={`formbold-confirm-btn ${currentStep === 4 ? '' : 'active'}`}>
                               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 {/* Your SVG code */}
                               </svg>
+<<<<<<< HEAD
                               No.
+=======
+                              Không đồng ý.
+>>>>>>> Huong
                             </button>
                           </div>
                         </div>
@@ -491,6 +502,7 @@ export default function Adoption() {
 
           </div>
         </section>
+<<<<<<< HEAD
 
         <section className="relative py-20">
           <div
@@ -742,8 +754,14 @@ export default function Adoption() {
 
         
         
+=======
+>>>>>>> Huong
       </main>
       <Footer />
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Huong

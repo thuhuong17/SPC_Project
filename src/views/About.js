@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-export default function Donate() {
+export default function About() {
   return (
     <>
       <Navbar transparent />
@@ -29,10 +29,10 @@ export default function Donate() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Hãy quyên góp ngay để các em có một mái ấm hạnh phúc!
+                  THÔNG TIN VỀ CHÚNG TÔI
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                   Quyên góp theo tháng và quyên góp một lần.
+                  Thông tin cập nhật về các chương trình, dự án, hoạt động, câu chuyện từ Trung tâm của chúng tôi.
                   </p>
                 </div>
               </div>
@@ -70,18 +70,14 @@ export default function Donate() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                Mang đến cho trẻ một gia đình đầy ắp tình yêu thương
-                </h3>
+                Chúng tôi là ai</h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                Tuổi thơ không chỉ đẹp nhất khi được chơi đùa thỏa thích mà còn là những ngày tháng ở bên cạnh anh chị em của mình. Những người anh, chị, em không cùng chung huyết thống nhưng cùng lớn lên dưới một mái nhà, cùng nhau sẻ chia, cùng nhau vượt qua bao niềm vui nỗi buồn. Sự giúp đỡ của bạn sẽ mang đến cơ hội cho những đứa trẻ mồ côi, những trẻ em có hoàn cảnh khó khăn được có một tuổi thơ vô giá bên cạnh anh chị em, cùng nhau chơi đùa dưới bầu trời xanh ngắt.
-                </p>
+                Làng trẻ em SOS quốc tế hoạt động vì trẻ em tại 138 quốc gia và vùng lãnh thổ với vai trò là một tổ chức phát 
+                  triển xã hội độc lập, phi chính phủ, phi chính trị và phi tôn giáo. 
+                  ​Chúng tôi bảo vệ và chăm sóc trẻ mồ côi, bị bỏ rơi hoặc không thể nhận được sự chăm sóc từ gia đình.
+                  Làng trẻ em SOS Việt Nam được thành lập vào năm 1987. Từ 2 Làng trẻ em SOS tại hai thành phố theo hiệp định đã ký, đến 
+                nay Làng trẻ em SOS Việt Nam đã có mặt tại 17 tỉnh thành phố trong cả nước.                 </p>
                 
-                {/* <Link to="/donate/donate_one" className="font-bold text-blueGray-700 mt-8">
-                  <button variant="text">DONATE ONE</button>
-                </Link> */}
-                <Link to="/donate/donate_one">
-                <button className="bg-lightBlue-500 text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION ONE</button>
-                </Link>
               </div>
 
               <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -104,7 +100,7 @@ export default function Donate() {
                       ></polygon>
                     </svg>
                     <h4 className="text-xl font-bold text-white">
-                      Cho tre em chung toi
+                      Những mầm non của tương lai
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
                     Tuổi thơ không chỉ đẹp nhất khi được chơi đùa thỏa thích mà còn là những ngày tháng ở bên cạnh anh chị em của mình. 
@@ -115,7 +111,7 @@ export default function Donate() {
             </div>
           </div>
         </section>
-
+{/* ///// */}
         <section className="relative py-20">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
@@ -151,52 +147,43 @@ export default function Donate() {
                   <div className="text-lightBlue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-lightBlue-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">DU AN NUOI EM</h3>
+                  <h3 className="text-3xl font-semibold">Tầm nhìn</h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                    day la du an nuoi em cho cac em an hoc
+                  Tất cả trẻ em đều cần có gia đình, lớn lên trong tình yêu thương, sự tôn trọng và an toàn
                   </p>
-                  <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-blueGray-500">
-                            xay nha cho cac tre em
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-blueGray-500">
-                            can ao am
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                      <Link to="/donate//donate/donate_month">
-                        <button className="bg-lightBlue-500 rounded border-black text-white w-22 h-15 outline-none focus:outline-none mr-1 mb-1" type="button">DONATION MONTHLY</button>
-                      </Link>
-                      </div>
-                    </li>
-                    
-                  </ul>
+                  <h3 className="text-3xl font-semibold">Sứ mệnh</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
+                  Chúng tôi mang lại gia đình thay thế cho trẻ mồ côi, bị bỏ rơi và có hoàn cảnh đặc biệt khó khăn, giúp trẻ xây dựng tương lai tự lập, có ích và đóng góp vào sự phát triển của cộng đồng xung quanh trẻ.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+        <section className="pt-20 pb-48">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center text-center mb-24">
+              <div className="w-full lg:w-6/12 px-4">
+                <h2 className="text-5xl font-semibold">Giá trị cốt lõi</h2>
+                <p className="text-xl">Sự can đảm</p>
+                <p className="text-xl">Sự tin tưởng</p>
+                <p className="text-xl">Sự minh bạch</p>
+                <p className="text-xl">Sự cam kết</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap">
+              <div className="w-full md:w-/12 lg:w-7/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  
+                </div>
+              </div>
+            </div>
+            </div>
         </section>
         
       </main>

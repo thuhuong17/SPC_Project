@@ -1,6 +1,4 @@
 import Event from "views/Event.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
 import Dashboard from "views/admin/Dashboard";
 import TablesAccount from "views/admin/TablesAccount";
 import Admin from "layouts/Admin";
@@ -8,12 +6,17 @@ import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
 import TablesAdoption from "views/admin/TableAdoption";
 import TablesAdopters from "views/admin/TableAdopter";
-// import TablesWebsite from "views/admin/TablesWebsite";
 import Child from "views/admin/Child";
 import TableEmployee from "views/admin/TableEmployee";
 import TablesListPost from "views/admin/TablesListPost";
 import AddPage from "views/admin/AddPage";
+import Home from "views/Home";
+import Service from "views/Service";
+import Contact from "views/Contact";
+import Donate from "views/Donate";
+import EventDetail from "views/Event_detail";
 import Adoption from "views/Adoption";
+import About from "views/About";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -23,22 +26,40 @@ const ROLES = {
 
 // Public routes for user without account
 const publicRoutes = [
+  //for web
   {
     path: "/",
-    component: Index,
+    component: Home,
   },
   {
     path: "/event",
     component: Event,
   },
   {
+    path: "/event/event_detail",
+    component: EventDetail,
+  },
+  {
+    path: "/service",
+    component: Service,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
+  {
+    path: "/donate",
+    component: Donate,
+  },
+  {
     path: "/adoption",
     component: Adoption,
   },
-  {
-    path: "/profile",
-    component: Profile,
-  },
+  //for admin
   {
     path: "/admin",
     component: Dashboard,
@@ -49,21 +70,11 @@ const publicRoutes = [
     component: Maps,
     layout: Admin,
   },
-  // {
-  //   path: "/admin/settings",
-  //   component: Settings,
-  //   layout: Admin,
-  // },
   {
     path: "/admin/child",
     component: Child,
     layout: Admin,
   },
-  // {
-  //   path: "/admin/addchild",
-  //   component: AddChild,
-  //   layout: Admin,
-  // },
   {
     path: "/admin/employee",
     component: TableEmployee,

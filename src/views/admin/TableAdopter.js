@@ -41,7 +41,7 @@ export default function TablesAdopters() {
         <div className="w-full px-4">
           <div className="tableStyle">
               <CardTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Add</button>
+              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm</button>
               {modalOpen && 
                 <ModalAdopters 
                 closeModal ={()=> {
