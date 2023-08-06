@@ -28,7 +28,7 @@ const ROLES = {
 const publicRoutes = [
   //for web
   {
-    path: "/home",
+    path: "/",
     component: Home,
   },
   {
