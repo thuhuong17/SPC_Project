@@ -131,6 +131,14 @@ export default function Sidebar() {
               </li>
               {/* End manager website */}
 
+              {/* Start manager adopter */}
+              <NavItem
+                name="Quản lý người nhận nuổi"
+                icon="fa-table"
+                url="/admin/adopter"
+              />
+              {/* End manager adopter */}
+
               {/* Start manager finance */}
               <li className={"items-center text-xs uppercase py-3 font-bold block cursor-pointer dropdown " +
                 (window.location.href.indexOf("/admin/finance") !== -1
