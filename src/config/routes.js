@@ -11,7 +11,7 @@ import TableEmployee from "views/admin/TableEmployee";
 import TablesListPost from "views/admin/TablesListPost";
 import AddPage from "views/admin/AddPage";
 import Home from "views/Home";
-import Service from "views/Service";
+// import Service from "views/Service";
 import Contact from "views/Contact";
 import Donate from "views/Donate";
 import EventDetail from "views/Event_detail";
@@ -39,10 +39,10 @@ const publicRoutes = [
     path: "/event/event_detail",
     component: EventDetail,
   },
-  {
-    path: "/service",
-    component: Service,
-  },
+  // {
+  //   path: "/service",
+  //   component: Service,
+  // },
   {
     path: "/contact",
     component: Contact,
