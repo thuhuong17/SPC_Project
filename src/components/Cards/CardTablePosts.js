@@ -4,11 +4,7 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
 
-<<<<<<< HEAD
 export default function CardTablePost({ color, rows, deleteRow, editRow }) {
-=======
-export default function CardTable({ color, rows, deleteRow, editRow }) {
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
   return (
     <>
     {/* Bảng 1: Danh sách bài viết */}
@@ -27,11 +23,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-<<<<<<< HEAD
                 DANH SÁCH BÀI VIẾT
-=======
-                Danh sách bài viết
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
               </h3>
             </div>
           </div>
@@ -81,7 +73,6 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
   );
 }
 
-<<<<<<< HEAD
 CardTablePost.defaultProps = {
   color: "light",
 };
@@ -89,12 +80,3 @@ CardTablePost.defaultProps = {
 CardTablePost.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };
-=======
-CardTable.defaultProps = {
-  color: "light",
-};
-
-CardTable.propTypes = {
-  color: PropTypes.oneOf(["light", "dark"]),
-};
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
