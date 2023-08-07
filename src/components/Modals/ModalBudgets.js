@@ -12,7 +12,8 @@ export const ModalBudgets = ({ closeModal, onSubmit, defaultValue }) => {
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.adoptionID && formState.childId && formState.registerDate){
+        if(formState.budgetID && formState.budgetName && formState.budgetDesc
+            && formState.amount && formState.startDate && formState.endDate){
             setErrors("")
             return true;
         } else {
@@ -51,27 +52,27 @@ return (
         <div className="modal">
             <form>
                 <div className='form-group'>
-                    <label htmlFor="budgetID">budgetID</label>
+                    <label htmlFor="budgetID">ID ngân sách</label>
                     <input name='budgetID' value={formState.budgetID} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="budgetName">budgetName</label>
+                    <label htmlFor="budgetName">Tên ngân sách</label>
                     <input name='budgetName' value={formState.budgetName} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="budgetDesc">budgetDesc</label>
+                    <label htmlFor="budgetDesc">Thông tin ngân sách</label>
                     <input name='budgetDesc'  value={formState.budgetDesc} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="amount">amount</label>
-                    <input name='amount'  value={formState.amount} onChange={handleChange} />
+                    <label htmlFor="amount">Số tiền</label>
+                    <input type='number' name='amount'  value={formState.amount} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="startDate">startDate</label>
+                    <label htmlFor="startDate">Ngày được cấp</label>
                     <input name='startDate'  type ='date' value={formState.startDate} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="endDate">endDate</label>
+                    <label htmlFor="endDate">Ngày hết hạn</label>
                     <input name='endDate'  type ='date' value={formState.endDate} onChange={handleChange} />
                 </div>
                 

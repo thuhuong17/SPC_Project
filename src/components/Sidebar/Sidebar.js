@@ -59,7 +59,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    Social Protection Center - SPC
+                    Social Protection Center
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -133,7 +133,7 @@ export default function Sidebar() {
 
               {/* Start manager adopter */}
               <NavItem
-                name="Quản lý người nhận nuổi"
+                name="Quản lý người nhận nuôi"
                 icon="fa-hospital-user"
                 url="/admin/adoption"
               />

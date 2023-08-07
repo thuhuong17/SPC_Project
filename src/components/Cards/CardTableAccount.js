@@ -6,7 +6,7 @@ import "../../assets/styles/tableItems.css";
 // import "../../assets/styles/tableAccountCard.css"
 // import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color, rows, deleteRow, editRow }) {
+export default function CardTableAccount({ color, rows, deleteRow, editRow }) {
   return (
     <>
       {/* Bảng 1: Danh sách tài khoản Admin */}
@@ -16,16 +16,16 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
         }
       >
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+        <div className="rounded mb-0 py-3 border-1">
+          <div className="flex flex-wrap">
+            <div className="relative w-full px-1 margin-top: 10 max-w-full flex-grow flex-1" align="center">
               <h3
                 className={
                   "font-semibold text-lg " +
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Danh sách tài khoản Admin
+                DANH SÁCH TÀI KHOẢN ADMIN
               </h3>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                   <th>Vai trò</th>
                   <th className="Expand">Mô tả</th>
                   <th>Trạng thái</th>
-                  <th>Action</th>
+                  <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,10 +78,10 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
   );
 }
 
-CardTable.defaultProps = {
+CardTableAccount.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+CardTableAccount.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

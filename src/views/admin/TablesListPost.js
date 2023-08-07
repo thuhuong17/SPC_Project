@@ -3,14 +3,20 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import { ModalAdoption } from "components/Modals/ModalAdoption";
-import CardTableAdoption from "components/Cards/CardTableAdoption";
+import { Link, useNavigate  } from "react-router-dom";
+import CardTablePost from "components/Cards/CardTablePosts";
+// import { Modal } from "components/Modals/ModalPostsList";
 
-export default function TablesAdoption() {
+export default function TablesListPost() {
   const [modalOpen, setModalOpen] = useState(false);
+  const navigate  = useNavigate ();
+  // const routeChange = () => {
+  //   let path = `/admin/add-page`;
+  //   navigate.push(path);
+  // }
 
   const [rows, setRows] = useState([
-    {stt:"1", adoptionID:"1", childId :"123123",registerDate : "17-12-2001",status:"live"}
+    {stt:"1", title:"Hỗ trợ trẻ em miền núi", description:"Trẻ em thuộc dân tộc thiểu số, sinh sống ở vùng sâu vùng xa", status:"live"}
   ])
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -40,22 +46,14 @@ export default function TablesAdoption() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-              <CardTableAdoption rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <button className="btn" onClick={()=> setModalOpen(true)}>Thêm</button>
-              {modalOpen && 
-                <ModalAdoption   
-                closeModal ={()=> {
-                  setModalOpen(false);
-                  setRowToEdit(null);
-                }
-              } 
-              onSubmit = {handleSubmit}
-              defaultValue={rowToEdit !== null && rows[rowToEdit]}
-              />}
+              <CardTablePost rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+              <Link to="/admin/add-page">
+              <button className="btn">Thêm</button>
+              </Link>
           </div>
         </div>
       </div>
-      
+
     </>
   );
 }

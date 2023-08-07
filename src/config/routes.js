@@ -1,6 +1,4 @@
 import Event from "views/Event.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
 import Dashboard from "views/admin/Dashboard";
 import TablesAccount from "views/admin/TablesAccount";
 import Admin from "layouts/Admin";
@@ -13,7 +11,16 @@ import TableFinance from "views/admin/TablesFinance";
 import Employee from "views/admin/Employee";
 import AddChild from "views/admin/AddChild";
 import Child from "views/admin/Child";
-import Settings from "views/admin/Settings";
+import TableEmployee from "views/admin/TableEmployee";
+import TablesListPost from "views/admin/TablesListPost";
+import AddPage from "views/admin/AddPage";
+import Home from "views/Home";
+import Service from "views/Service";
+import Contact from "views/Contact";
+import Donate from "views/Donate";
+import EventDetail from "views/Event_detail";
+import Adoption from "views/Adoption";
+import About from "views/About";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -23,17 +30,89 @@ const ROLES = {
 
 // Public routes for user without account
 const publicRoutes = [
+  //for web
   {
-    path: "/",
-    component: Index,
+    path: "/home",
+    component: Home,
   },
   {
     path: "/event",
     component: Event,
   },
   {
-    path: "/profile",
-    component: Profile,
+    path: "/event/event_detail",
+    component: EventDetail,
+  },
+  {
+    path: "/service",
+    component: Service,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
+  {
+    path: "/donate",
+    component: Donate,
+  },
+  {
+    path: "/adoption",
+    component: Adoption,
+  },
+  //for admin
+  {
+    path: "/admin",
+    component: Dashboard,
+    layout: Admin,
+  },
+  {
+    path: "/admin/maps",
+    component: Maps,
+    layout: Admin,
+  },
+  {
+    path: "/admin/child",
+    component: Child,
+    layout: Admin,
+  },
+  {
+    path: "/admin/employee",
+    component: TableEmployee,
+    layout: Admin,
+  },
+  {
+    path: "/admin/website",
+    component: TablesListPost,
+    layout: Admin,
+  },
+  {
+    path: "/admin/add-page",
+    component: AddPage,
+    layout: Admin,
+  },
+  {
+    path: "/admin/adopters",
+    component: TablesAdopters,
+    layout: Admin,
+  },
+  {
+    path: "/admin/budgets",
+    component: TableBudgets,
+    layout: Admin,
+  },
+  {
+    path: "/admin/accounts",
+    component: TablesAccount,
+    layout: Admin,
+  },
+  {
+    path: "/admin/dashboard",
+    component: Dashboard,
+    layout: Admin,
   },
 ];
 
@@ -43,27 +122,27 @@ const privateRoutes = [
   {
     roles: [ROLES.admin, ROLES.superAdmin, ROLES.webAdmin],
     routes: [
-      {
-        path: "/admin",
-        component: Dashboard,
-        layout: Admin,
-      },
+      // {
+      //   path: "/admin",
+      //   component: Dashboard,
+      //   layout: Admin,
+      // },
     ],
   },
   // Route for super admin roles
   {
     roles: [ROLES.superAdmin],
     routes: [
-      {
-        path: "/admin/accounts",
-        component: TablesAccount,
-        layout: Admin,
-      },
-      {
-        path: "/admin/dashboard",
-        component: Dashboard,
-        layout: Admin,
-      },
+      // {
+      //   path: "/admin/accounts",
+      //   component: TablesAccount,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/dashboard",
+      //   component: Dashboard,
+      //   layout: Admin,
+      // },
     ],
   },
   {
@@ -73,11 +152,6 @@ const privateRoutes = [
       {
         path: "/admin/maps",
         component: Maps,
-        layout: Admin,
-      },
-      {
-        path: "/admin/settings",
-        component: Settings,
         layout: Admin,
       },
       {
@@ -120,6 +194,51 @@ const privateRoutes = [
         component: TableFinance,
         layout: Admin,
       }
+      // {
+      //   path: "/admin/maps",
+      //   component: Maps,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/settings",
+      //   component: Settings,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/child",
+      //   component: Child,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/addchild",
+      //   component: AddChild,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/employee",
+      //   component: TableEmployee,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/website",
+      //   component: TablesWebsite,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/adopters",
+      //   component: TablesAdopters,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/adoption",
+      //   component: TablesAdoption,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/budgets",
+      //   component: TableBudgets,
+      //   layout: Admin,
+      // },
     ],
   },
   // Route for admin roles

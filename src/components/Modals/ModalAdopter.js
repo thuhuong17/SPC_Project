@@ -55,20 +55,20 @@ return (
         <div className="modal " >
             <form className="mt-12 flex flex-col gap-4">
                 <div className='form-group'>
-                    <label htmlFor="citizen_id">citizen_id</label>
+                    <label htmlFor="citizen_id">ID CCCD</label>
                     <input name='citizen_id' value={formState.citizen_id} onChange={handleChange} />
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="adopter_id">adopter_id</label>
+                    <label htmlFor="adopter_id">ID người nhận nuôi</label>
                     <input name='adopter_id' value={formState.adopter_id} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="birthday">birthday</label>
+                    <label htmlFor="birthday">Ngày sinh</label>
                     <input name='birthday' type='date' value={formState.birthday} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <label htmlFor="phoneNumber">Số điện thoại</label>
                     <input name='phoneNumber' value={formState.phoneNumber} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
@@ -76,23 +76,23 @@ return (
                     <input name='email' value={formState.email} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="nation">nation</label>
+                    <label htmlFor="nation">Quốc tịch</label>
                     <input name='nation' value={formState.nation} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="occupation">occupation</label>
+                    <label htmlFor="occupation">Nghề nghiệp</label>
                     <input name='occupation' value={formState.occupation} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="income">income</label>
+                    <label htmlFor="income">Thu nhập</label>
                     <input name='income' value={formState.income} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="relationship">relationship</label>
+                    <label htmlFor="relationship">Tình trạng hôn nhân</label>
                     <input name='relationship' value={formState.relationship} onChange={handleChange} />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="status">Trạng thái</label>
+                    <label htmlFor="status">Tình trạng</label>
                     <select name='status' value={formState.status} onChange={handleChange}>
                         <option value="live">Live</option>
                         <option value="off">Off</option>

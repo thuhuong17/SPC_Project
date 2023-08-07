@@ -18,8 +18,16 @@ function App() {
       <Routes>
         {/*Load routes from Public routes */}
         {publicRoutes.map((route, index) => {
+          let Layout1 = Fragment;
+          if (route.layout) {
+            Layout1 = route.layout;
+          } else if (route.layout === null) {
+            Layout1 = Fragment;
+          }
           const Page = route.component;
-          return <Route key={index} path={route.path} element={<Page />} />;
+          return <Route key={index} path={route.path} element={<Layout1>
+            <Page />
+          </Layout1>} />;
         })}
 
         {/*Load routes from Private routes */}
