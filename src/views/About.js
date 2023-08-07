@@ -70,12 +70,12 @@ export default function About() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                Chúng tôi là ai</h3>
+                Chúng tôi là ai ?</h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                Làng trẻ em SOS quốc tế hoạt động vì trẻ em tại 138 quốc gia và vùng lãnh thổ với vai trò là một tổ chức phát 
+                Trung tâm chúng tôi hoạt động vì trẻ em tại Việt Nam với vai trò là một tổ chức phát 
                   triển xã hội độc lập, phi chính phủ, phi chính trị và phi tôn giáo. 
                   ​Chúng tôi bảo vệ và chăm sóc trẻ mồ côi, bị bỏ rơi hoặc không thể nhận được sự chăm sóc từ gia đình.
-                  Làng trẻ em SOS Việt Nam được thành lập vào năm 1987. Từ 2 Làng trẻ em SOS tại hai thành phố theo hiệp định đã ký, đến 
+                  Trung tâm chúng tôi được thành lập vào năm 1987. Từ 2 Làng trẻ em SOS tại hai thành phố theo hiệp định đã ký, đến 
                 nay Làng trẻ em SOS Việt Nam đã có mặt tại 17 tỉnh thành phố trong cả nước.                 </p>
                 
               </div>

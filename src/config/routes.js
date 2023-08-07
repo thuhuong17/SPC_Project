@@ -17,6 +17,8 @@ import Donate from "views/Donate";
 import EventDetail from "views/Event_detail";
 import Adoption from "views/Adoption";
 import About from "views/About";
+import About_1 from "views/About_1";
+import About_2 from "views/About_2";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -50,6 +52,14 @@ const publicRoutes = [
   {
     path: "/about",
     component: About,
+  },
+  {
+    path: "/about/chung-toi-la-ai",
+    component: About_1,
+  },
+  {
+    path: "/about/tam-nhin-va-su-menh",
+    component: About_2,
   },
   {
     path: "/donate",
