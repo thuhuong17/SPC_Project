@@ -101,28 +101,6 @@ export default function Sidebar() {
                 <></>
               )}
 
-<<<<<<< HEAD
-              <NavItem
-                name="Quản lý bài viết"
-                icon="fa-table"
-                url="/admin/website"
-              />
-              <NavItem
-                name="Quản lý nhận nuôi"
-                icon="fa-table"
-                url="/admin/adoption"
-              />
-              <NavItem
-                name="Quản lý ngân sách"
-                icon="fa-table"
-                url="/admin/budgets"
-              />
-              <NavItem
-                name="Quản lý người nhận nuôi"
-                icon="fa-table"
-                url="/admin/adopters"
-              />
-=======
               {/* Start Manager website list */}
               <li className="items-center">
                 <Link
@@ -277,7 +255,6 @@ export default function Sidebar() {
                   Angular
                 </a> */}
               {/* </li> */}
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
             </ul>
           </div>
         </div>

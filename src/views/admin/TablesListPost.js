@@ -3,30 +3,17 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-<<<<<<< HEAD
-import { Link, useNavigate  } from "react-router-dom";
-import CardTablePost from "components/Cards/CardTablePosts";
-=======
 import CardTable from "components/Cards/CardTablePosts";
 import { useHistory } from "react-router-dom";
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
 // import { Modal } from "components/Modals/ModalPostsList";
 
 export default function TablesListPost() {
   const [modalOpen, setModalOpen] = useState(false);
-<<<<<<< HEAD
-  const navigate  = useNavigate ();
-  // const routeChange = () => {
-  //   let path = `/admin/add-page`;
-  //   navigate.push(path);
-  // }
-=======
   const history = useHistory();
   const routeChange = () => {
     let path = `/admin/add-page`;
     history.push(path);
   }
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
 
   const [rows, setRows] = useState([
     {stt:"1", title:"Hỗ trợ trẻ em miền núi", description:"Trẻ em thuộc dân tộc thiểu số, sinh sống ở vùng sâu vùng xa", status:"live"}
@@ -59,23 +46,12 @@ export default function TablesListPost() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-<<<<<<< HEAD
-              <CardTablePost rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-              <Link to="/admin/add-page">
-              <button className="btn">Thêm</button>
-              </Link>
-=======
               <CardTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
               <button className="btn" onClick={routeChange}>Thêm</button>
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
           </div>
         </div>
       </div>
 
     </>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd

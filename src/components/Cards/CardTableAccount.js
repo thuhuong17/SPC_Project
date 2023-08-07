@@ -2,14 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 // components
-<<<<<<< HEAD
-import "../../assets/styles/tableItems.css";
-// import "../../assets/styles/tableAccountCard.css"
-// import TableDropdown from "components/Dropdowns/TableDropdown.js";
-=======
 import "../../assets/styles/tableItems.css"
 
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
 
 export default function CardTableAccount({ color, rows, deleteRow, editRow }) {
   return (

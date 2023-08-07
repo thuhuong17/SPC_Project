@@ -2,16 +2,9 @@ import React, { useEffect } from "react";
 // Add account
 import { useState } from "react";
 // components
-<<<<<<< HEAD
-import "../../assets/styles/tableAccountCard.css";
-import apiMethod from "api/apiMethod";
-import CardTableAccount from "components/Cards/CardTableAccount";
-import { ModalAccount } from "components/Modals/ModalAccountList";
-=======
 import "../../assets/styles/tableAccountCard.css"
 import CardTable from "components/Cards/CardTableAccount.js";
 import { Modal } from "components/Modals/ModalAccountList";
->>>>>>> 92996f6c6abe554b46dfd14466746b1ed80d6dfd
 
 export default function TablesAccount() {
   const [modalOpen, setModalOpen] = useState(false);
