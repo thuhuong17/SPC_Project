@@ -17,6 +17,10 @@ const apiMethod = {
     const url = "login";
     return axiosClient.post(url, params);
   },
+  getAllCategories: (params) =>{
+    const url = "categories/get";
+    return axiosClient.get(url, params);
+  }
 };
 
 export default apiMethod;
