@@ -1,4 +1,8 @@
 /*eslint-disable*/
+import AboutDropDown from "components/Dropdowns/AboutDropdown";
+import AdoptionDropDown from "components/Dropdowns/AdoptionDropdown";
+import EventDropDown from "components/Dropdowns/EventDropdown";
+import PagesDropdown from "components/Dropdowns/PagesDropdown";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from 'react-icons/io';
@@ -48,34 +52,15 @@ export default function Navbar(props) {
                   Trang chủ
                 </a>
               </li>
-              <li className="flex items-center justify-between">
-                <a
-                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-1 lg:py-2 flex items-center text-xs uppercase font-bold justify-between"
-                  href="/event"
-                >
-                  <i className="lg:text-blueGray-200 text-blueGray-400 text-lg leading-lg mr-2" />{" "}
-                  Sự kiện
-                </a>
+              <li className="flex items-center">
+                <EventDropDown/>
               </li>
-              <li className="flex items-center justify-between">
-                <a
-                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-1 lg:py-2 flex items-center text-xs uppercase font-bold justify-between"
-                  href="/adoption"
-                >
-                  <i className="lg:text-blueGray-200 text-blueGray-400 text-lg leading-lg mr-2" />{" "}
-                  Đỡ đầu ngay
-                </a>
+              <li className="flex items-center">
+                <AdoptionDropDown/>
               </li>
-              <li className="flex items-center justify-between">
-                <a
-                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold justify-between"
-                  href="/about"
-                >
-                  <i className="lg:text-blueGray-200 text-blueGray-400 text-lg leading-lg mr-2" />{" "}
-                  Giới thiệu
-                </a>
+              <li className="flex items-center">
+                <AboutDropDown/>
               </li>
-
             </ul>
 
 
