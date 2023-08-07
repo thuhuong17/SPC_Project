@@ -1,16 +1,20 @@
 import React, { useEffect, useMemo, useState } from "react";
+import JoditEditor from "jodit-react";
 import usePrivateApi from "api/usePrivateApi";
 import privateFormDataApi from "api/privateFormDataApi";
 
-export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
+export const GuardianModal = ({
+  childId,
+  closeModal,
+  onSubmit,
+  defaultValue,
+}) => {
   const privateApi = usePrivateApi();
-  const privateFDataApi = privateFormDataApi();
-  const [jobs, setJobs] = useState([]);
-  const [shifts, setShifts] = useState([]);
 
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
+    fullName: "",
     birthDay: "",
     gender: "nam",
     nationality: "",
@@ -18,63 +22,41 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
     addressPermanent: "",
     email: "",
     phoneNumber: "",
-    fromDate: "",
-    salary: "",
-    job: {
-      jobId: null,
-    },
-    shift: {
-      shiftId: null,
-    },
+    relationshipType: "",
   });
 
-  const [image, setImage] = useState();
-
-  useEffect(() => {
-    const getJobs = async () => {
-      const response = await privateApi.getAllJobs();
-      setJobs(response.data);
-    };
-    getJobs();
-  }, []);
-
-  useEffect(() => {
-    const getShifts = async () => {
-      const response = await privateApi.getAllShifts();
-      setShifts(response.data);
-    };
-    getShifts();
-  }, []);
-
   const [errors, setErrors] = useState("");
-
+  const validateForm = () => {
+    // if (
+    //   formState.firstname &&
+    //   formState.lastname &&
+    //   formState.birthday &&
+    //   formState.gender &&
+    //   formState.address_temporary &&
+    //   formState.address_permanent &&
+    //   formState.citizen &&
+    //   formState.date_in &&
+    //   formState.status
+    // ) {
+    //   setErrors("");
+    //   return true;
+    // } else {
+    //   let errorFields = [];
+    //   for (const [key, value] of Object.entries(formState)) {
+    //     if (!value) {
+    //       errorFields.push(key);
+    //     }
+    //   }
+    //   setErrors(errorFields.join(", "));
+    //   return false;
+    // }
+  };
+  // update danh sách
   const handleChange = (e) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleJobChange = (e) => {
-    const job = formState.job;
-    job.jobId = e.target.value;
-    setFormState({
-      ...formState,
-      job: job,
-    });
-  };
-
-  const handleShiftChange = (e) => {
-    const shift = formState.shift;
-    shift.shiftId = e.target.value;
-    setFormState({
-      ...formState,
-      shift: shift,
-    });
-  };
-
-  const handleImageChoose = async (e) => {
-    setImage(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -86,46 +68,15 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
     }-${newDate.getFullYear()}`;
 
     formState.birthDay = dateMDY;
+    formState.fullName = `${formState.lastName} ${formState.firstName}`;
 
-    var newFromDate = new Date(formState.fromDate);
-    let dateFrMDY = `${newFromDate.getDate()}-${
-      newFromDate.getMonth() + 1
-    }-${newFromDate.getFullYear()}`;
-    formState.fromDate = dateFrMDY;
+    console.log(childId);
     console.log(formState);
-
-    const data = new FormData();
-    data.append(
-      "employee",
-      new Blob(
-        [
-          JSON.stringify({
-            firstName: formState.firstName,
-            lastName: formState.lastName,
-            gender: formState.gender,
-            nationality: formState.nationality,
-            addressPermanent: formState.addressPermanent,
-            addressTemporary: formState.addressTemporary,
-            birthDay: formState.birthDay,
-            fromDate: formState.fromDate,
-            email: formState.email,
-            phoneNumber: formState.phoneNumber,
-            job: formState.job,
-            shift: formState.shift,
-            salary: formState.salary,
-          }),
-        ],
-        {
-          type: "application/json",
-        }
-      )
-    );
-    data.append("image", image);
-
-    const response = await privateFDataApi.addEmployee(data);
+    const response = await privateApi.addGuardianForChild(childId, formState);
     console.log(response);
-    onSubmit();
+
     closeModal();
+    onSubmit();
   };
 
   return (
@@ -136,11 +87,14 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
       }}
       style={{ zIndex: "100", paddingTop: "15px" }}
     >
-      <div className="modal w-6" style={{ height: "100%", width: "50em" }}>
+      <div
+        className="modal w-6"
+        style={{ height: "fit-content", width: "50em" }}
+      >
         <h1 className="font-semibold text-xl text-center ">
-          Nhập thông tin nhân viên
+          Nhập thông tin người giám hộ
         </h1>
-        {/* <br /> */}
+        <br />
         <form>
           <div className="form-group">
             <input
@@ -157,6 +111,14 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
               name="lastName"
               placeholder="Họ và tên đệm"
               value={formState.lastName}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="relationshipType"
+              placeholder="Mối quan hệ với trẻ"
+              value={formState.relationshipType}
               onChange={handleChange}
             />
           </div>
@@ -226,57 +188,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group">
-            <input
-              name="fromDate"
-              value={formState.fromDate}
-              placeholder="Ngày bắt đầu làm việc"
-              type="text"
-              onFocus={(e) => (e.target.type = "date")}
-              onBlur={(e) => (e.target.type = "text")}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <div className="flex justify-between fl-inputs">
-              <select
-                name="job"
-                value={formState.job.jobId}
-                onChange={handleJobChange}
-              >
-                <option value={-1}>Chọn công việc</option>
-                {jobs.map((job, index) => (
-                  <option key={index} value={job.jobId}>
-                    {job.jobTitle}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="shift"
-                value={formState.shift.shiftId}
-                onChange={handleShiftChange}
-              >
-                <option value={-1}>Chọn ca làm việc</option>
-                {shifts.map((shift, index) => (
-                  <option key={index} value={shift.shiftId}>
-                    {shift.shiftTitle}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <input
-              name="salary"
-              type="number"
-              placeholder="Lương"
-              value={formState.salary}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <input type="file" id="image" onChange={handleImageChoose} />
-          </div>
+
           {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
           <button type="submit" className="btn" onClick={handleSubmit}>
             Submit

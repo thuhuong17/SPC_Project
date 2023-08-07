@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Navbar transparent />
-      
+
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
@@ -30,10 +30,12 @@ export default function Home() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white bold text-5xl">
-                  Welcome to our social protection center !
+                    Welcome to our social protection center !
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                  This is a homepage of our website. Including about introduction, events information, donation and more information. 
+                    This is a homepage of our website. Including about
+                    introduction, events information, donation and more
+                    information.
                   </p>
                 </div>
               </div>
@@ -70,9 +72,7 @@ export default function Home() {
                       <i className="fas fa-award"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Awarded Agency</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      660
-                    </p>
+                    <p className="mt-2 mb-4 text-blueGray-500">660</p>
                   </div>
                 </div>
               </div>
@@ -84,9 +84,7 @@ export default function Home() {
                       <i className="fas fa-retweet"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Free Revisions</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                    500
-                    </p>
+                    <p className="mt-2 mb-4 text-blueGray-500">500</p>
                   </div>
                 </div>
               </div>
@@ -98,9 +96,7 @@ export default function Home() {
                       <i className="fas fa-fingerprint"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Verified Company</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      550
-                    </p>
+                    <p className="mt-2 mb-4 text-blueGray-500">550</p>
                   </div>
                 </div>
               </div>

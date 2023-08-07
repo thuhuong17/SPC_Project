@@ -100,7 +100,11 @@ export default function Sidebar() {
               ) : (
                 <></>
               )}
-
+              <NavItem
+                name="Quản lý tài trợ"
+                icon="fa-table"
+                url="/admin/donations"
+              />
               <NavItem
                 name="Quản lý website"
                 icon="fa-table"

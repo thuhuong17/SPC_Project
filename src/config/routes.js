@@ -15,6 +15,10 @@ import Service from "views/Service";
 import Contact from "views/Contact";
 import Donate from "views/Donate";
 import DonationResult from "views/DonationResult";
+import Employee from "views/admin/Employee";
+import TableEmployee from "views/admin/TableEmployee";
+import Donation from "views/admin/Donation";
+import TablesWebsite from "views/admin/TablesWebsite";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -102,21 +106,22 @@ const privateRoutes = [
         component: Child,
         layout: Admin,
       },
-      // {
-      //   path: "/admin/addchild",
-      //   component: AddChild,
-      //   layout: Admin,
-      // },
-      // {
-      //   path: "/admin/employee",
-      //   component: TableEmployee,
-      //   layout: Admin,
-      // },
-      // {
-      //   path: "/admin/website",
-      //   component: TablesWebsite,
-      //   layout: Admin,
-      // },
+
+      {
+        path: "/admin/employee",
+        component: TableEmployee,
+        layout: Admin,
+      },
+      {
+        path: "/admin/donations",
+        component: Donation,
+        layout: Admin,
+      },
+      {
+        path: "/admin/website",
+        component: TablesWebsite,
+        layout: Admin,
+      },
       {
         path: "/admin/adopters",
         component: TablesAdopters,

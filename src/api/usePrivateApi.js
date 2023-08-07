@@ -1,19 +1,76 @@
 import useAxiosPrivate from "./useAxiosPrivate";
+import axiosPrivate from "./axiosPrivate";
 
 const usePrivateApi = () => {
-  const axiosPrivate = useAxiosPrivate();
+  const axPrivate = useAxiosPrivate(axiosPrivate);
   const privateApi = {
     checktoken: (params) => {
       const url = "auth/checktoken";
-      return axiosPrivate.post(url, params);
+      return axPrivate.post(url, params);
     },
     logout: (params) => {
       const url = "logout";
-      return axiosPrivate.post(url, params);
+      return axPrivate.post(url, params);
+    },
+    getAllUsers: (params) => {
+      const url = "users";
+      return axPrivate.get(url, params);
+    },
+    getAllRoles: (params) => {
+      const url = "roles";
+      return axPrivate.get(url, params);
+    },
+    saveUser: (params) => {
+      const url = "users";
+      return axPrivate.post(url, params);
     },
     getBudget: (params) => {
       const url = "budgets";
-      return axiosPrivate.get(url, params);
+      return axPrivate.get(url, params);
+    },
+    getAllChildren: (params) => {
+      const url = "children";
+      return axPrivate.get(url, params);
+    },
+    getAllEmployees: (params) => {
+      const url = "employees";
+      return axPrivate.get(url, params);
+    },
+    getChildrenByEmployee: (employeeId, params) => {
+      const url = "employee/" + employeeId + "/children";
+      return axPrivate.get(url, params);
+    },
+    getAllDonations: (params) => {
+      const url = "donations";
+      return axPrivate.get(url, params);
+    },
+    addCitizenIdForChild: (childId, params) => {
+      const url = "children/" + childId + "/citizenid";
+      return axPrivate.post(url, params);
+    },
+    addCitizenIdForEmployee: (id, params) => {
+      const url = "employees/" + id + "/citizenid";
+      return axPrivate.post(url, params);
+    },
+    addGuardianForChild: (childId, params) => {
+      const url = "children/" + childId + "/guardian";
+      return axPrivate.post(url, params);
+    },
+    addEmployeeForChild: (childId, employeeId, params) => {
+      const url = "children/" + childId + "/employee/" + employeeId;
+      return axPrivate.post(url, params);
+    },
+    getChildrenTypes: (params) => {
+      const url = "children/types";
+      return axPrivate.get(url, params);
+    },
+    getAllJobs: (params) => {
+      const url = "jobs";
+      return axPrivate.get(url, params);
+    },
+    getAllShifts: (params) => {
+      const url = "shifts";
+      return axPrivate.get(url, params);
     },
   };
 

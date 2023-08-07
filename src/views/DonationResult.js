@@ -30,8 +30,8 @@ export default function DonationResult() {
       };
       console.log(params);
 
-      //   const response = await apiMethod.postDonationResult(params);
-      //   console.log(response);
+      const response = await apiMethod.postDonationResult(params);
+      console.log(response);
     }
   }, []);
 
