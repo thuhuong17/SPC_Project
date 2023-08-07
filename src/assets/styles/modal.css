@@ -13,9 +13,9 @@
 
 .modal {
     border-radius: 5px;
-    padding: 2rem;
+    padding: 2rem 4rem;
     background-color: white;
-    width: 25em;
+    /* width: 25em; */
 }
 
 .modal .btn {
@@ -29,4 +29,18 @@
     padding: 0.5rem;
     border-radius: 0.3rem;
     margin-bottom: 1rem;
+}
+
+.adoption {
+    display: flex;
+}
+
+.block-inf {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.inf-title {
+    width: 150px;
+    font-weight: 500;
 }

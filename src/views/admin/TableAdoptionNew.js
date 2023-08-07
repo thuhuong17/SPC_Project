@@ -1,35 +1,35 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 // components
-import CardTable from "components/Cards/CardTableFinance.js";
-import { ModalFinance } from "components/Modals/ModalFinance";
+import CardTable from "components/Cards/CardTableAdoptionNew.js";
+import { ModalAdoptionNew } from "components/Modals/ModalAdoptionNew";
 import usePrivateApi from "api/usePrivateApi";
 
-export default function TablesAdoption() {
+export default function TableAdoptionNew () {
   const [modalOpen, setModalOpen] = useState(false);
-  const [budget, setBudget] = useState([])
+  const [adoption, setAdoption] = useState([])
 
   const api = usePrivateApi()
 
-  const getBudget = async () => {
+  const getAdoption = async () => {
     try {
-      const response = await api.getBudget();
-      setBudget(response.data);
+      const response = await api.getAdoption();
+      setAdoption(response.data);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getBudget();
+    getAdoption();
   }, [])
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
   const handleDeleteRow = async (targetIndex) => {
     try {
-      await api.deleteBudget(budget[targetIndex].budgetId)
-      getBudget()
+      await api.deleteBudget(adoption[targetIndex].adoptionId)
+      getAdoption()
     } catch (error) {
       console.log(error)
     }
@@ -40,16 +40,16 @@ export default function TablesAdoption() {
     setModalOpen(true);
   }
 
-  const handleSubmitBudget = (newBudget) => {
+  const handleSubmitAdoption = (newAdoption) => {
     rowToEdit === null
-      ? setBudget([...budget, newBudget])
-      : setBudget(
-        budget.map((currRow, idx) => {
+      ? setAdoption([...adoption, newAdoption])
+      : setAdoption(
+        adoption.map((currRow, idx) => {
           if (idx !== rowToEdit) return currRow;
 
-          return newBudget;
+          return newAdoption;
         }))
-    getBudget();
+    getAdoption();
   }
 
   return (
@@ -57,17 +57,17 @@ export default function TablesAdoption() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-            <CardTable budget={budget}
+            <CardTable adoption={adoption}
               deleteRow={handleDeleteRow}
               editRow={handleEditRow} />
             <button className="btn" onClick={() => setModalOpen(true)}>Add</button>
-            {modalOpen && <ModalFinance
+            {modalOpen && <ModalAdoptionNew
               closeModal={() => {
                 setModalOpen(false);
                 setRowToEdit(null);
               }}
-              onSubmit={handleSubmitBudget}
-              defaultValue={rowToEdit !== null && budget[rowToEdit]} />
+              onSubmit={handleSubmitAdoption}
+              defaultValue={rowToEdit !== null && adoption[rowToEdit]} />
             }
           </div>
         </div>

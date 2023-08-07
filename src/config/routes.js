@@ -6,7 +6,7 @@ import TablesAccount from "views/admin/TablesAccount";
 import Admin from "layouts/Admin";
 import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
-import TablesAdoption from "views/admin/TableAdoption";
+import TableAdoptionNew from "views/admin/TableAdoptionNew";
 import TablesAdopters from "views/admin/TableAdopter";
 import TablesWebsite from "views/admin/TablesWebsite";
 import TableFinance from "views/admin/TablesFinance";
@@ -107,7 +107,7 @@ const privateRoutes = [
       },
       {
         path: "/admin/adoption",
-        component: TablesAdoption,
+        component: TableAdoptionNew,
         layout: Admin,
       },
       {
@@ -119,7 +119,7 @@ const privateRoutes = [
         path: "/admin/finance",
         component: TableFinance,
         layout: Admin,
-      },
+      }
     ],
   },
   // Route for admin roles
