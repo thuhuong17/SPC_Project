@@ -63,6 +63,12 @@
     color: #FFFFFF;
   }
 
+  .formbold-steps h1 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+
   .formbold-input-flex {
     display: flex;
     gap: 20px;
@@ -177,6 +183,7 @@
   }
   .formbold-btn {
     display: flex;
+    float: right;
     align-items: center;
     gap: 5px;
     font-size: 16px;

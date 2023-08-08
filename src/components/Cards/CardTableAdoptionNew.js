@@ -44,7 +44,13 @@ export default function CardTableAdoptionNew({ color, adoption, deleteRow, editR
                                         <td className="expand4">{row?.adopters[0]?.fullName}</td>
                                         <td className="expand4">{row?.adopters[1]?.fullName}</td>
                                         <td className="expand4">{row?.registerDate}</td>
-                                        <td className="expand4">{row?.status}</td>
+                                        <td className="expand4">
+                                            {
+                                                row?.status == 1 ? "Đã xác nhận"
+                                                    : row?.status == 2 ? "Từ chối"
+                                                        : row?.status == 3 ? "Hoàn thành nhận nuôi"
+                                                            : "Chờ xác nhận"}
+                                        </td>
                                         <td>
                                             <span className="actions">
                                                 <p

@@ -11,10 +11,12 @@ export const ModalAdoptionNew = ({ closeModal, defaultValue }) => {
                 if (e.target.className === "modal-container") closeModal();
             }}
         >
-            <div className="modal">
+            <div className="modal-adoption">
+                <h1 className="modal-title">Chi tiết đơn đăng ký</h1>
                 <div className="adoption">
-                    {defaultValue?.adopters.map(it => (
-                        <div>
+                    {defaultValue?.adopters.map((it, i) => (
+                        <div className="adop-block">
+                            <h1>Người nhận nuôi {i + 1}</h1>
                             <div className="block-inf">
                                 <h3 className="inf-title">Họ tên: </h3>
                                 <p className="inf-desc">{it?.fullName}</p>
@@ -53,20 +55,24 @@ export const ModalAdoptionNew = ({ closeModal, defaultValue }) => {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className="access">
+                    <div className="block-inf">
+                        <h3 className="inf-title">Ngày đăng ký: </h3>
+                        <p className="inf-desc">{defaultValue?.registerDate}</p>
+                    </div>
 
-
-                    <div>
-                        <div className="block-inf">
-                            <h3 className="inf-title">Ngày đăng ký: </h3>
-                            <p className="inf-desc">{defaultValue?.registerDate}</p>
-                        </div>
-
-                        <div className="block-inf">
-                            <h3 className="inf-title">Trạng thái: </h3>
-                            <p className="inf-desc">{defaultValue?.status}</p>
-                        </div>
+                    <div className="block-inf">
+                        <h3 className="inf-title">Trạng thái: </h3>
+                        <p className="inf-desc">{defaultValue?.status}</p>
                     </div>
                 </div>
+                <div className="adoption-btn">
+                    <button className="access-btn">Xác nhận</button>
+                    <button className="reject-btn">Từ chối</button>
+                    <button className="done-btn">Hoàn thành nhận nuôi</button>
+                </div>
+
             </div>
         </div>
     );

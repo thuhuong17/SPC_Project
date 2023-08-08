@@ -133,7 +133,7 @@ export default function Sidebar() {
 
               {/* Start manager adopter */}
               <NavItem
-                name="Quản lý người nhận nuôi"
+                name="Quản lý nhận nuôi"
                 icon="fa-hospital-user"
                 url="/admin/adoption"
               />

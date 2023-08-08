@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     margin-bottom: 20px;
 }
 
@@ -21,79 +21,104 @@
     overflow: auto;
     height: 450px;
 }
+
 .modal .firstname {
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;
     /* margin-radius:5px; */
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 45%;
 }
+
 .modal .lastname {
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 45%;
 }
+
 .modal .birthday {
     padding: 5px;
     margin-left: 5px;
     /* margin-radius:5px; */
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
-    width: 36%;  
+    width: 36%;
 }
+
 .modal .gender {
     margin-left: 5px;
     width: 15%;
 }
-.modal .form{
+
+.modal .form {
     width: 100%;
 
 }
-.modal .female{
+
+.modal .female {
     width: 5%;
 }
-.modal .male{
+
+.modal .male {
     width: 5%;
 }
-.modal .nationality{
+
+.modal .nationality {
     width: 30%;
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;
     /* margin-radius:5px; */
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
     justify-content: center;
 }
+
 .modal .date_in {
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;
     /* margin-radius:5px; */
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 10px;
     justify-content: center;
-    width: 40%;  
+    width: 40%;
 }
+
 .modal .citizen {
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;
-    margin-radius: 5px;
-    margin-top: 10px; 
+    /* margin-radius: 5px; */
+    margin-top: 10px;
     margin-bottom: 10px;
     justify-content: center;
-    width: 39.4%;  
+    width: 39.4%;
 }
 
 .modal .btn {
     display: block;
     margin: auto;
+}
+
+.modal-adoption {
+    width: 51em;
+    padding: 15px 50px;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.modal-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .error {
@@ -108,12 +133,54 @@
     display: flex;
 }
 
+.adop-block {
+    margin-right: 40px;
+}
+
+.adop-block:nth-child(2) {
+    margin-right: 10px;
+}
+
+.adop-block h1 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 .block-inf {
     display: flex;
     margin-bottom: 10px;
 }
 
 .inf-title {
-    width: 150px;
+    width: 165px;
     font-weight: 500;
+}
+
+.inf-desc {
+    width: 170px;
+}
+
+.adoption-btn button {
+    opacity: 0.8;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    margin-right: 15px;
+}
+
+.adoption-btn button:hover {
+    opacity: 1;
+}
+
+.access-btn {
+    background-color: green;
+}
+
+.reject-btn {
+    background-color: red;
+}
+
+.done-btn {
+    background-color: black;
 }

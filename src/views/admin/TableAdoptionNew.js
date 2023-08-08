@@ -60,7 +60,7 @@ export default function TableAdoptionNew () {
             <CardTable adoption={adoption}
               deleteRow={handleDeleteRow}
               editRow={handleEditRow} />
-            <button className="btn" onClick={() => setModalOpen(true)}>Add</button>
+            {/* <button className="btn" onClick={() => setModalOpen(true)}>Add</button> */}
             {modalOpen && <ModalAdoptionNew
               closeModal={() => {
                 setModalOpen(false);

@@ -27,6 +27,7 @@ const PersistLogin = ({ children }) => {
           isMounted && setIsUserSaved(true);
         } else {
           setIsDone(true);
+          console.log(123);
         }
       } catch (err) {
         console.error(err);
