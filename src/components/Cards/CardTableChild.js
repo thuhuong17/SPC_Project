@@ -13,24 +13,57 @@ import usePrivateApi from "api/usePrivateApi";
 import { GuardianModal } from "components/Modals/GuardianModal";
 import { Button } from "reactstrap";
 
-export default function CardTableChild({ color, children, setDataChange }) {
+export default function CardTableChild({ color, isAddChild }) {
   const privateApi = usePrivateApi();
+
+  const [children, setChildren] = useState([]);
+
   const [modalCitizenId, setModalCitizenId] = useState(false);
   const [modalGuardian, setModalGuardian] = useState(false);
-  const [currentChildAddId, setCurrentChildAddId] = useState(0);
 
+  const [currentChildAddId, setCurrentChildAddId] = useState(0);
   const [currentChildChangeEmp, setCurrentChildChangeEmp] = useState(0);
 
   const [employees, setEmployees] = useState([]);
+  const [isDataChange, setIsDataChange] = useState(false);
+
+  const [status, setStatus] = useState([]);
+  const [statusFilter, setStatusFilter] = useState();
+  const [statusSelectFilter, setStatusSelectFilter] = useState(false);
+
+  useEffect(() => {
+    const getChildren = async () => {
+      let params = null;
+      if (statusFilter != undefined) {
+        params = {
+          status: statusFilter,
+        };
+      }
+
+      const response = await privateApi.getAllChildren(params);
+      // console.log(response);
+      setChildren(response.data);
+    };
+    getChildren();
+  }, [isAddChild, isDataChange, statusFilter]);
 
   useEffect(() => {
     const getEmployees = async () => {
       const response = await privateApi.getAllEmployees();
-      console.log(response);
       setEmployees(response.data);
     };
     employees.length == 0 && getEmployees();
   }, [currentChildChangeEmp]);
+
+  useEffect(() => {
+    const getStatus = async () => {
+      const response = await privateApi.getChildrenStatus();
+      setStatus(response.data);
+    };
+    status.length == 0 && getStatus();
+  }, []);
+
+  // console.log(status);
 
   const handleAddCitizenClick = (id) => {
     setCurrentChildAddId(id);
@@ -48,7 +81,6 @@ export default function CardTableChild({ color, children, setDataChange }) {
       currentChildAddId,
       JSON.stringify(citizenId)
     );
-    console.log(response);
     setCurrentChildAddId(0);
     setModalCitizenId(false);
   };
@@ -58,12 +90,14 @@ export default function CardTableChild({ color, children, setDataChange }) {
       currentChildChangeEmp,
       e.target.value
     );
-    console.log(response);
-    // console.log(
-    //   "childid: " + currentChildChangeEmp + "  emp: " + e.target.value
-    // );
     setCurrentChildChangeEmp(0);
-    setDataChange();
+    setIsDataChange(!isDataChange);
+  };
+
+  const handleStatusFilterClick = (e) => {
+    setStatusSelectFilter(false);
+    setIsDataChange(!isDataChange);
+    setStatusFilter(e.target.value);
   };
 
   return (
@@ -92,7 +126,6 @@ export default function CardTableChild({ color, children, setDataChange }) {
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
           <div className="table-wrapper">
             <table className="table">
               <thead>
@@ -105,15 +138,45 @@ export default function CardTableChild({ color, children, setDataChange }) {
                   <th>Quốc tịch</th>
                   <th>Địa chỉ tạm trú</th>
                   <th>Địa chỉ thường trú</th>
-                  <th>
+                  <th colspan="2">
                     Người giám hộ
                     <th style={{ border: "none" }}>Họ và tên</th>
                     <th style={{ border: "none" }}>Quan hệ với trẻ</th>
                   </th>
-                  <th>Nhân viên phụ trách</th>
-                  <th>Ngày đến</th>
                   <th>Hoàn cảnh</th>
-                  {/* <th>Trạng thái</th> */}
+                  <th>Ngày đến</th>
+                  <th>Nhân viên phụ trách</th>
+                  <th>
+                    <span className="mr-2">Trạng thái</span>
+                    <button
+                      onClick={() => {
+                        setStatusSelectFilter(true);
+                      }}
+                    >
+                      <BsFillCaretDownSquareFill />
+                    </button>
+                    {statusSelectFilter && (
+                      <>
+                        <div className="form-group">
+                          <select
+                            // onChange={handleEmployeeChange}
+                            onChange={handleStatusFilterClick}
+                          >
+                            <option value="1" disabled selected>
+                              Chọn trạng thái
+                            </option>
+                            {status.map((stat, index) => {
+                              return (
+                                <option key={index} value={stat.status}>
+                                  {stat.status}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        </div>
+                      </>
+                    )}
+                  </th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -134,20 +197,25 @@ export default function CardTableChild({ color, children, setDataChange }) {
                       <td>{child.nationality}</td>
                       <td>{child.addressPermanent}</td>
                       <td>{child.addressTemporary}</td>
-                      <td>
-                        <td
-                          className="text-center"
-                          style={{ border: "none", width: "50%" }}
-                        >
-                          {child?.guardian?.fullName}
-                        </td>
-                        <td
-                          className="text-center"
-                          style={{ border: "none", width: "50%" }}
-                        >
-                          {child?.guardian?.relationshipType}
-                        </td>
+
+                      <td
+                        className="text-center"
+                        style={{ borderRight: "none", width: "50%" }}
+                      >
+                        {child?.guardian?.fullName}
                       </td>
+                      <td
+                        className="text-center"
+                        style={{
+                          borderLeft: "none",
+                          width: "50%",
+                        }}
+                      >
+                        {child?.guardian?.relationshipType}
+                      </td>
+
+                      <td>{child.typeOfOrphan.orphanTypeName}</td>
+                      <td>{child.dateIn}</td>
                       <td>
                         <span className="mr-2">
                           {child?.employee?.fullName}
@@ -192,14 +260,14 @@ export default function CardTableChild({ color, children, setDataChange }) {
                           </>
                         )}
                       </td>
-                      <td>{child.dateIn}</td>
-                      <td>{child.typeOfOrphan.orphanTypeName}</td>
-                      {/* <td>
-                        {child.childrenStatus.status}{" "}
-                        <button className="flex items-center ">
-                          <BsArrowLeftRight />
+                      <td>
+                        <span className="mr-2">
+                          {child.childrenStatus.status}
+                        </span>
+                        <button>
+                          <BsFillCaretDownSquareFill />
                         </button>
-                      </td> */}
+                      </td>
                       <td>
                         <div className="">
                           {!child.citizenId && (

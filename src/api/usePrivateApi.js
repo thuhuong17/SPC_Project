@@ -29,8 +29,13 @@ const usePrivateApi = () => {
       return axPrivate.get(url, params);
     },
     getAllChildren: (params) => {
-      const url = "children";
-      return axPrivate.get(url, params);
+      let url = "children?";
+      if (params) {
+        for (const [key, value] of Object.entries(params)) {
+          url = url + `${key}=${value}`;
+        }
+      }
+      return axPrivate.get(url);
     },
     getAllEmployees: (params) => {
       const url = "employees";
@@ -62,6 +67,10 @@ const usePrivateApi = () => {
     },
     getChildrenTypes: (params) => {
       const url = "children/types";
+      return axPrivate.get(url, params);
+    },
+    getChildrenStatus: (params) => {
+      const url = "children/status";
       return axPrivate.get(url, params);
     },
     getAllJobs: (params) => {

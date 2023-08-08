@@ -11,20 +11,20 @@ import { ModalCitizenID } from "components/Modals/ModalCitizenID";
 export default function Child() {
   const privateApi = usePrivateApi();
   const [modalOpen, setModalOpen] = useState(false);
-  const [isAddChild, setIsAddChild] = useState(0);
+  const [isAddChild, setIsAddChild] = useState(false);
   const [modalCitizenId, setModalCitizenId] = useState(false);
 
   const [children, setChildren] = useState([]);
 
   const [isDataChange, setIsDataChange] = useState(false);
 
-  useEffect(() => {
-    const getChildren = async () => {
-      const response = await privateApi.getAllChildren();
-      setChildren(response.data);
-    };
-    getChildren();
-  }, [isAddChild, isDataChange]);
+  // useEffect(() => {
+  //   const getChildren = async () => {
+  //     const response = await privateApi.getAllChildren();
+  //     setChildren(response.data);
+  //   };
+  //   getChildren();
+  // }, [isAddChild, isDataChange]);
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
@@ -39,11 +39,10 @@ export default function Child() {
         <div className="w-full px-4">
           <div className="tableStyle">
             <CardTableChild
-              children={children}
-              setDataChange={() => setIsDataChange(!isDataChange)}
-              // deleteRow={handleDeleteRow}
-              editRow={handleEditRow}
-              // handleAddCitizenClick={handleAddCitizenClick}
+              // children={children}
+              // setDataChange={() => setIsDataChange(!isDataChange)}
+              isAddChild={isAddChild}
+              // editRow={handleEditRow}
             />
             <button className="btn" onClick={() => setModalOpen(true)}>
               Thêm
@@ -55,7 +54,8 @@ export default function Child() {
                   setRowToEdit(null);
                 }}
                 onSubmit={() => {
-                  setIsAddChild(isAddChild + 1);
+                  setIsAddChild(!isAddChild);
+                  // setIsDataChange(!isDataChange);
                 }}
                 // defaultValue={rowToEdit !== null && rows[rowToEdit]}
               />

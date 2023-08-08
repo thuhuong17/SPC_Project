@@ -1,6 +1,4 @@
 import Event from "views/Event.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
 import Dashboard from "views/admin/Dashboard";
 import TablesAccount from "views/admin/TablesAccount";
 import Admin from "layouts/Admin";
@@ -8,17 +6,19 @@ import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
 import TablesAdoption from "views/admin/TableAdoption";
 import TablesAdopters from "views/admin/TableAdopter";
-// import TablesWebsite from "views/admin/TablesWebsite";
 import Child from "views/admin/Child";
 import Settings from "views/admin/Settings";
 import Service from "views/Service";
 import Contact from "views/Contact";
 import Donate from "views/Donate";
 import DonationResult from "views/DonationResult";
-import Employee from "views/admin/Employee";
 import TableEmployee from "views/admin/TableEmployee";
 import Donation from "views/admin/Donation";
-import TablesWebsite from "views/admin/TablesWebsite";
+import Home from "views/Home";
+import EventDetail from "views/Event_detail";
+import Adoption from "views/Adoption";
+import About from "views/About";
+import Articles from "views/admin/Articles";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -28,21 +28,30 @@ const ROLES = {
 
 // Public routes for user without account
 const publicRoutes = [
+  //for web
   {
-    path: "/",
-    component: Index,
+    path: "/home",
+    component: Home,
   },
   {
     path: "/event",
     component: Event,
   },
   {
-    path: "/profile",
-    component: Profile,
+    path: "/event/event_detail",
+    component: EventDetail,
   },
   {
     path: "/service",
     component: Service,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
+  {
+    path: "/adoption",
+    component: Adoption,
   },
   {
     path: "/contact",
@@ -119,7 +128,7 @@ const privateRoutes = [
       },
       {
         path: "/admin/website",
-        component: TablesWebsite,
+        component: Articles,
         layout: Admin,
       },
       {

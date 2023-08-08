@@ -106,7 +106,7 @@ export default function Sidebar() {
                 url="/admin/donations"
               />
               <NavItem
-                name="Quản lý website"
+                name="Quản lý bài viết"
                 icon="fa-table"
                 url="/admin/website"
               />

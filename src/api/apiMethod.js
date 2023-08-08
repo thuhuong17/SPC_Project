@@ -1,18 +1,6 @@
 import axiosClient from "./axiosClient";
 
 const apiMethod = {
-  // getAllUsers: (params) => {
-  //   const url = "users";
-  //   return axiosClient.get(url, params);
-  // },
-  // getAllRoles: (params) => {
-  //   const url = "roles";
-  //   return axiosClient.get(url, params);
-  // },
-  // saveUser: (params) => {
-  //   const url = "users";
-  //   return axiosClient.post(url, params);
-  // },
   login: (params) => {
     const url = "login";
     return axiosClient.post(url, params);
@@ -24,6 +12,14 @@ const apiMethod = {
   postDonationResult: (params) => {
     const url = "donations/return";
     return axiosClient.post(url, params);
+  },
+  getCategories: (params) => {
+    const url = "categories";
+    return axiosClient.get(url, params);
+  },
+  getArticle: (id, params) => {
+    const url = "articles/" + id;
+    return axiosClient.get(url, params);
   },
 };
 
