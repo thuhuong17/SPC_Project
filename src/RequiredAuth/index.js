@@ -4,9 +4,9 @@ import {
   Outlet,
   useOutletContext,
   useNavigate,
-} from "react-router-dom";
+} from "react-router-doms";
 import useAuth from "../hooks/useAuth";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 // import BouncingLoader from "../BoucingLoader";
 
 const RequireAuth = ({ allowedRoles }) => {

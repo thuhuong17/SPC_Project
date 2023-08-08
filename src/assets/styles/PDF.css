@@ -1,0 +1,70 @@
+.Post {
+    font-family: Time New Roman
+}
+
+.start-don{
+    text-align: center;
+    margin-right: 170px;
+}
+
+.uppercase-text {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.under-line{
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.title-text{
+    font-weight: bold;
+}
+
+.information{
+    text-align: left;
+    /* margin-left: 5px; */
+}
+
+.btn-container {
+    text-align: center;
+    margin-right: 170px;    
+}
+
+.btn-download {
+    padding: 5px;
+    width: 10%;
+    border-radius: 5px
+}
+
+/* table-css */
+.table-container {
+    width: 80%;
+    max-width: 700px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr{
+    text-align: center;
+    padding: 12px 15px;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    padding: 12px 15px;
+    background-color: #f2f2f2;
+  }
+  
