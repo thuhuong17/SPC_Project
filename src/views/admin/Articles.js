@@ -26,6 +26,7 @@ const Articles = (color) => {
   const [post, setPost] = useState({
     title: "",
     content: "",
+    articleUrl: "",
     category: {
       categoryId: null,
     },
@@ -44,8 +45,9 @@ const Articles = (color) => {
     getCategories();
   }, []);
 
-  const handleTitleChange = (e) => {
-    setPost({ ...post, title: e.target.value });
+  const handleInputChange = (e) => {
+    // setPost({ ...post, title: e.target.value });
+    setPost({ ...post, [e.target.name]: e.target.value });
   };
 
   const handleFileChange = (e) => {
@@ -74,6 +76,7 @@ const Articles = (color) => {
           JSON.stringify({
             title: post.title,
             content: post.content,
+            articleUrl: post.articleUrl,
             category: post.category,
           }),
         ],
@@ -88,6 +91,7 @@ const Articles = (color) => {
     setPost({
       title: "",
       content: "",
+      articleUrl: "",
       category: {
         categoryId: null,
       },
@@ -131,7 +135,7 @@ const Articles = (color) => {
                   name="title"
                   placeholder="Nhập tiêu đề"
                   value={post.title}
-                  onChange={handleTitleChange}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
@@ -149,6 +153,15 @@ const Articles = (color) => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="articleUrl"
+                  placeholder="Nhập đường dẫn"
+                  value={post.articleUrl}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group">
                 <input

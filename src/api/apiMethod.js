@@ -17,6 +17,14 @@ const apiMethod = {
     const url = "categories";
     return axiosClient.get(url, params);
   },
+  getCategoryById: (id, params) => {
+    const url = "categories/" + id;
+    return axiosClient.get(url, params);
+  },
+  getArticlesByCateId: (id, params) => {
+    const url = "category/" + id + "/articles";
+    return axiosClient.get(url, params);
+  },
   getArticle: (id, params) => {
     const url = "articles/" + id;
     return axiosClient.get(url, params);

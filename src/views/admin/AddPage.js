@@ -8,8 +8,10 @@ import { createPost as doCreatePost, uploadPostImage } from "../../services/post
 import { getCurrentUserDetail } from "../../auth"
 import { toast } from "react-toastify"
 import "../../assets/styles/FormEditor.css"
+import apiMethod from "api/apiMethod"
 const AddPage = (color) => {
     const editor = useRef(null)
+    
     // const [content,setContent] =useState('')
     const [categories, setCategories] = useState([])
     const [user, setUser] = useState(undefined)
@@ -22,18 +24,25 @@ const AddPage = (color) => {
     // const config={
     //     placeholder:"Start typing...",
     // }
-    useEffect(
-        () => {
-            setUser(getCurrentUserDetail())
-            loadAllCategories().then((data) => {
-                console.log(data)
-                setCategories(data)
-            }).catch(error => {
-                console.log(error)
-            })
-        },
-        []
-    )
+    useEffect(() => {
+        const getCategories = async () =>{
+            const response = await apiMethod.getAllCategories();
+            setCategories(response);
+        }
+        getCategories();
+    }, [])
+    // useEffect(
+    //     () => {
+    //         setUser(getCurrentUserDetail())
+    //         loadAllCategories().then((data) => {
+    //             console.log(data)
+    //             setCategories(data)
+    //         }).catch(error => {
+    //             console.log(error)
+    //         })
+    //     },
+    //     []
+    // )
     //field changed function
     const fieldChanged = (event) => {
         // console.log(event)
@@ -151,13 +160,13 @@ const AddPage = (color) => {
                                             type="select"
                                             id="category"
                                         >
-                                            <option disabled value={0} >--Chọn danh mục--</option>
+                                            <option disabled value={0} selected>--Chọn danh mục--</option>
 
                                             {
 
                                                 categories.map((category) => (
                                                     <option value={category.categoryId} key={category.categoryId}>
-                                                        {category.categoryTitle}
+                                                        {category.name}
                                                     </option>
                                                 ))
                                             }

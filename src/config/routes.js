@@ -19,6 +19,10 @@ import EventDetail from "views/Event_detail";
 import Adoption from "views/Adoption";
 import About from "views/About";
 import Articles from "views/admin/Articles";
+import About_1 from "views/About_1";
+import About_2 from "views/About_2";
+import Catalog from "views/Catalog";
+import Article from "views/Article";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -30,7 +34,7 @@ const ROLES = {
 const publicRoutes = [
   //for web
   {
-    path: "/home",
+    path: "/",
     component: Home,
   },
   {
@@ -50,6 +54,14 @@ const publicRoutes = [
     component: About,
   },
   {
+    path: "/about/chung-toi-la-ai",
+    component: About_1,
+  },
+  {
+    path: "/about/tam-nhin-va-su-menh",
+    component: About_2,
+  },
+  {
     path: "/adoption",
     component: Adoption,
   },
@@ -64,6 +76,14 @@ const publicRoutes = [
   {
     path: "/donate/return",
     component: DonationResult,
+  },
+  {
+    path: "/thong-tin/:name/:id",
+    component: Catalog,
+  },
+  {
+    path: "/thong-tin/:categoryUrl/:articleUrl/:id",
+    component: Article,
   },
 ];
 
