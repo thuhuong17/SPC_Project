@@ -4,8 +4,11 @@ import TablesAccount from "views/admin/TablesAccount";
 import Admin from "layouts/Admin";
 import Maps from "views/admin/Maps";
 import TableBudgets from "views/admin/TableBudgets";
-import TablesAdoption from "views/admin/TableAdoption";
+import TableAdoptionNew from "views/admin/TableAdoptionNew";
 import TablesAdopters from "views/admin/TableAdopter";
+import TableFinance from "views/admin/TablesFinance";
+import Employee from "views/admin/Employee";
+import AddChild from "views/admin/AddChild";
 import Child from "views/admin/Child";
 import Settings from "views/admin/Settings";
 import Service from "views/Service";
@@ -98,6 +101,11 @@ const privateRoutes = [
         component: Dashboard,
         layout: Admin,
       },
+      {
+        path: "/admin/budgets",
+        component: TableBudgets,
+        layout: Admin,
+      },
     ],
   },
   // Route for super admin roles
@@ -126,16 +134,10 @@ const privateRoutes = [
         layout: Admin,
       },
       {
-        path: "/admin/settings",
-        component: Settings,
-        layout: Admin,
-      },
-      {
         path: "/admin/child",
         component: Child,
         layout: Admin,
       },
-
       {
         path: "/admin/employee",
         component: TableEmployee,
@@ -144,6 +146,16 @@ const privateRoutes = [
       {
         path: "/admin/donations",
         component: Donation,
+        layout: Admin,
+      },
+      {
+        path: "/admin/addchild",
+        component: AddChild,
+        layout: Admin,
+      },
+      {
+        path: "/admin/employee",
+        component: Employee,
         layout: Admin,
       },
       {
@@ -158,7 +170,7 @@ const privateRoutes = [
       },
       {
         path: "/admin/adoption",
-        component: TablesAdoption,
+        component: TableAdoptionNew,
         layout: Admin,
       },
       {
@@ -166,6 +178,56 @@ const privateRoutes = [
         component: TableBudgets,
         layout: Admin,
       },
+      {
+        path: "/admin/finance",
+        component: TableFinance,
+        layout: Admin,
+      },
+      // {
+      //   path: "/admin/maps",
+      //   component: Maps,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/settings",
+      //   component: Settings,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/child",
+      //   component: Child,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/addchild",
+      //   component: AddChild,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/employee",
+      //   component: TableEmployee,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/website",
+      //   component: TablesWebsite,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/adopters",
+      //   component: TablesAdopters,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/adoption",
+      //   component: TablesAdoption,
+      //   layout: Admin,
+      // },
+      // {
+      //   path: "/admin/budgets",
+      //   component: TableBudgets,
+      //   layout: Admin,
+      // },
     ],
   },
   // Route for admin roles

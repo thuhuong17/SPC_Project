@@ -29,6 +29,10 @@ const apiMethod = {
     const url = "articles/" + id;
     return axiosClient.get(url, params);
   },
+  postAdoption: (params) => {
+    const url = "adoption";
+    return axiosClient.post(url, params);
+  },
 };
 
 export default apiMethod;

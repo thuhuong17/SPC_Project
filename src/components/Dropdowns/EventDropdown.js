@@ -59,22 +59,6 @@ const EventDropDown = () => {
             </Link>
           );
         })}
-        {/* <Link
-          to="/event"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-        >
-          Các sự kiện quyên góp cho bé
-        </Link>
-        <Link
-          to="/event/event_detail"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-        >
-          Thông tin tin bài viết
-        </Link> */}
       </div>
     </>
   );

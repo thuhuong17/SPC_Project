@@ -81,6 +81,75 @@ const usePrivateApi = () => {
       const url = "shifts";
       return axPrivate.get(url, params);
     },
+    getAdoption: (params) => {
+      const url = "getadoption";
+      return axPrivate.get(url, params);
+    },
+    getBudget: (params) => {
+      const url = "budgets";
+      return axPrivate.get(url, params);
+    },
+    postBudget: (params) => {
+      const url = "budgets";
+      return axPrivate.post(url, params);
+    },
+    putBudget: (id, params) => {
+      const url = `budgets/${id}`;
+      return axPrivate.put(url, params);
+    },
+    deleteBudget: (id) => {
+      const url = `budgets/${id}`;
+      return axPrivate.delete(url);
+    },
+    getIncome: (params) => {
+      const url = "incomes";
+      return axPrivate.get(url, params);
+    },
+    postIncome: (params) => {
+      const url = "incomes";
+      return axPrivate.post(url, params);
+    },
+    putIncome: (id, params) => {
+      const url = `incomes/${id}`;
+      return axPrivate.put(url, params);
+    },
+    deleteIncome: (id) => {
+      const url = `incomes/${id}`;
+      return axPrivate.delete(url);
+    },
+    getExpense: (params) => {
+      const url = "expenses";
+      return axPrivate.get(url, params);
+    },
+
+    postExpense: (params) => {
+      const url = "expenses";
+      return axPrivate.post(url, params);
+    },
+    putExpense: (id, params) => {
+      const url = `expenses/${id}`;
+      return axPrivate.put(url, params);
+    },
+    deleteExpense: (id) => {
+      const url = `expenses/${id}`;
+      return axPrivate.delete(url);
+    },
+    getBankAccount: (params) => {
+      const url = "bank-account";
+      return axPrivate.get(url, params);
+    },
+    postBankAccount: (params) => {
+      const url = "bank-account";
+      return axPrivate.post(url, params);
+    },
+    putBankAccount: (id, params) => {
+      const url = `bank-account/${id}`;
+      return axPrivate.put(url, params);
+    },
+    deleteBankAccount: (id) => {
+      const url = `bank-account/${id}`;
+      return axPrivate.delete(url);
+    },
   };
 
   return privateApi;

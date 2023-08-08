@@ -18,6 +18,7 @@ import Child from "views/admin/Child";
 import Employee from "views/admin/Employee";
 import AddChild from "views/admin/AddChild";
 import TablesAccount from "views/admin/TablesAccount";
+import TableAdoptionNew from "views/admin/TableAdoptionNew";
 import TablesWebsite from "views/admin/TablesWebsite";
 
 export default function Admin() {
@@ -43,7 +44,7 @@ export default function Admin() {
             <Route path="/admin/website" exact component={TablesWebsite} />
             <Route path="/admin/adopters" exact component={TablesAdopters} />
             <Route path="/admin/citizenID" exact component={TablesCitizenID} />
-            <Route path="/admin/adoption" exact component={TablesAdoption} />
+            <Route path="/admin/adoption" exact component={TableAdoptionNew} />
             <Route path="/admin/budgets" exact component={TableBudgets} />
             <Redirect from="/admin" to="/admin/dashboard" />
           {/* </Switch> */}

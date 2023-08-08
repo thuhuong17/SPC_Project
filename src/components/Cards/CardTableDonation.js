@@ -74,10 +74,10 @@ export default function CardTableDonation() {
                   );
                 })}
                 <tr>
-                  <td colspan="2">Tổng số nhà tài trợ</td>
-                  <td colspan="2">{donations.length}</td>
+                  <td colSpan="2">Tổng số nhà tài trợ</td>
+                  <td colSpan="2">{donations.length}</td>
                   <td>Tổng số tiền</td>
-                  <td colspan="5">
+                  <td colSpan="5">
                     {totalAmount.toLocaleString("it-IT", {
                       style: "currency",
                       currency: "VND",

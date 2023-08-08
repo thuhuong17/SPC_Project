@@ -1,15 +1,21 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+
+import FinanceDropdown from "components/Dropdowns/FinanceDropdown.js";
+
+import "../../assets/styles/sidebar.css";
+
 import useAuth from "hooks/useAuth";
 import NavItem from "./NavItem";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const { auth } = useAuth();
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -112,19 +118,39 @@ export default function Sidebar() {
               />
               <NavItem
                 name="Quản lý nhận nuôi"
-                icon="fa-table"
+                icon="fa-hospital-user"
                 url="/admin/adoption"
               />
-              <NavItem
-                name="Quản lý ngân sách"
-                icon="fa-table"
-                url="/admin/budgets"
-              />
-              <NavItem
-                name="Quản lý người nhận nuôi"
-                icon="fa-table"
-                url="/admin/adopters"
-              />
+              <li
+                className={
+                  "items-center text-xs uppercase py-3 font-bold block cursor-pointer dropdown " +
+                  (window.location.href.indexOf("/admin/finance") !== -1
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                }
+              >
+                <input type="checkbox" id="dropdown" />
+                <label
+                  htmlFor="dropdown"
+                  className="dropdown-btn cursor-pointer"
+                >
+                  <i
+                    className={
+                      "fas fa-coins mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/finance") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  <span>
+                    Quản lý tài chính
+                    <i className="fa fa-chevron-down pl-4"></i>
+                  </span>
+                </label>
+                <span className="dropdown-content pl-3" role="menu">
+                  <FinanceDropdown />
+                </span>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Switch, Route, Redirect, Routes, Navigate } from "react-router-dom";
 
 // components
 
