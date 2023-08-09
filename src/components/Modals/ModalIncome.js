@@ -81,8 +81,6 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
         closeModal();
     };
 
-    console.log(defaultValue);
-
     return (
         <div
             className="modal-container"

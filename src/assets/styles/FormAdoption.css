@@ -64,9 +64,13 @@
   }
 
   .formbold-steps h1 {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     text-align: center;
+  }
+
+  .noti {
+    max-width: 70%;
   }
 
   .formbold-input-flex {

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 const FinanceDropdown = () => {
 
+    console.log("abc");
+
     return (
         <>
             <ul className="p-4">

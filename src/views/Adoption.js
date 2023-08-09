@@ -178,9 +178,9 @@ export default function Adoption() {
                 onChange={(e) => handleInputChange(e, i)}
               >
                 <option value="">-- Chọn giới tính --</option>
-                <option value="male">Nam</option>
-                <option value="female">Nữ</option>
-                <option value="other">Khác</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
               </select>
             </div>
 
@@ -363,8 +363,8 @@ export default function Adoption() {
             onChange={(e) => handleInputChange(e, i)}
           >
             <option value="">-- Chọn tình trạng hôn nhân --</option>
-            <option value="single">Độc thân</option>
-            <option value="maried">Đã kết hôn</option>
+            <option value="Độc thân">Độc thân</option>
+            <option value="Đã kết hôn">Đã kết hôn</option>
           </select>
         </div>
         <br />
@@ -519,11 +519,11 @@ export default function Adoption() {
                   </form>
                 </div>
                 : <>
-                  <div className="formbold-steps">
+                  <div className="formbold-steps noti">
                     <h1>Đăng ký thành công!</h1>
                     <h1>Đơn đăng ký của bạn sẽ được chúng tôi kiểm tra và xác nhận trong thời gian sớm nhất.</h1>
                     <Link to="/home" >
-                      <h1>VỀ TRANG CHỦ</h1>
+                      <h1 className="mt-4" style={{ color: "black" }}>{`>> VỀ TRANG CHỦ <<`}</h1>
                     </Link>
                   </div>
                 </>}
