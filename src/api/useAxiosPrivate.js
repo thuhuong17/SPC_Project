@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
-import axiosPrivate from "./axiosPrivate";
+// import axiosPrivate from "./axiosPrivate";
 
-const useAxiosPrivate = () => {
+const useAxiosPrivate = (axiosPrivate) => {
   const { auth, setAuth } = useAuth();
   let isLoggingOut = false;
 
@@ -28,14 +28,7 @@ const useAxiosPrivate = () => {
         return response;
       },
       async (error) => {
-        // throw error;
-        // console.log(error.response);
-        if (error.response.status === 401 || error.response.status === 403) {
-          // alert('session is expired!');
-          // console.log(error.response);
-          // localStorage.removeItem('user');
-          // localStorage.removeItem('access_token');
-          // setAuth({});
+        if (error.response.status == 401 || error.response.status == 403) {
         }
         return error?.response;
       }

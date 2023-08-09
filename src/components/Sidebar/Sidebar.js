@@ -7,7 +7,7 @@ import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 import FinanceDropdown from "components/Dropdowns/FinanceDropdown.js";
 
-import "../../assets/styles/sidebar.css"
+import "../../assets/styles/sidebar.css";
 
 import useAuth from "hooks/useAuth";
 import NavItem from "./NavItem";
@@ -108,47 +108,34 @@ export default function Sidebar() {
               ) : (
                 <></>
               )}
-
-              {/* Start Manager website list */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/website") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/website"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/website") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Quản lý website
-                </Link>
-              </li>
-              {/* End manager website */}
-
-              {/* Start manager adopter */}
+              <NavItem
+                name="Quản lý tài trợ"
+                icon="fa-table"
+                url="/admin/donations"
+              />
+              <NavItem
+                name="Quản lý bài viết"
+                icon="fa-table"
+                url="/admin/website"
+              />
               <NavItem
                 name="Quản lý nhận nuôi"
                 icon="fa-hospital-user"
                 url="/admin/adoption"
               />
-              {/* End manager adopter */}
-
-              {/* Start manager finance */}
-              <li className={"items-center text-xs uppercase py-3 font-bold block cursor-pointer dropdown " +
-                (window.location.href.indexOf("/admin/finance") !== -1
-                  ? "text-lightBlue-500 hover:text-lightBlue-600"
-                  : "text-blueGray-700 hover:text-blueGray-500")}
+              <li
+                className={
+                  "items-center text-xs uppercase py-3 font-bold block cursor-pointer dropdown " +
+                  (window.location.href.indexOf("/admin/finance") !== -1
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                }
               >
                 <input type="checkbox" id="dropdown" />
-                <label htmlFor="dropdown" className="dropdown-btn cursor-pointer">
+                <label
+                  htmlFor="dropdown"
+                  className="dropdown-btn cursor-pointer"
+                >
                   <i
                     className={
                       "fas fa-coins mr-2 text-sm " +
@@ -165,59 +152,6 @@ export default function Sidebar() {
                 <span className="dropdown-content pl-3" role="menu">
                   <FinanceDropdown />
                 </span>
-              </li>
-              {/* End manager finance */}
-
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/maps"
-                >
-                  <i
-                    className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Nhân viên
-                </Link>
-              </li> */}
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Auth Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
-                >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Login
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/register"
-                >
-                  <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  Register
-                </Link>
               </li>
             </ul>
           </div>

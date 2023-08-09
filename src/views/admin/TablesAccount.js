@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css";
-import apiMethod from "api/apiMethod";
+// import apiMethod from "api/apiMethod";
+import usePrivateApi from "api/usePrivateApi";
 import CardTableAccount from "components/Cards/CardTableAccount";
 import { ModalAccount } from "components/Modals/ModalAccountList";
 
@@ -12,12 +13,14 @@ export default function TablesAccount() {
   const [isAddUser, setIsAddUser] = useState(0);
   const [rows, setRows] = useState([]);
 
+  const privateApi = usePrivateApi();
+
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await apiMethod.getAllUsers();
-        setRows(response);
-        // console.log(response);
+        const response = await privateApi.getAllUsers();
+        setRows(response.data);
+        console.log(response);
       } catch (err) {
         console.log(err);
       }

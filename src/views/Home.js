@@ -10,16 +10,14 @@ export default function Home() {
   return (
     <>
       <Navbar transparent />
-      
+
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
-              backgroundImage:
-              
-                `url('https://sldtbxh.bacgiang.gov.vn/documents/21423/16555458/1682048223663_20.4.23.jpg/557d4aa4-a634-4031-b364-2eaa0cd8d53e?t=1682048223666')`
-                // "url('./src/assets/img/home.jpg')",
+              backgroundImage: `url('https://sldtbxh.bacgiang.gov.vn/documents/21423/16555458/1682048223663_20.4.23.jpg/557d4aa4-a634-4031-b364-2eaa0cd8d53e?t=1682048223666')`,
+              // "url('./src/assets/img/home.jpg')",
             }}
           >
             <span
@@ -32,10 +30,11 @@ export default function Home() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white bold text-4xl">
-                  Chào mừng đến với trung tâm bảo trợ xã hội của chúng tôi!
+                    Chào mừng đến với trung tâm bảo trợ xã hội của chúng tôi!
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                  Mỗi trẻ em đều có một nơi nương tựa. Đây là ngôi nhà giúp các em có điểm tựa phát triển trong tương lai tươi sáng!!!
+                    Mỗi trẻ em đều có một nơi nương tựa. Đây là ngôi nhà giúp
+                    các em có điểm tựa phát triển trong tương lai tươi sáng!!!
                   </p>
                 </div>
               </div>
@@ -71,10 +70,10 @@ export default function Home() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                       <i className="fas fa-award"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Số trẻ em được nhận nuôi</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      660
-                    </p>
+                    <h6 className="text-xl font-semibold">
+                      Số trẻ em được nhận nuôi
+                    </h6>
+                    <p className="mt-2 mb-4 text-blueGray-500">660</p>
                   </div>
                 </div>
               </div>
@@ -86,9 +85,7 @@ export default function Home() {
                       <i className="fas fa-retweet"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Số tiền quyên góp</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                    500
-                    </p>
+                    <p className="mt-2 mb-4 text-blueGray-500">500</p>
                   </div>
                 </div>
               </div>
@@ -99,10 +96,10 @@ export default function Home() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                       <i className="fas fa-fingerprint"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Số đơn đăng ký nhận nuôi</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      550
-                    </p>
+                    <h6 className="text-xl font-semibold">
+                      Số đơn đăng ký nhận nuôi
+                    </h6>
+                    <p className="mt-2 mb-4 text-blueGray-500">550</p>
                   </div>
                 </div>
               </div>
@@ -114,17 +111,20 @@ export default function Home() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                Bài hát Giấc mơ đêm qua
+                  Bài hát Giấc mơ đêm qua
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                Bài hát Giấc mơ đêm qua của Nhạc sĩ Trịnh Nguyên Bình đã nói lên mong ước của hàng ngàn trẻ em mồ côi, 
-                bị bỏ rơi. Mong ước của các con nghe thật giản đơn “Con luôn mong sao bên mình một tổ ấm, cho con như 
-                bao nhiêu người” nhưng cũng đầy trăn trở.Với sự chung tay, góp sức của bạn, Làng trẻ em SOS sẽ mang lại
-                 cho các con một gia đình thay thế, giúp các con viết tiếp ước mơ của mình.
+                  Bài hát Giấc mơ đêm qua của Nhạc sĩ Trịnh Nguyên Bình đã nói
+                  lên mong ước của hàng ngàn trẻ em mồ côi, bị bỏ rơi. Mong ước
+                  của các con nghe thật giản đơn “Con luôn mong sao bên mình một
+                  tổ ấm, cho con như bao nhiêu người” nhưng cũng đầy trăn
+                  trở.Với sự chung tay, góp sức của bạn, Làng trẻ em SOS sẽ mang
+                  lại cho các con một gia đình thay thế, giúp các con viết tiếp
+                  ước mơ của mình.
                 </p>
                 <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
-                Làng trẻ em SOS sẽ mang lại
-                 cho các con một gia đình thay thế, giúp các con viết tiếp ước mơ của mình.
+                  Làng trẻ em SOS sẽ mang lại cho các con một gia đình thay thế,
+                  giúp các con viết tiếp ước mơ của mình.
                 </p>
                 <Link to="/" className="font-bold text-blueGray-700 mt-8">
                   Đọc thêm
@@ -151,13 +151,16 @@ export default function Home() {
                       ></polygon>
                     </svg>
                     <h4 className="text-xl font-bold text-white">
-                    Bài hát Giấc mơ đêm qua
+                      Bài hát Giấc mơ đêm qua
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
-                    Bài hát Giấc mơ đêm qua của Nhạc sĩ Trịnh Nguyên Bình đã nói lên mong ước của hàng ngàn trẻ em mồ côi, 
-                bị bỏ rơi. Mong ước của các con nghe thật giản đơn “Con luôn mong sao bên mình một tổ ấm, cho con như 
-                bao nhiêu người” nhưng cũng đầy trăn trở.Với sự chung tay, góp sức của bạn, Làng trẻ em SOS sẽ mang lại
-                 cho các con một gia đình thay thế, giúp các con viết tiếp ước mơ của mình.
+                      Bài hát Giấc mơ đêm qua của Nhạc sĩ Trịnh Nguyên Bình đã
+                      nói lên mong ước của hàng ngàn trẻ em mồ côi, bị bỏ rơi.
+                      Mong ước của các con nghe thật giản đơn “Con luôn mong sao
+                      bên mình một tổ ấm, cho con như bao nhiêu người” nhưng
+                      cũng đầy trăn trở.Với sự chung tay, góp sức của bạn, Làng
+                      trẻ em SOS sẽ mang lại cho các con một gia đình thay thế,
+                      giúp các con viết tiếp ước mơ của mình.
                     </p>
                   </blockquote>
                 </div>
@@ -165,12 +168,14 @@ export default function Home() {
             </div>
           </div>
         </section>
-{/* start event */}
+        {/* start event */}
         <section className="pt-20 pb-48">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">Các sự kiện của chúng tôi</h2>
+                <h2 className="text-4xl font-semibold">
+                  Các sự kiện của chúng tôi
+                </h2>
                 <p className="text-lg leading-relaxed m-4 text-blueGray-500">
                   Các chương trình quyên góp cho các bé
                 </p>
@@ -185,7 +190,9 @@ export default function Home() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
+                    <h5 className="text-xl font-bold">
+                      Quyên góp cho trẻ em cùng cao Tây Bắc
+                    </h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -220,7 +227,9 @@ export default function Home() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
+                    <h5 className="text-xl font-bold">
+                      Quyên góp cho trẻ em cùng cao Tây Bắc
+                    </h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -255,7 +264,9 @@ export default function Home() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
+                    <h5 className="text-xl font-bold">
+                      Quyên góp cho trẻ em cùng cao Tây Bắc
+                    </h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -290,7 +301,9 @@ export default function Home() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
+                    <h5 className="text-xl font-bold">
+                      Quyên góp cho trẻ em cùng cao Tây Bắc
+                    </h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
