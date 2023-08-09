@@ -1,7 +1,7 @@
 import useAxiosPrivate from "./useAxiosPrivate";
 import axiosFormData from "./axiosFormData";
 
-const privateFormDataApi = () => {
+const PrivateFormDataApi = () => {
   const axiosPrivate = useAxiosPrivate(axiosFormData);
   const privateFDataApi = {
     addChild: (params) => {
@@ -21,4 +21,4 @@ const privateFormDataApi = () => {
   return privateFDataApi;
 };
 
-export default privateFormDataApi;
+export default PrivateFormDataApi;

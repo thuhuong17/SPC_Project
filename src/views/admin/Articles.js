@@ -13,14 +13,14 @@ import JoditEditor from "jodit-react";
 import { useRef } from "react";
 import "../../assets/styles/FormEditor.css";
 import apiMethod from "api/apiMethod";
-import privateFormDataApi from "api/privateFormDataApi";
+import PrivateFormDataApi from "api/privateFormDataApi";
 const Articles = (color) => {
   const editor = useRef(null);
   const imgRef = useRef(null);
   const cateRef = useRef(null);
 
   // const [content,setContent] =useState('')
-  const privateFDataApi = privateFormDataApi();
+  const privateFDataApi = PrivateFormDataApi();
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState(undefined);
   const [post, setPost] = useState({
@@ -86,20 +86,21 @@ const Articles = (color) => {
       )
     );
     data.append("image", image);
+    console.log(image);
     const response = await privateFDataApi.addArticle(data);
     console.log(response);
-    setPost({
-      title: "",
-      content: "",
-      articleUrl: "",
-      category: {
-        categoryId: null,
-      },
-    });
-    setImage();
-    editor.current.value = "";
-    imgRef.current.value = "";
-    cateRef.current.value = -1;
+    // setPost({
+    //   title: "",
+    //   content: "",
+    //   articleUrl: "",
+    //   category: {
+    //     categoryId: null,
+    //   },
+    // });
+    // setImage();
+    // editor.current.value = "";
+    // imgRef.current.value = "";
+    // cateRef.current.value = -1;
   };
 
   return (

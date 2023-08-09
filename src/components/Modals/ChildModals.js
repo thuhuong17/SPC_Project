@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import JoditEditor from "jodit-react";
 import usePrivateApi from "api/usePrivateApi";
-import privateFormDataApi from "api/privateFormDataApi";
+import PrivateFormDataApi from "api/privateFormDataApi";
 // import "../../assets/styles/modal1.css"
 export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
   const privateApi = usePrivateApi();
-  const privateFDataApi = privateFormDataApi();
+  const privateFDataApi = PrivateFormDataApi();
   const [orphanTypes, setOrphanTypes] = useState([]);
   const [formState, setFormState] = useState({
     firstName: "",

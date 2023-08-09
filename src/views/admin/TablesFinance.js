@@ -10,8 +10,11 @@ import CardTableIncome from "components/Cards/CardTableIncome";
 import { ModalIncome } from "components/Modals/ModalIncome";
 import { ModalExpense } from "components/Modals/ModalExpense";
 import CardTableExpense from "components/Cards/CardTableExpense";
+import { useLocation } from "react-router-dom";
 
 export default function TablesFinance() {
+  const location = useLocation();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [budget, setBudget] = useState([])
   const [income, setIncome] = useState([])
