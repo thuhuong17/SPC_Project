@@ -27,6 +27,7 @@ const PersistLogin = ({ children }) => {
           isMounted && setIsUserSaved(true);
         } else {
           setIsDone(true);
+          console.log(123);
         }
       } catch (err) {
         console.error(err);
@@ -73,9 +74,9 @@ const PersistLogin = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
-      if (err.status === 401 || err.status === 403) {
-        // logout();
-      }
+      // if (err.status === 401 || err.status === 403) {
+      //   // logout();
+      // }
     }
   };
 

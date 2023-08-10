@@ -1,0 +1,23 @@
+.label-donate {
+  font-weight: bold;
+}
+.form-donate .form-group input::placeholder {
+  opacity: 0.8;
+}
+
+.ip-donate input {
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  /* visibility: hidden; */
+}
+
+.fl-inputs input {
+  width: 48%;
+}
+.fl-inputs select {
+  width: 48%;
+}
+.btn-border-baleBlue {
+  border: 1px solid #bf9ef3;
+}

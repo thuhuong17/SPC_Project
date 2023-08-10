@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
+import apiMethod from "api/apiMethod";
 
 const EventDropDown = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await apiMethod.getCategories();
+      setCategories(response);
+    };
+    getCategories();
+  }, []);
+
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -27,7 +37,7 @@ const EventDropDown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        Sự kiện
+        Thông tin
       </a>
       <div
         ref={popoverDropdownRef}
@@ -36,22 +46,19 @@ const EventDropDown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link
-          to="/event"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-        >
-          Các sự kiện quyên góp cho bé
-        </Link>
-        <Link
-          to="/event/event_detail"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-        >
-          Thông tin tin bài viết
-        </Link>
+        {categories.map((category, index) => {
+          return (
+            <Link
+              key={index}
+              to={`/thong-tin/${category.categoryUrl}/${category.categoryId}`}
+              className={
+                "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+              }
+            >
+              {category.name}
+            </Link>
+          );
+        })}
       </div>
     </>
   );

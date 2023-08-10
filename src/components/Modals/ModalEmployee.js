@@ -1,121 +1,307 @@
-import React, { useState } from 'react'
-import "../../assets/styles/modal.css"
+import React, { useEffect, useMemo, useState } from "react";
+import usePrivateApi from "api/usePrivateApi";
+import privateFormDataApi from "api/privateFormDataApi";
+
 export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
-    const [formState, setFormState] = useState(defaultValue || {
-        employee_id:"",
-        address_permanent:"",
-        address_temporary:"",
-        first_name:"",
-        last_name : "",
-        gender:"",
-        nationality:"",
-        email : "",
-        from_date:"",
-        phone_number:"",
-        to_date:"",
-        image_id:"",
+  const privateApi = usePrivateApi();
+  const privateFDataApi = privateFormDataApi();
+  const [jobs, setJobs] = useState([]);
+  const [shifts, setShifts] = useState([]);
+
+  const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
+    birthDay: "",
+    gender: "nam",
+    nationality: "",
+    addressTemporary: "",
+    addressPermanent: "",
+    email: "",
+    phoneNumber: "",
+    fromDate: "",
+    salary: "",
+    job: {
+      jobId: null,
+    },
+    shift: {
+      shiftId: null,
+    },
+  });
+
+  const [image, setImage] = useState();
+
+  useEffect(() => {
+    const getJobs = async () => {
+      const response = await privateApi.getAllJobs();
+      setJobs(response.data);
+    };
+    getJobs();
+  }, []);
+
+  useEffect(() => {
+    const getShifts = async () => {
+      const response = await privateApi.getAllShifts();
+      setShifts(response.data);
+    };
+    getShifts();
+  }, []);
+
+  const [errors, setErrors] = useState("");
+  const validateForm = () => {
+    if (
+      formState.firstName &&
+      formState.lastName &&
+      formState.birthDay &&
+      formState.gender &&
+      formState.addressPermanent &&
+      formState.addressTemporary &&
+      formState.salary &&
+      formState.phoneNumber &&
+      formState.nationality
+    ) {
+      setErrors("");
+      return true;
+    } else {
+      setErrors("Vui lòng điền đầy đủ thông tin");
+      return false;
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const [errors, setErrors] = useState("")
-    const validateForm = () => {
-        if(formState.employee_id && formState.address_permanent && formState.address_temporary && 
-            formState.first_name && formState.last_name && 
-            formState.gender && formState.nationality && 
-            formState.email && formState.from_date && formState.phone_number &&
-            formState.to_date && formState.image_id){
-            setErrors("")
-            return true;
-        } else {
-            let errorFields = [];
-            for(const [key, value] of Object.entries(formState)){
-                if(!value){
-                    errorFields.push(key)
-                }
-            }
-            setErrors(errorFields.join(", "));
-            return false;
-        }
-    }
-    // update danh sách 
-    const handleChange = (e) => {
-        setFormState({
-            ...formState,
-            [e.target.name]: e.target.value
-        })
-    }
-    // submit account vừa thêm
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!validateForm()) return;
-        onSubmit(formState);
-        closeModal();
-    }
+  const handleJobChange = (e) => {
+    const job = formState.job;
+    job.jobId = e.target.value;
+    setFormState({
+      ...formState,
+      job: job,
+    });
+  };
 
-    
-return (
-    <div className='modal-container' 
-    onClick={(e) => {
-        if(e.target.className === "modal-container")
-            closeModal();
-    }}>
-        <div className="modal">
-            <form>
-                <div className='form-group'>
-                    <label htmlFor="employee_id">ID nhân viên</label>
-                    <input name='employee_id' value={formState.employee_id} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="first_name">Họ</label>
-                    <input name='first_name' value={formState.first_name} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="last_name">Tên</label>
-                    <input name='last_name' value={formState.last_name} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="address_temporary">Địa chỉ tạm trú</label>
-                    <input name='address_temporary' value={formState.address_temporary} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="address_permanent">Địa chỉ thường trú</label>
-                    <input name='address_permanent'  value={formState.address_permanent} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="gender">Giới tính</label>
-                    <select>
-                        <option name="gender" value={formState.gender} onChange={handleChange}>Nam</option>
-                        <option name="gender" value={formState.gender} onChange={handleChange}>Nữ</option>
-                    </select>
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="nationality">Quốc tịch</label>
-                    <input name='nationality'  value={formState.nationality} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="email">Email</label>
-                    <input type='email' name='email'  value={formState.email} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="from_date">Ngày bắt đầu</label>
-                    <input type ='date' name='from_date'  value={formState.from_date} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="phone_number">Số điện thoại</label>
-                    <input type='number' name='phone_number' value={formState.phone_number} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="to_date">Ngày kết thúc</label>
-                    <input name='to_date'  type ='date' value={formState.to_date} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="image_id">Ảnh</label>
-                    <input name='image_id'  type ='file' value={formState.image_id} onChange={handleChange} />
-                </div>
-                
-                {errors && <div className='error'>{`Vui lòng điền: ${errors}`}</div>}
-                <button type='submit' className='btn' onClick={handleSubmit}>Submit</button>
-            </form>
-        </div>
+  const handleShiftChange = (e) => {
+    const shift = formState.shift;
+    shift.shiftId = e.target.value;
+    setFormState({
+      ...formState,
+      shift: shift,
+    });
+  };
+
+  const handleImageChoose = async (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      var newDate = new Date(formState.birthDay);
+      let dateMDY = `${newDate.getDate()}-${
+        newDate.getMonth() + 1
+      }-${newDate.getFullYear()}`;
+
+      formState.birthDay = dateMDY;
+
+      var newFromDate = new Date(formState.fromDate);
+      let dateFrMDY = `${newFromDate.getDate()}-${
+        newFromDate.getMonth() + 1
+      }-${newFromDate.getFullYear()}`;
+      formState.fromDate = dateFrMDY;
+      console.log(formState);
+
+      const data = new FormData();
+      data.append(
+        "employee",
+        new Blob(
+          [
+            JSON.stringify({
+              firstName: formState.firstName,
+              lastName: formState.lastName,
+              gender: formState.gender,
+              nationality: formState.nationality,
+              addressPermanent: formState.addressPermanent,
+              addressTemporary: formState.addressTemporary,
+              birthDay: formState.birthDay,
+              fromDate: formState.fromDate,
+              email: formState.email,
+              phoneNumber: formState.phoneNumber,
+              job: formState.job,
+              shift: formState.shift,
+              salary: formState.salary,
+            }),
+          ],
+          {
+            type: "application/json",
+          }
+        )
+      );
+      data.append("image", image);
+
+      const response = await privateFDataApi.addEmployee(data);
+      onSubmit();
+      closeModal();
+    }
+  };
+
+  return (
+    <div
+      className="modal-container"
+      onClick={(e) => {
+        if (e.target.className === "modal-container") closeModal();
+      }}
+      style={{ zIndex: "100", paddingTop: "15px" }}
+    >
+      <div className="modal w-6" style={{ height: "100%", width: "50em" }}>
+        <h1 className="font-semibold text-xl text-center ">
+          Nhập thông tin nhân viên
+        </h1>
+        {/* <br /> */}
+        <form>
+          <div className="form-group">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Tên"
+              value={formState.firstName}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Họ và tên đệm"
+              value={formState.lastName}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <div className="flex justify-between fl-inputs">
+              <input
+                name="birthDay"
+                value={formState.birthDay}
+                placeholder="Ngày sinh*"
+                type="text"
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => (e.target.type = "text")}
+                onChange={handleChange}
+              />
+              <select
+                id="gender"
+                name="gender"
+                value={formState.gender}
+                onChange={handleChange}
+              >
+                <option value="nam" selected>
+                  Nam/Male
+                </option>
+                <option value="nữ">Nữ/Female</option>
+                <option value="khác">Khác/Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <input
+              name="addressPermanent"
+              placeholder="Địa chỉ thường trú"
+              value={formState.addressPermanent}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="addressTemporary"
+              placeholder="Địa chỉ tạm trú"
+              value={formState.addressTemporary}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="phoneNumber"
+              placeholder="Số điện thoại"
+              value={formState.phoneNumber}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="email"
+              placeholder="Địa chỉ email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="nationality"
+              placeholder="Quốc tịch"
+              value={formState.nationality}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              name="fromDate"
+              value={formState.fromDate}
+              placeholder="Ngày bắt đầu làm việc"
+              type="text"
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => (e.target.type = "text")}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <div className="flex justify-between fl-inputs">
+              <select
+                name="job"
+                value={formState.job.jobId}
+                onChange={handleJobChange}
+              >
+                <option value={-1}>Chọn công việc</option>
+                {jobs.map((job, index) => (
+                  <option key={index} value={job.jobId}>
+                    {job.jobTitle}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="shift"
+                value={formState.shift.shiftId}
+                onChange={handleShiftChange}
+              >
+                <option value={-1}>Chọn ca làm việc</option>
+                {shifts.map((shift, index) => (
+                  <option key={index} value={shift.shiftId}>
+                    {shift.shiftTitle}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <input
+              name="salary"
+              type="number"
+              placeholder="Lương"
+              value={formState.salary}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input type="file" id="image" onChange={handleImageChoose} />
+          </div>
+          {errors && <div className="error">{errors}</div>}
+          <button type="submit" className="btn" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
-)
-}
+  );
+};

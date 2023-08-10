@@ -18,31 +18,32 @@ const AdoptionDropDown = () => {
   };
   return (
     <>
-      <a
+      <Link
+        to="/adoption"
         className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-        href="#pablo"
-        ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
+        // href="#pablo"
+        // ref={btnDropdownRef}
+        // onClick={(e) => {
+        //   e.preventDefault();
+        //   dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+        // }}
       >
-        Đỡ đầu
-      </a>
+        Nhận nuôi
+      </Link>
       <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
+      // ref={popoverDropdownRef}
+      // className={
+      //   (dropdownPopoverShow ? "block " : "hidden ") +
+      //   "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+      // }
       >
-        <Link
+        {/* <Link
           to="/adoption"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
         >
-          Mẫu đơn đăng ký đỡ đầu
+          Đăng ký nhận nuôi
         </Link>
         <Link
           to="/donate"
@@ -51,7 +52,7 @@ const AdoptionDropDown = () => {
           }
         >
           Chuyển khoản để giúp đỡ
-        </Link>
+        </Link> */}
       </div>
     </>
   );

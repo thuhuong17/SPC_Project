@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
+import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-import "../../assets/styles/tableItems.css"
+import "../../assets/styles/tableItems.css";
 
 export default function CardTable({ color, rows, deleteRow, editRow }) {
   return (
     <>
-    {/* Danh sách tài khoản Page */}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -32,17 +31,17 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
           {/* Projects table */}
           <div className="table-wrapper">
             <table className="table">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Tên trang web</th>
-                      <th className="Expand">Mô tả</th>
-                      <th>Trạng thái</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên trang web</th>
+                  <th className="Expand">Mô tả</th>
+                  <th>Trạng thái</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {
                       rows.map((row, idx)=> {
                         const statusText = row.status.charAt(0).toUpperCase() + row.status.slice(1);
 
@@ -63,14 +62,12 @@ export default function CardTable({ color, rows, deleteRow, editRow }) {
                           </td>
                         </tr>
                       })
-                    }
-                  </tbody>
+                    } */}
+              </tbody>
             </table>
           </div>
         </div>
-        
       </div>
-      
     </>
   );
 }
