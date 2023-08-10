@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/FormAdoption.css"
 // components
 import Navbar from "../components/Footers/Footer.js";
