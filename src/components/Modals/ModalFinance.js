@@ -104,7 +104,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                         <label htmlFor="budgetName">Tên ngân sách</label>
                         <input
                             name="budgetName"
-                            value={formState.budgetName}
+                            value={formState?.budgetName}
                             onChange={handleChange}
                         />
                     </div>
@@ -113,7 +113,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                         <label htmlFor="budgetDescription">Mô tả</label>
                         <input
                             name="budgetDescription"
-                            value={formState.budgetDescription}
+                            value={formState?.budgetDescription}
                             onChange={handleChange}
                         />
                     </div>
@@ -122,7 +122,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                         <label htmlFor="amout">Ngân sách</label>
                         <input
                             name="amout"
-                            value={formState.amout}
+                            value={formState?.amout}
                             onChange={handleChange}
                         />
                     </div>

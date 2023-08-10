@@ -33,7 +33,7 @@ export const ModalAdoptionNew = ({ closeModal, defaultValue, onSubmit }) => {
                 <h1 className="modal-title">Chi tiết đơn đăng ký</h1>
                 <div className="adoption">
                     {defaultValue?.adopters.map((it, i) => (
-                        <div className="adop-block">
+                        <div className="adop-block" key={it.fullName}>
                             <h1>Người nhận nuôi {i + 1}</h1>
                             <div className="block-inf">
                                 <h3 className="inf-title">Họ tên: </h3>

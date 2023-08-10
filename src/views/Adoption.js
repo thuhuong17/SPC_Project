@@ -6,12 +6,12 @@ import Footer from "components/Footers/Footer.js";
 import apiMethod from "api/apiMethod";
 
 import "assets/styles/FormAdoption.css"
-import { Link } from "react-router-dom";
 
 export default function Adoption() {
 
   const [adopter, setAdopter] = useState(0)
   const [status, setStatus] = useState(0)
+  const [reason, setReason] = useState("")
   const [formData, setFormData] = useState({
     firstname: [],
     lastname: [],
@@ -32,14 +32,41 @@ export default function Adoption() {
     expireDate: [],
   });
 
+  const validateForm = () => {
+    if (formData.firstname[0]
+      && formData.lastname[0]
+      && formData.gender[0]
+      && formData.nationality[0]
+      && formData.addressPermanent[0]
+      && formData.addressTemporary[0]
+      && formData.birthday[0]
+      && formData.phoneNumber[0]
+      && formData.email[0]
+      && formData.nation[0]
+      && formData.occupation[0]
+      && formData.income[0]
+      && formData.relationship[0]
+      && formData.citizenIdentNumber[0]
+      && formData.issueDate[0]
+      && formData.issuePlace[0]
+      && formData.expireDate[0]
+    ) {
+      return true;
+    } else {
+      let errorFields = [];
+      for (const [key, value] of Object.entries(formData)) {
+        if (!value) {
+          errorFields.push(key);
+        }
+      }
+      alert("Vui lòng nhập đầy đủ thông tin!");
+      return false;
+    }
+  };
+
   const handleInputChange = (event, i) => {
     const { name, value } = event.target;
-    // const iChange = 
     formData[name][i] = value
-    // setFormData((prevFormData) => ({
-    //   ...prevFormData,
-    //   [name]: [...formData[name], value]
-    // }));
   };
 
   const handleAdopterChange = (event) => {
@@ -48,6 +75,7 @@ export default function Adoption() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!validateForm()) return;
 
     try {
       const currentDate = new Date();
@@ -62,7 +90,7 @@ export default function Adoption() {
 
       const newForm = {
         registerDate: currentDateValue,
-        reason: "ohhh",
+        reason: reason,
         status: 0,
         adopters: [
           {
@@ -123,7 +151,6 @@ export default function Adoption() {
         newForm.adopters.push(adopter2)
       }
 
-      console.log(newForm);
       await apiMethod.postAdoption(newForm)
       setStatus(1)
     } catch (error) {
@@ -431,7 +458,6 @@ export default function Adoption() {
     <>
       <Navbar transparent />
       <main>
-
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -479,7 +505,6 @@ export default function Adoption() {
             </svg>
           </div>
         </div>
-
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
@@ -493,12 +518,12 @@ export default function Adoption() {
                     <div className="formbold-steps">
                       <h1>Nhập thông tin để đăng ký nhận nuôi</h1>
                     </div>
-
                     <div>
                       <select
                         value={adopter}
                         onChange={handleAdopterChange}
                         className="formbold-form-input"
+                        style={{ textAlign: "center" }}
                       >
                         <option value="0">-- Chọn số người nhận nuôi --</option>
                         <option value="1">1 người đăng ký nhận nuôi</option>
@@ -507,11 +532,21 @@ export default function Adoption() {
                     </div>
                     <br />
                     {/* Form */}
-
                     {adopter !== 0 ?
                       <>
                         {renderedItems}
-
+                        <div>
+                          <textarea
+                            rows="4"
+                            type="text"
+                            name="reason"
+                            placeholder="Nhập lý do đăng ký nhận nuôi..."
+                            id="reason"
+                            className="formbold-form-input"
+                            value={formData?.reason}
+                            onChange={(e) => setReason(e.target.value)}
+                          />
+                        </div>
                         <button className="formbold-btn" onClick={handleSubmit}>
                           XÁC NHẬN
                         </button>
@@ -522,13 +557,9 @@ export default function Adoption() {
                   <div className="formbold-steps noti">
                     <h1>Đăng ký thành công!</h1>
                     <h1>Đơn đăng ký của bạn sẽ được chúng tôi kiểm tra và xác nhận trong thời gian sớm nhất.</h1>
-                    <Link to="/home" >
-                      <h1 className="mt-4" style={{ color: "black" }}>{`>> VỀ TRANG CHỦ <<`}</h1>
-                    </Link>
                   </div>
                 </>}
             </div>
-
           </div>
         </section>
       </main>
