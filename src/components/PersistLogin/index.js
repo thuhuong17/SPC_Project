@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import usePrivateApi from "../../api/usePrivateApi";
 import BouncingLoader from "components/BoucingLoader";

@@ -1,4 +1,5 @@
 import CardTable from "components/Cards/CardTableWebsite.js";
+import React from "react"
 export default function TablesWebsite() {
     return (
       <>
