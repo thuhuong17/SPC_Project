@@ -5,9 +5,8 @@ import EventDropDown from "../../components/Dropdowns/EventDropdown";
 import PagesDropdown from "../../components/Dropdowns/PagesDropdown";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoMdSearch } from 'react-icons/io';
+import { IoMdSearch } from "react-icons/io";
 // components
-
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -16,7 +15,6 @@ export default function Navbar(props) {
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-black">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            
             <Link
               className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
               to="/home"
@@ -40,8 +38,7 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <br></br>
-            
-            
+
             <ul className=" flex flex-col lg:flex-row list-none ml-auto center">
               <li className="flex items-center justify-between">
                 <a
@@ -53,24 +50,32 @@ export default function Navbar(props) {
                 </a>
               </li>
               <li className="flex items-center">
-                <EventDropDown/>
+                <EventDropDown />
               </li>
               <li className="flex items-center">
-                <AdoptionDropDown/>
+                <AdoptionDropDown />
               </li>
               <li className="flex items-center">
-                <AboutDropDown/>
+                <AboutDropDown />
               </li>
             </ul>
-
 
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               {/* search */}
               <li className="flex items-center justify-between">
-                <input type="text" placeholder="Tìm kiếm... " name="search" className="rounded h-1 d-inline-block" />
-                <IoMdSearch style={{right: "2rem", position: "relative"}} color="#A0A0A0" size="1.2em" />
-                <div class="input-group-btn">
-                    <i className="lg:text-blueGray-200 far fa-solid fa-magnifying-glass text-blueGray-400 leading-lg mr-1"></i>
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm... "
+                  name="search"
+                  className="rounded h-1 d-inline-block"
+                />
+                <IoMdSearch
+                  style={{ right: "2rem", position: "relative" }}
+                  color="#A0A0A0"
+                  size="1.2em"
+                />
+                <div className="input-group-btn">
+                  <i className="lg:text-blueGray-200 far fa-solid fa-magnifying-glass text-blueGray-400 leading-lg mr-1"></i>
                 </div>
               </li>
 
@@ -80,7 +85,7 @@ export default function Navbar(props) {
                   type="button"
                 >
                   <Link to="/donate">
-                  <i className=""></i> QUYÊN GÓP NGAY
+                    <i className=""></i> QUYÊN GÓP NGAY
                   </Link>
                 </button>
               </li>

@@ -63,6 +63,16 @@
     color: #FFFFFF;
   }
 
+  .formbold-steps h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .noti {
+    max-width: 70%;
+  }
+
   .formbold-input-flex {
     display: flex;
     gap: 20px;
@@ -177,6 +187,7 @@
   }
   .formbold-btn {
     display: flex;
+    float: right;
     align-items: center;
     gap: 5px;
     font-size: 16px;

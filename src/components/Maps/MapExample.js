@@ -67,7 +67,7 @@ function MapExample() {
     });
 
     const contentString =
-      '<div class="info-window-content"><h2>Notus React</h2>' +
+      '<div className="info-window-content"><h2>Notus React</h2>' +
       "<p>A free Admin for Tailwind CSS, React, and React Hooks.</p></div>";
 
     const infowindow = new google.maps.InfoWindow({

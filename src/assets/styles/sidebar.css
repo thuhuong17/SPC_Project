@@ -1,0 +1,14 @@
+.dropdown-content {
+    list-style: none;
+    display: none;
+    transition: transform ease 0.3s;
+}
+
+input[type="checkbox"]:checked ~ .dropdown-content {
+    display: block;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
