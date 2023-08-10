@@ -21,7 +21,6 @@ export default function Child() {
               <ChildModal
                 closeModal={() => {
                   setModalOpen(false);
-                  setRowToEdit(null);
                 }}
                 onSubmit={() => {
                   setIsAddChild(!isAddChild);
