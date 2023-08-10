@@ -11,7 +11,6 @@ import "../../assets/styles/tableItems.css";
 import { ModalCitizenID } from "components/Modals/ModalCitizenID";
 import usePrivateApi from "api/usePrivateApi";
 import { GuardianModal } from "components/Modals/GuardianModal";
-import { Button } from "reactstrap";
 
 export default function CardTableChild({ color, isAddChild }) {
   const privateApi = usePrivateApi();
@@ -41,7 +40,6 @@ export default function CardTableChild({ color, isAddChild }) {
       }
 
       const response = await privateApi.getAllChildren(params);
-      // console.log(response);
       setChildren(response.data);
     };
     getChildren();
@@ -62,8 +60,6 @@ export default function CardTableChild({ color, isAddChild }) {
     };
     status.length == 0 && getStatus();
   }, []);
-
-  // console.log(status);
 
   const handleAddCitizenClick = (id) => {
     setCurrentChildAddId(id);
@@ -158,10 +154,7 @@ export default function CardTableChild({ color, isAddChild }) {
                     {statusSelectFilter && (
                       <>
                         <div className="form-group">
-                          <select
-                            // onChange={handleEmployeeChange}
-                            onChange={handleStatusFilterClick}
-                          >
+                          <select onChange={handleStatusFilterClick}>
                             <option value="1" disabled selected>
                               Chọn trạng thái
                             </option>
