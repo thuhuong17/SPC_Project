@@ -6,21 +6,21 @@ const ref = React.createRef();
 const PDF = (props) => {
   return (
     <>
+      <br /><br />
       <div className="Post" ref={ref}>
         <div className='start-don'>
           <h1 className='uppercase-text'>cộng hoà xã hội chủ nghĩa việt nam</h1>
           <h3 className='under-line'>Độc lập - Tự do - Hạnh phúc</h3>
+          <br />
           <h1 className='uppercase-text title-text'>ĐƠN ĐĂNG KÝ NHU CẦU NHẬN TRẺ EM SỐNG Ở CƠ SỞ NUÔI DƯỠNG <br /> LÀM CON NUÔI TRONG NƯỚC</h1>
         </div>
         
         <br />
-        {/* <h1>{props.title}</h1>
-        <img src={props.image} alt={props.title} />
-        <p>{props.content}</p> */}
 
         <div className='information'>
           <p>Kính gửi: Sở tư pháp tỉnh/thành phố</p>
-          
+          <p>............................................................................................................................................................</p>
+          <p>............................................................................................................................................................</p>
           <p>I. Thông tin cơ bản về người đăng ký nhu cầu nhận con nuôi</p>
           <div className='table-container'>
             <table>
@@ -70,6 +70,7 @@ const PDF = (props) => {
         </div>
 
       </div>
+      <br /> <br />
       <div className='btn-container'>
         <Pdf targetRef={ref} filename="don-xin-con-nuoi.pdf">
           {({ toPdf }) => <button className='btn-download' onClick={toPdf}>Tải Đơn</button>}

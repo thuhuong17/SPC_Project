@@ -3,10 +3,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useRef, useState, useEffect, useContext } from "react";
 
 // import { Switch, Route, Redirect } from "react-router-dom";
-import AuthContext from "context/AuthProviders";
-import LayoutAdmin from "layouts/Admin";
+// import AuthContext from "context/AuthProviders";
+import LayoutAdmin from "../../layouts/Admin";
 import useAuth from "../../hooks/useAuth";
-import apiMethod from "api/apiMethod";
+import apiMethod from "../../api/apiMethod";
 
 const LOGIN_URL = "login";
 
@@ -101,7 +101,7 @@ export default function Login() {
                         <img
                           alt="..."
                           className="w-5 mr-1"
-                          src={require("assets/img/github.svg").default}
+                          src={require("../../assets/img/github.svg").default}
                         />
                         Github
                       </button>
@@ -112,7 +112,7 @@ export default function Login() {
                         <img
                           alt="..."
                           className="w-5 mr-1"
-                          src={require("assets/img/google.svg").default}
+                          src={require("../../assets/img/google.svg").default}
                         />
                         Google
                       </button>

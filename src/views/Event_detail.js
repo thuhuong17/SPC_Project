@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function EventDetail() {
   return (
@@ -36,7 +36,7 @@ export default function EventDetail() {
                 </p><br></br>
                 <img
                     alt="/ảnh"
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto w-200-px"
                   />
                   {/* <p>tên bucws anh</p> */}

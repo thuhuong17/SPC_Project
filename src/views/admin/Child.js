@@ -3,9 +3,9 @@ import React from "react";
 import {useState} from "react";
 // components
 // import CardViewChild from "components/Cards/CardViewChild";
-import { ChildModal } from "components/Modals/ChildModals";
+import { ChildModal } from "../../components/Modals/ChildModals";
 import "../../assets/styles/tableAccountCard.css";
-import CardTableChild from "components/Cards/CardTableChild";
+import CardTableChild from "../../components/Cards/CardTableChild";
 export default function Child() {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([

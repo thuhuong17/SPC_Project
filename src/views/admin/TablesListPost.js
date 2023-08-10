@@ -4,7 +4,7 @@ import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
 import { Link, useNavigate  } from "react-router-dom";
-import CardTablePost from "components/Cards/CardTablePosts";
+import CardTablePost from "../../components/Cards/CardTablePosts";
 // import { Modal } from "components/Modals/ModalPostsList";
 
 export default function TablesListPost() {

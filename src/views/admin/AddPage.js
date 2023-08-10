@@ -9,7 +9,7 @@ import { createPost as doCreatePost, uploadPostImage } from "../../services/post
 import { getCurrentUserDetail } from "../../auth"
 import { toast } from "react-toastify"
 import "../../assets/styles/FormEditor.css"
-import apiMethod from "api/apiMethod"
+import apiMethod from "../../api/apiMethod"
 const AddPage = (color) => {
     const editor = useRef(null)
     

@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import { ModalBudgets } from "components/Modals/ModalBudgets";
-import CardTableBudgets from "components/Cards/CardTableBudgets";
+import { ModalBudgets } from "../../components/Modals/ModalBudgets";
+import CardTableBudgets from "../../components/Cards/CardTableBudgets";
 
 export default function TableBudgets() {
   const [modalOpen, setModalOpen] = useState(false);

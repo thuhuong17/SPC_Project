@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function Event() {
   return (
@@ -76,7 +76,7 @@ export default function Event() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
@@ -113,7 +113,7 @@ export default function Event() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
@@ -150,7 +150,7 @@ export default function Event() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
@@ -187,7 +187,7 @@ export default function Event() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">

@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import CardTableEmployee from "components/Cards/CardTableEmployee";
-import { ModalEmployee } from "components/Modals/ModalEmployee";
+import CardTableEmployee from "../../components/Cards/CardTableEmployee";
+import { ModalEmployee } from "../../components/Modals/ModalEmployee";
 
 export default function TableEmployee() {
   const [modalOpen, setModalOpen] = useState(false);

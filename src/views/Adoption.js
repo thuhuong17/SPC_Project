@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../assets/styles/FormAdoption.css"
 // components
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Footers/Footer.js";
+import Footer from "../components/Footers/Footer.js";
 import PDF from './PDF';
+import apiMethod from '../api/apiMethod'
 
 export default function Adoption() {
   // cài đặt điều kiện multi-step form
@@ -67,9 +68,19 @@ export default function Adoption() {
     }
   };
 
+  const [adoption, setAdoption] = useState([]);
+
+  useEffect(() => {
+    const getAdoption = async () =>{
+        const response = await apiMethod.getAdoption();
+        setAdoption(response);
+    }
+    getAdoption();
+  }, [])
+
   return (
     <>
-        <Navbar transparent />
+        {/* <Navbar transparent /> */}
       <main>
         
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
@@ -130,7 +141,7 @@ export default function Adoption() {
                 {!postSubmitted ? (
                 <div className="formbold-main-wrapper">
                     <div className="formbold-form-wrapper">
-                      <form>
+                      <form action="#">
                           <div className="formbold-steps">
                           <ul>
                               <li className={`formbold-step-menu1 ${currentStep === 1 ? 'active' : ''}`}>

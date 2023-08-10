@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function About() {
   return (
@@ -84,7 +84,7 @@ export default function About() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="w-full align-middle rounded-t-lg"
                   />
                   <blockquote className="relative p-8 mb-4">
@@ -139,7 +139,7 @@ export default function About() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src={require("assets/img/tre_em1.jpg").default}
+                  src={require("../assets/img/tre_em1.jpg").default}
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -176,7 +176,7 @@ export default function About() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   

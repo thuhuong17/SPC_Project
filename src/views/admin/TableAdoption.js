@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 // components
 import "../../assets/styles/tableAccountCard.css"
-import { ModalAdoption } from "components/Modals/ModalAdoption";
-import CardTableAdoption from "components/Cards/CardTableAdoption";
+import { ModalAdoption } from "../../components/Modals/ModalAdoption";
+import CardTableAdoption from "../../components/Cards/CardTableAdoption";
 
 export default function TablesAdoption() {
   const [modalOpen, setModalOpen] = useState(false);

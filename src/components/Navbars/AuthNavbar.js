@@ -1,8 +1,8 @@
 /*eslint-disable*/
-import AboutDropDown from "components/Dropdowns/AboutDropdown";
-import AdoptionDropDown from "components/Dropdowns/AdoptionDropdown";
-import EventDropDown from "components/Dropdowns/EventDropdown";
-import PagesDropdown from "components/Dropdowns/PagesDropdown";
+import AboutDropDown from "../../components/Dropdowns/AboutDropdown";
+import AdoptionDropDown from "../../components/Dropdowns/AdoptionDropdown";
+import EventDropDown from "../../components/Dropdowns/EventDropdown";
+import PagesDropdown from "../../components/Dropdowns/PagesDropdown";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from 'react-icons/io';

@@ -2,9 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
-import useAuth from "hooks/useAuth";
+import NotificationDropdown from "../../components/Dropdowns/NotificationDropdown";
+import UserDropdown from "../../components/Dropdowns/UserDropdown.js";
+import useAuth from "../../hooks/useAuth";
 import NavItem from "./NavItem";
 
 export default function Sidebar() {

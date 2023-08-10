@@ -4,7 +4,7 @@ import {
   Outlet,
   useOutletContext,
   useNavigate,
-} from "react-router-doms";
+} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import React, { useEffect } from "react";
 // import BouncingLoader from "../BoucingLoader";

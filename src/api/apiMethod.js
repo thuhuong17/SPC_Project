@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
 
 const apiMethod = {
@@ -20,6 +21,10 @@ const apiMethod = {
   getAllCategories: (params) =>{
     const url = "categories/get";
     return axiosClient.get(url, params);
+  },
+  getAdoption: (params) => {
+    const url = 'adoption';
+    return axiosClient.get(url, params)
   }
 };
 

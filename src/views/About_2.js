@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function About_2() {
   return (
@@ -38,7 +38,7 @@ export default function About_2() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src={require("assets/img/tre_em1.jpg").default}
+                  src={require("../assets/img/tre_em1.jpg").default}
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto px-4 -mt-50">
@@ -77,7 +77,7 @@ export default function About_2() {
                 <div className="">
                   <img
                     alt=""
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded "
                   />
                 </div>

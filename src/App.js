@@ -5,10 +5,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import React, { Fragment } from "react";
-import Auth from "layouts/Auth.js";
-import PersistLogin from "components/PersistLogin";
-import Login from "views/auth/Login";
-import RequireAuth from "RequiredAuth";
+import Auth from "./layouts/Auth.js";
+import PersistLogin from "./components/PersistLogin";
+import Login from "./views/auth/Login";
+import RequireAuth from "./RequiredAuth";
 import { publicRoutes, privateRoutes } from "./config/routes";
 
 function App() {
