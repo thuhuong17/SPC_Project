@@ -47,6 +47,25 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
   }, []);
 
   const [errors, setErrors] = useState("");
+  const validateForm = () => {
+    if (
+      formState.firstName &&
+      formState.lastName &&
+      formState.birthDay &&
+      formState.gender &&
+      formState.addressPermanent &&
+      formState.addressTemporary &&
+      formState.salary &&
+      formState.phoneNumber &&
+      formState.nationality
+    ) {
+      setErrors("");
+      return true;
+    } else {
+      setErrors("Vui lòng điền đầy đủ thông tin");
+      return false;
+    }
+  };
 
   const handleChange = (e) => {
     setFormState({
@@ -79,53 +98,53 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (validateForm()) {
+      var newDate = new Date(formState.birthDay);
+      let dateMDY = `${newDate.getDate()}-${
+        newDate.getMonth() + 1
+      }-${newDate.getFullYear()}`;
 
-    var newDate = new Date(formState.birthDay);
-    let dateMDY = `${newDate.getDate()}-${
-      newDate.getMonth() + 1
-    }-${newDate.getFullYear()}`;
+      formState.birthDay = dateMDY;
 
-    formState.birthDay = dateMDY;
+      var newFromDate = new Date(formState.fromDate);
+      let dateFrMDY = `${newFromDate.getDate()}-${
+        newFromDate.getMonth() + 1
+      }-${newFromDate.getFullYear()}`;
+      formState.fromDate = dateFrMDY;
+      console.log(formState);
 
-    var newFromDate = new Date(formState.fromDate);
-    let dateFrMDY = `${newFromDate.getDate()}-${
-      newFromDate.getMonth() + 1
-    }-${newFromDate.getFullYear()}`;
-    formState.fromDate = dateFrMDY;
-    console.log(formState);
+      const data = new FormData();
+      data.append(
+        "employee",
+        new Blob(
+          [
+            JSON.stringify({
+              firstName: formState.firstName,
+              lastName: formState.lastName,
+              gender: formState.gender,
+              nationality: formState.nationality,
+              addressPermanent: formState.addressPermanent,
+              addressTemporary: formState.addressTemporary,
+              birthDay: formState.birthDay,
+              fromDate: formState.fromDate,
+              email: formState.email,
+              phoneNumber: formState.phoneNumber,
+              job: formState.job,
+              shift: formState.shift,
+              salary: formState.salary,
+            }),
+          ],
+          {
+            type: "application/json",
+          }
+        )
+      );
+      data.append("image", image);
 
-    const data = new FormData();
-    data.append(
-      "employee",
-      new Blob(
-        [
-          JSON.stringify({
-            firstName: formState.firstName,
-            lastName: formState.lastName,
-            gender: formState.gender,
-            nationality: formState.nationality,
-            addressPermanent: formState.addressPermanent,
-            addressTemporary: formState.addressTemporary,
-            birthDay: formState.birthDay,
-            fromDate: formState.fromDate,
-            email: formState.email,
-            phoneNumber: formState.phoneNumber,
-            job: formState.job,
-            shift: formState.shift,
-            salary: formState.salary,
-          }),
-        ],
-        {
-          type: "application/json",
-        }
-      )
-    );
-    data.append("image", image);
-
-    const response = await privateFDataApi.addEmployee(data);
-    console.log(response);
-    onSubmit();
-    closeModal();
+      const response = await privateFDataApi.addEmployee(data);
+      onSubmit();
+      closeModal();
+    }
   };
 
   return (
@@ -277,7 +296,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input type="file" id="image" onChange={handleImageChoose} />
           </div>
-          {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
+          {errors && <div className="error">{errors}</div>}
           <button type="submit" className="btn" onClick={handleSubmit}>
             Submit
           </button>

@@ -25,11 +25,7 @@ export default function TableEmployee() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full px-4">
           <div className="tableStyle">
-            <CardTableEmployee
-              rows={employees}
-              // deleteRow={handleDeleteRow}
-              // editRow={handleEditRow}
-            />
+            <CardTableEmployee rows={employees} />
             <button className="btn" onClick={() => setModalOpen(true)}>
               Thêm nhân viên
             </button>

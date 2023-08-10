@@ -39,31 +39,24 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
 
   const [errors, setErrors] = useState("");
   const validateForm = () => {
-    // if (
-    //   formState.firstname &&
-    //   formState.lastname &&
-    //   formState.birthday &&
-    //   formState.gender &&
-    //   formState.address_temporary &&
-    //   formState.address_permanent &&
-    //   formState.citizen &&
-    //   formState.date_in &&
-    //   formState.status
-    // ) {
-    //   setErrors("");
-    //   return true;
-    // } else {
-    //   let errorFields = [];
-    //   for (const [key, value] of Object.entries(formState)) {
-    //     if (!value) {
-    //       errorFields.push(key);
-    //     }
-    //   }
-    //   setErrors(errorFields.join(", "));
-    //   return false;
-    // }
+    if (
+      formState.firstName &&
+      formState.lastName &&
+      formState.birthDay &&
+      formState.gender &&
+      formState.addressPermanent &&
+      formState.addressTemporary &&
+      formState.dateIn &&
+      formState.nationality
+    ) {
+      setErrors("");
+      return true;
+    } else {
+      setErrors("Vui lòng điền đầy đủ thông tin");
+      return false;
+    }
   };
-  // update danh sách
+
   const handleChange = (e) => {
     setFormState({
       ...formState,
@@ -90,49 +83,50 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (validateForm()) {
+      var newDate = new Date(formState.birthDay);
+      let dateMDY = `${newDate.getDate()}-${
+        newDate.getMonth() + 1
+      }-${newDate.getFullYear()}`;
 
-    var newDate = new Date(formState.birthDay);
-    let dateMDY = `${newDate.getDate()}-${
-      newDate.getMonth() + 1
-    }-${newDate.getFullYear()}`;
+      formState.birthDay = dateMDY;
 
-    formState.birthDay = dateMDY;
+      var newDateIn = new Date(formState.birthDay);
+      let dateInMDY = `${newDateIn.getDate()}-${
+        newDateIn.getMonth() + 1
+      }-${newDateIn.getFullYear()}`;
+      formState.dateIn = dateInMDY;
 
-    var newDateIn = new Date(formState.birthDay);
-    let dateInMDY = `${newDateIn.getDate()}-${
-      newDateIn.getMonth() + 1
-    }-${newDateIn.getFullYear()}`;
-    formState.dateIn = dateInMDY;
+      const data = new FormData();
+      data.append(
+        "children",
+        new Blob(
+          [
+            JSON.stringify({
+              firstName: formState.firstName,
+              lastName: formState.lastName,
+              gender: formState.gender,
+              nationality: formState.nationality,
+              addressPermanent: formState.addressPermanent,
+              addressTemporary: formState.addressTemporary,
+              birthDay: formState.birthDay,
+              dateIn: formState.dateIn,
+              circumstance: formState.circumstance,
+              typeOfOrphan: formState.typeOfOrphan,
+            }),
+          ],
+          {
+            type: "application/json",
+          }
+        )
+      );
+      data.append("image", image);
 
-    const data = new FormData();
-    data.append(
-      "children",
-      new Blob(
-        [
-          JSON.stringify({
-            firstName: formState.firstName,
-            lastName: formState.lastName,
-            gender: formState.gender,
-            nationality: formState.nationality,
-            addressPermanent: formState.addressPermanent,
-            addressTemporary: formState.addressTemporary,
-            birthDay: formState.birthDay,
-            dateIn: formState.dateIn,
-            circumstance: formState.circumstance,
-            typeOfOrphan: formState.typeOfOrphan,
-          }),
-        ],
-        {
-          type: "application/json",
-        }
-      )
-    );
-    data.append("image", image);
-
-    const response = await privateFDataApi.addChild(data);
-    console.log(response);
-    onSubmit();
-    closeModal();
+      const response = await privateFDataApi.addChild(data);
+      console.log(response);
+      onSubmit();
+      closeModal();
+    }
   };
 
   return (
@@ -255,7 +249,7 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
               }}
             />
           </div>
-          {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
+          {errors && <div className="error">{errors}</div>}
           <button type="submit" className="btn" onClick={handleSubmit}>
             Submit
           </button>

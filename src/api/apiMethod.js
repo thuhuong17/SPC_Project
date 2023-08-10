@@ -29,9 +29,31 @@ const apiMethod = {
     const url = "articles/" + id;
     return axiosClient.get(url, params);
   },
+  getArticles: (params) => {
+    let url = "articles?";
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        url = url + `${key}=${value}`;
+      }
+    }
+    return axiosClient.get(url);
+  },
+  countChildren: (params) => {
+    let url = "children/count?";
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        url = url + `${key}=${value}`;
+      }
+    }
+    return axiosClient.get(url);
+  },
   postAdoption: (params) => {
     const url = "adoption";
     return axiosClient.post(url, params);
+  },
+  gelTotalDonationAmount: () => {
+    const url = "donations/amount";
+    return axiosClient.get(url);
   },
 };
 

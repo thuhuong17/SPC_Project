@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const FinanceDropdown = () => {
-  const param = window.location.href.split("?");
-  console.log(param);
   return (
     <>
       <ul className="p-4">

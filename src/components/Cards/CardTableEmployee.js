@@ -4,8 +4,6 @@ import {
   BsFillTrashFill,
   BsFillPencilFill,
   BsPlusCircleFill,
-  BsListCheck,
-  BsListColumns,
   BsListNested,
 } from "react-icons/bs";
 import "../../assets/styles/tableItems.css";

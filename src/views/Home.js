@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-// components
-
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import apiMethod from "api/apiMethod";
 
 export default function Home() {
+  const [articles, setArticles] = useState([]);
+  const [childrenCount, setChildrenCount] = useState(0);
+  const [adoptCount, setAdoptCount] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  useEffect(() => {
+    const getArticles = async () => {
+      const params = {
+        limit: 4,
+      };
+      const response = await apiMethod.getArticles(params);
+      setArticles(response);
+    };
+    getArticles();
+  }, []);
+
+  useEffect(() => {
+    const getChildrenCount = async () => {
+      const response = await apiMethod.countChildren();
+      setChildrenCount(response);
+    };
+    const getAdoptCount = async () => {
+      const params = {
+        status: "Đã được nhận nuôi",
+      };
+      const response = await apiMethod.countChildren(params);
+      setAdoptCount(response);
+    };
+    const getAmount = async () => {
+      const response = await apiMethod.gelTotalDonationAmount();
+      setAmount(response);
+    };
+    getChildrenCount();
+    getAdoptCount();
+    getAmount();
+  }, []);
+  // console.log(adoptCount);
   return (
     <>
       <Navbar transparent />
@@ -68,12 +103,12 @@ export default function Home() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                      <i className="fas fa-award"></i>
+                      <i className="fas fa-child"></i>
                     </div>
+                    <h1 className="text-xl font-semibold">{childrenCount}</h1>
                     <h6 className="text-xl font-semibold">
-                      Số trẻ em được nhận nuôi
+                      Tổng số trẻ đã và đang được nuôi dưỡng tại trung tâm
                     </h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">660</p>
                   </div>
                 </div>
               </div>
@@ -82,10 +117,17 @@ export default function Home() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
-                      <i className="fas fa-retweet"></i>
+                      <i className="fas fa-money-bill-wave"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Số tiền quyên góp</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">500</p>
+                    <h1 className="text-xl font-semibold">
+                      {amount.toLocaleString("it-IT", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                    </h1>
+                    <h6 className="text-xl font-semibold">
+                      Số tiền quyên góp từ mạnh thường quân
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -94,12 +136,12 @@ export default function Home() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
-                      <i className="fas fa-fingerprint"></i>
+                      <i className="fas fa-heart"></i>
                     </div>
+                    <h1 className="text-xl font-semibold">{adoptCount}</h1>
                     <h6 className="text-xl font-semibold">
-                      Số đơn đăng ký nhận nuôi
+                      Số trẻ đã được các gia đình nhận nuôi
                     </h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">550</p>
                   </div>
                 </div>
               </div>
@@ -174,166 +216,40 @@ export default function Home() {
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold">
-                  Các sự kiện của chúng tôi
+                  Sự kiện - tin tức mới
                 </h2>
-                <p className="text-lg leading-relaxed m-4 text-blueGray-500">
-                  Các chương trình quyên góp cho các bé
-                </p>
               </div>
             </div>
             <div className="flex flex-wrap">
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
-                    className="shadow-lg rounded mx-auto max-w-250-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">
-                      Quyên góp cho trẻ em cùng cao Tây Bắc
-                    </h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Cần rất nhiều tấm lòng từ miền xuôi
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
+              {articles.map((article, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4"
+                  >
+                    <Link
+                      to={`/thong-tin/${article.category?.categoryUrl}/${article.articleUrl}/${article.articleId}`}
+                    >
+                      <div className="px-6">
+                        <img
+                          style={{ height: "200px" }}
+                          alt="..."
+                          src={article.image.imageUrl}
+                          className="shadow-lg rounded mx-auto max-w-250-px"
+                        />
+                        <div className="pt-6 ">
+                          <h5 className="text-xl font-bold">{article.title}</h5>
+                          <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                            {article.postDate}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
-                    className="shadow-lg rounded mx-auto max-w-250-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">
-                      Quyên góp cho trẻ em cùng cao Tây Bắc
-                    </h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Cần rất nhiều tấm lòng từ miền xuôi
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
-                    className="shadow-lg rounded mx-auto max-w-250-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">
-                      Quyên góp cho trẻ em cùng cao Tây Bắc
-                    </h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Cần rất nhiều tấm lòng từ miền xuôi
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
-                    className="shadow-lg rounded mx-auto max-w-250-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">
-                      Quyên góp cho trẻ em cùng cao Tây Bắc
-                    </h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Cần rất nhiều tấm lòng từ miền xuôi
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
-          {/* end event */}
-          {/* start donation */}
         </section>
         <section className="pb-20 relative block bg-blueGray-800">
           <div

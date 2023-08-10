@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-// Add account
 import { useState } from "react";
-// components
 import "../../assets/styles/tableAccountCard.css";
-// import apiMethod from "api/apiMethod";
 import usePrivateApi from "api/usePrivateApi";
 import CardTableAccount from "components/Cards/CardTableAccount";
 import { ModalAccount } from "components/Modals/ModalAccountList";
@@ -40,18 +37,6 @@ export default function TablesAccount() {
     setModalOpen(true);
   };
 
-  const handleSubmit = (status) => {
-    console.log(status);
-    // setIsAddUser(isAddUser + 1);
-    // rowToEdit === null
-    //   ? setRows([...rows, newRow])
-    //   : setRows(
-    //       rows.map((currRow, idx) => {
-    //         if (idx !== rowToEdit) return currRow;
-    //         return newRow;
-    //       })
-    //     );
-  };
   return (
     <>
       <div className="flex flex-wrap mt-4">
