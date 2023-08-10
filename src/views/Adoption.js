@@ -1,46 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../assets/styles/FormAdoption.css"
 // components
-import Navbar from "../components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
 import Footer from "../components/Footers/Footer.js";
-import PDF from './PDF';
-import apiMethod from '../api/apiMethod'
+import apiMethod from "../api/apiMethod";
+
+import "../assets/styles/FormAdoption.css"
 
 export default function Adoption() {
-  // cài đặt điều kiện multi-step form
-  const [currentStep, setCurrentStep] = useState(1);
 
-  const handleNextStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
-
-  const handlePrevStep = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
-  };
-
-  // khai báo trường dữ liệu
+  const [adopter, setAdopter] = useState(0)
+  const [status, setStatus] = useState(0)
+  const [reason, setReason] = useState("")
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    gender:'',
-    nationality: '',
-    addressPermanent: '',
-    addressTemporary:'',
-    birthday: '',
-    phoneNumber: '',
-    email: '',
-    nation:'',
-    occupation: '',
-    income: '',
-    relationship: '',
-    citizenIdentNumber:'',
-    issueDate: '',
-    issuePlace: '',
-    expireDate: '',
+    firstname: [],
+    lastname: [],
+    gender: [],
+    nationality: [],
+    addressPermanent: [],
+    addressTemporary: [],
+    birthday: [],
+    phoneNumber: [],
+    email: [],
+    nation: [],
+    occupation: [],
+    income: [],
+    relationship: [],
+    citizenIdentNumber: [],
+    issueDate: [],
+    issuePlace: [],
+    expireDate: [],
   });
 
-  // cài đặt submit form
-  const [postSubmitted, setPostSubmitted] = useState(false);
+  const validateForm = () => {
+    if (formData.firstname[0]
+      && formData.lastname[0]
+      && formData.gender[0]
+      && formData.nationality[0]
+      && formData.addressPermanent[0]
+      && formData.addressTemporary[0]
+      && formData.birthday[0]
+      && formData.phoneNumber[0]
+      && formData.email[0]
+      && formData.nation[0]
+      && formData.occupation[0]
+      && formData.income[0]
+      && formData.relationship[0]
+      && formData.citizenIdentNumber[0]
+      && formData.issueDate[0]
+      && formData.issuePlace[0]
+      && formData.expireDate[0]
+    ) {
+      return true;
+    } else {
+      let errorFields = [];
+      for (const [key, value] of Object.entries(formData)) {
+        if (!value) {
+          errorFields.push(key);
+        }
+      }
+      alert("Vui lòng nhập đầy đủ thông tin!");
+      return false;
+    }
+  };
 
   const handleInputChange = (event, i) => {
     const { name, value } = event.target;
