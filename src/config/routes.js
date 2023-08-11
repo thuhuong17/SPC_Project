@@ -166,6 +166,11 @@ const privateRoutes = [
       },
       {
         path: "/admin/website",
+        component: TablesListPost,
+        layout: Admin,
+      },
+      {
+        path: "/admin/add-page",
         component: AddPage,
         layout: Admin,
       },
