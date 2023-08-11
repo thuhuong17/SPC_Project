@@ -26,6 +26,8 @@ import About_1 from "views/About_1";
 import About_2 from "views/About_2";
 import Catalog from "views/Catalog";
 import Article from "views/Article";
+import Condi_adop from "views/Condition_adoption";
+import Infor_payment from "views/Infor_payment";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -63,6 +65,14 @@ const publicRoutes = [
   {
     path: "/about/tam-nhin-va-su-menh",
     component: About_2,
+  },
+  {
+    path: "/thong-tin/thong-tin-chuyen-khoan",
+    component: Infor_payment,
+  },
+  {
+    path: "/thong-tin/dieu-kien-nhan-nuoi",
+    component: Condi_adop,
   },
   {
     path: "/adoption",
