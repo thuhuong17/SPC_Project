@@ -28,6 +28,7 @@ import Catalog from "views/Catalog";
 import Article from "views/Article";
 import Condi_adop from "views/Condition_adoption";
 import Infor_payment from "views/Infor_payment";
+import TablesListPost from "views/admin/TablesListPost";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -170,6 +171,12 @@ const privateRoutes = [
       },
       {
         path: "/admin/website",
+        component: TablesListPost,
+        layout: Admin,
+      },
+
+      {
+        path: "/admin/add-page",
         component: Articles,
         layout: Admin,
       },
