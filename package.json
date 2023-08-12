@@ -31,7 +31,8 @@
     "reactstrap": "^9.2.0",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
-    "tailwindcss": "2.0.4"
+    "tailwindcss": "2.0.4",
+    "validator": "^13.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
