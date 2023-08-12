@@ -113,7 +113,7 @@ export default function About_2() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">SỰ TIN TƯỞNG</h5>
+                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -148,7 +148,7 @@ export default function About_2() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">SỰ MINH BẠCH</h5>
+                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -183,7 +183,7 @@ export default function About_2() {
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">SỰ CAM KẾT</h5>
+                    <h5 className="text-xl font-bold">Quyên góp cho trẻ em cùng cao Tây Bắc</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Cần rất nhiều tấm lòng từ miền xuôi
                     </p>
@@ -213,7 +213,7 @@ export default function About_2() {
             </div>
           </div>
         </section>
-        {/* <section className="pt-5 pb-40">
+        <section className="pt-5 pb-40">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-4">
               <div className="w-full lg:w-6/12 px-4">
@@ -239,7 +239,7 @@ export default function About_2() {
               </div>
             </div>
             </div>
-        </section> */}
+        </section>
 
       </main>
       <Footer />

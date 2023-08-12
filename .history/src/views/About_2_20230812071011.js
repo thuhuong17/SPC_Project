@@ -213,7 +213,7 @@ export default function About_2() {
             </div>
           </div>
         </section>
-        {/* <section className="pt-5 pb-40">
+        <section className="pt-5 pb-40">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-4">
               <div className="w-full lg:w-6/12 px-4">
@@ -239,7 +239,7 @@ export default function About_2() {
               </div>
             </div>
             </div>
-        </section> */}
+        </section>
 
       </main>
       <Footer />
