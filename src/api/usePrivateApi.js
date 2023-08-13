@@ -24,10 +24,6 @@ const usePrivateApi = () => {
       const url = "users";
       return axPrivate.post(url, params);
     },
-    getBudget: (params) => {
-      const url = "budgets";
-      return axPrivate.get(url, params);
-    },
     getAllChildren: (params) => {
       let url = "children?";
       if (params) {
@@ -89,6 +85,10 @@ const usePrivateApi = () => {
       const url = "budgets";
       return axPrivate.get(url, params);
     },
+    getPageBudget: (p) => {
+      const url = `/budgets/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postBudget: (params) => {
       const url = "budgets";
       return axPrivate.post(url, params);
@@ -104,6 +104,10 @@ const usePrivateApi = () => {
     getIncome: (params) => {
       const url = "incomes";
       return axPrivate.get(url, params);
+    },
+    getPageIncome: (p) => {
+      const url = `/incomes/page?p=${p}`;
+      return axPrivate.get(url);
     },
     postIncome: (params) => {
       const url = "incomes";
@@ -121,7 +125,10 @@ const usePrivateApi = () => {
       const url = "expenses";
       return axPrivate.get(url, params);
     },
-
+    getPageExpense: (p) => {
+      const url = `/expenses/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postExpense: (params) => {
       const url = "expenses";
       return axPrivate.post(url, params);

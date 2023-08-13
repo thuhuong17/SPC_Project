@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
+import { Pagination } from "@mui/material";
+import usePrivateApi from "api/usePrivateApi";
 
 export default function CardTableIncome({ color, income, deleteRow, editRow }) {
+    const api = usePrivateApi()
+
+    const [page, setPage] = useState(1);
+    const [pageIncome, setPageIncome] = useState([]);
+
+    const getIncome = async () => {
+        try {
+            const response = await api.getPageIncome(page - 1);
+            setPageIncome(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getIncome()
+    }, [page, income])
+
+    const count = Math.ceil(income.length / 5);
+
+    const handleChange = (e, p) => {
+        setPage(p);
+    };
+
     return (
         <>
             <div className={
@@ -41,19 +67,19 @@ export default function CardTableIncome({ color, income, deleteRow, editRow }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {income.map((row, idx) => {
+                                {pageIncome.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
                                         <td className="expand6">{row?.incomeName}</td>
                                         <td className="expand6">{row?.incomeDescription}</td>
-                                        <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
                                         <td className="expand6">{row?.budget?.budgetName}</td>
                                         <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
                                         <td className="expand6">{row?.dateTime}</td>
                                         <td>
                                             <span className="actions">
-                                                <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />
-                                                <BsFillPencilFill onClick={() => editRow(idx)} />
+                                                <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.incomeId)} />
+                                                <BsFillPencilFill onClick={() => editRow(row?.incomeId)} />
                                             </span>
                                         </td>
                                     </tr>
@@ -63,6 +89,13 @@ export default function CardTableIncome({ color, income, deleteRow, editRow }) {
                     </div>
                 </div>
             </div>
+            <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                shape="rounded"
+                onChange={handleChange}
+            />
         </>
     );
 }

@@ -3,6 +3,7 @@ import usePrivateApi from "api/usePrivateApi";
 import DatePicker from "react-datepicker";
 
 import "../../assets/styles/modal.css";
+import "../../assets/styles/modalFinance.css";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 
@@ -21,7 +22,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
         endDate: endDateValue
     });
 
-    const [errors, setErrors] = useState("");
+    const [errors, setErrors] = useState({});
     const validateForm = () => {
         if (formState.budgetName && formState.budgetDescription && formState.amout && formState.startDate && formState.endDate) {
             setErrors("");
@@ -37,6 +38,16 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
             return false;
         }
     };
+
+    // const validateForm = () => {
+    //     if (!formState?.budgetName) {
+    //         setErrors(true)
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // };
+
     // update danh sách
     const handleChange = (e) => {
         setFormState({
@@ -64,7 +75,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     // submit account vừa thêm
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (validateForm()) return;
         if (defaultValue?.budgetId) {
             try {
                 delete formState.budgetId;
@@ -99,18 +110,28 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
             }}
         >
             <div className="modal">
+                <h1 className="modal-header">{formState?.budgetName ? "Sửa ngân sách" : "Thêm ngân sách"}</h1>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="budgetName">Tên ngân sách</label>
+                        <label htmlFor="budgetName">Tên ngân sách <span>(*)</span></label>
                         <input
                             name="budgetName"
                             value={formState?.budgetName}
                             onChange={handleChange}
+                            // style={{
+                            //     borderColor: errors ? "red" : "black"
+                            // }}
                         />
+                        {/* <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors ? "Vui lòng nhập thông tin" : ""}
+                        </span> */}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="budgetDescription">Mô tả</label>
+                        <label htmlFor="budgetDescription">Mô tả <span>(*)</span></label>
                         <input
                             name="budgetDescription"
                             value={formState?.budgetDescription}
@@ -119,7 +140,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="amout">Ngân sách</label>
+                        <label htmlFor="amout">Ngân sách <span>(*)</span></label>
                         <input
                             name="amout"
                             value={formState?.amout}
@@ -128,21 +149,21 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="startDate">Ngày bắt đầu</label>
+                        <label htmlFor="startDate">Ngày bắt đầu <span>(*)</span></label>
                         <DatePicker name="startDate" dateFormat="dd/MM/yyyy"
                             selected={new Date(moment(formState?.startDate, "DD/MM/YYYY"))}
                             onChange={(date) => changeStartDate(date)} />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="endDate">Ngày kết thúc</label>
+                        <label htmlFor="endDate">Ngày kết thúc <span>(*)</span></label>
                         <DatePicker name="endDate" dateFormat="dd/MM/yyyy"
                             selected={new Date(moment(formState?.endDate, "DD/MM/YYYY"))}
                             onChange={(date) => changeEndDate(date)} />
                     </div>
-                    {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
+                    {/* {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>} */}
                     <button type="submit" className="btn" onClick={handleSubmit}>
-                        Submit
+                        Xác nhận
                     </button>
                 </form>
             </div>

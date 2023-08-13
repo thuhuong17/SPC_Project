@@ -14,7 +14,7 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
 
     const [errors, setErrors] = useState("");
     const validateForm = () => {
-        if (formState.accountName && formState.accountNumber && formState.bankName && formState.balance) {
+        if (formState.accountName && formState.accountNumber && formState.bankName) {
             setErrors("");
             return true;
         } else {

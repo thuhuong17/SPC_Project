@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
-import { Link } from "react-router-dom";
+import { Pagination } from '@mui/material';
+import usePrivateApi from "api/usePrivateApi";
+
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
 
 export default function CardTable({ color, budget, income, expense, accBank, deleteRow, editRow }) {
+  const api = usePrivateApi()
+
+  const [page, setPage] = useState(1);
+  const [pageBudget, setPageBudget] = useState([]);
+
+  const getBudget = async () => {
+    try {
+      const response = await api.getPageBudget(page - 1);
+      setPageBudget(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getBudget()
+  }, [page, budget])
+
+  const count = Math.ceil(budget.length / 5);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+  };
+
   return (
     <>
       <div
@@ -24,58 +50,56 @@ export default function CardTable({ color, budget, income, expense, accBank, del
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                {(window.location.href.split("?")[1] === "budget") ? "Ngân sách"
-                  : (window.location.href.split("?")[1] === "account") ? "Tài khoản ngân hàng"
-                    : (window.location.href.split("?")[1] === "income") ? "Khoản thu"
-                      : (window.location.href.split("?")[1] === "expense") ? "Khoản chi"
-                        : ""}
+                Ngân sách
               </h3>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Finance table */}
-          {(window.location.href.split("?")[1] === "budget")
-            // Budget
-            ? <div className="table-main">
-              <table className="max-w-full table table-finance">
-                <thead>
-                  <tr>
-                    <th>STT</th>
-                    <th className="expand5">Tên ngân sách</th>
-                    <th className="expand5">Mô tả</th>
-                    <th className="expand5">Ngân sách</th>
-                    <th className="expand5">Ngày bắt đầu</th>
-                    <th className="expand5">Ngày kết thúc</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    budget.map((row, idx) => {
-                      return <tr key={idx}>
-                        <td>{idx + 1}</td>
-                        <td className="expand5">{row?.budgetName}</td>
-                        <td className="expand5">{row?.budgetDescription}</td>
-                        <td className="expand5">{(row?.amout)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
-                        <td className="expand5">{row?.startDate}</td>
-                        <td className="expand5">{row?.endDate}</td>
-                        <td>
-                          <span className="actions">
-                            <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />
-                            <BsFillPencilFill onClick={() => editRow(idx)} />
-                          </span>
-                        </td>
-                      </tr>
-                    })
-                  }
-                </tbody>
-              </table>
-            </div>
-            : <h2 className="p-3">Chọn mục muốn quản lý</h2>
-          }
+          {/* Finance table */}<div className="table-main">
+            <table className="max-w-full table table-finance">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th className="expand5">Tên ngân sách</th>
+                  <th className="expand5">Mô tả</th>
+                  <th className="expand5">Ngân sách</th>
+                  <th className="expand5">Ngày bắt đầu</th>
+                  <th className="expand5">Ngày kết thúc</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  pageBudget.map((row, idx) => {
+                    return <tr key={idx}>
+                      <td>{idx + 1}</td>
+                      <td className="expand5">{row?.budgetName}</td>
+                      <td className="expand5">{row?.budgetDescription}</td>
+                      <td className="expand5">{(row?.amout)?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                      <td className="expand5">{row?.startDate}</td>
+                      <td className="expand5">{row?.endDate}</td>
+                      <td>
+                        <span className="actions">
+                          <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.budgetId)} />
+                          <BsFillPencilFill onClick={() => editRow(row?.budgetId)} />
+                        </span>
+                      </td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+      <Pagination
+        count={count}
+        color="primary"
+        page={page}
+        shape="rounded"
+        onChange={handleChange}
+      />
 
     </>
   );

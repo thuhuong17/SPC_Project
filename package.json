@@ -6,8 +6,11 @@
   "license": "MIT",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@material-tailwind/react": "^2.0.7",
+    "@mui/material": "^5.14.4",
     "@popperjs/core": "2.9.1",
     "autoprefixer": "10.2.5",
     "axios": "^1.4.0",
@@ -31,7 +34,8 @@
     "reactstrap": "^9.2.0",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
-    "tailwindcss": "2.0.4"
+    "tailwindcss": "2.0.4",
+    "validator": "^13.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
