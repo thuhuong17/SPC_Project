@@ -6,6 +6,8 @@ import "../../assets/styles/modal.css";
 import "../../assets/styles/modalFinance.css";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import isEmpty from "validator/lib/isEmpty"
+import isNumeric from "validator/lib/isNumeric"
 
 export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     const [startDate, setStartDate] = useState(new Date());
@@ -17,36 +19,30 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
         budgetName: "",
         budgetDescription: "",
-        amout: 0,
+        amout: "",
         startDate: startDateValue,
         endDate: endDateValue
     });
 
     const [errors, setErrors] = useState({});
     const validateForm = () => {
-        if (formState.budgetName && formState.budgetDescription && formState.amout && formState.startDate && formState.endDate) {
-            setErrors("");
-            return true;
-        } else {
-            let errorFields = [];
-            for (const [key, value] of Object.entries(formState)) {
-                if (!value) {
-                    errorFields.push(key);
-                }
-            }
-            setErrors(errorFields.join(", "));
-            return false;
+        const msg = {}
+        if (isEmpty(formState?.budgetName)) {
+            msg.budgetName = "Vui lòng nhập tên ngân sách!"
         }
-    };
+        if (isEmpty(formState?.budgetDescription)) {
+            msg.budgetDescription = "Vui lòng nhập mô tả ngân sách!"
+        }
+        if (isEmpty(formState?.amout)) {
+            msg.amout = "Vui lòng nhập ngân sách!"
+        } else if (!isNumeric(formState?.amout)) {
+            msg.amout = "Vui lòng nhập số!"
+        }
 
-    // const validateForm = () => {
-    //     if (!formState?.budgetName) {
-    //         setErrors(true)
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // };
+        setErrors(msg)
+        if (Object.keys(msg).length > 0) return false
+        return true
+    };
 
     // update danh sách
     const handleChange = (e) => {
@@ -75,7 +71,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     // submit account vừa thêm
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validateForm()) return;
+        if (!validateForm()) return;
         if (defaultValue?.budgetId) {
             try {
                 delete formState.budgetId;
@@ -118,16 +114,17 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                             name="budgetName"
                             value={formState?.budgetName}
                             onChange={handleChange}
-                            // style={{
-                            //     borderColor: errors ? "red" : "black"
-                            // }}
+                            style={{
+                                borderColor: errors?.budgetName ? "red" : "black"
+                            }}
                         />
-                        {/* <span style={{
+                        <span style={{
                             color: "red",
                             paddingTop: "5px"
                         }}>
-                            {errors ? "Vui lòng nhập thông tin" : ""}
-                        </span> */}
+                            {/* {errors ? "Vui lòng nhập thông tin" : ""} */}
+                            {errors?.budgetName}
+                        </span>
                     </div>
 
                     <div className="form-group">
@@ -136,7 +133,16 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                             name="budgetDescription"
                             value={formState?.budgetDescription}
                             onChange={handleChange}
+                            style={{
+                                borderColor: errors?.budgetDescription ? "red" : "black"
+                            }}
                         />
+                        <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors?.budgetDescription}
+                        </span>
                     </div>
 
                     <div className="form-group">
@@ -145,7 +151,16 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                             name="amout"
                             value={formState?.amout}
                             onChange={handleChange}
+                            style={{
+                                borderColor: errors?.amout ? "red" : "black"
+                            }}
                         />
+                        <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors?.amout}
+                        </span>
                     </div>
 
                     <div className="form-group">

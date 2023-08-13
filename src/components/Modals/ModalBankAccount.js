@@ -42,6 +42,7 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
+
         if (defaultValue?.bankAccountId) {
             try {
                 const newForm = { ...formState, balance: Number(formState.balance) }
