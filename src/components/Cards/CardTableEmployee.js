@@ -74,7 +74,7 @@ export default function CardTableEmployee({ color, rows, deleteRow, editRow }) {
                   <th>Số điện thoại</th>
                   <th>Công việc</th>
                   <th>Ca làm việc</th>
-                  <th>Lương (VND)</th>
+                  <th>Lương</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -102,7 +102,12 @@ export default function CardTableEmployee({ color, rows, deleteRow, editRow }) {
                         {employee.shift.shiftTitle}: {employee.shift.timeStart}{" "}
                         - {employee.shift.timeEnd}
                       </td>
-                      <td>{employee.salary}</td>
+                      <td>
+                        {employee.salary.toLocaleString("it-IT", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </td>
                       <td>
                         <button
                           className="flex items-center "

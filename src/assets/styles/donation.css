@@ -11,6 +11,15 @@
   font-size: 1rem;
   /* visibility: hidden; */
 }
+.fl-inputs div {
+  width: 48%;
+}
+.fl-inputs div input {
+  width: 100%;
+}
+.fl-inputs div select {
+  width: 100%;
+}
 
 .fl-inputs input {
   width: 48%;
@@ -20,4 +29,79 @@
 }
 .btn-border-baleBlue {
   border: 1px solid #bf9ef3;
+}
+
+.dt-war {
+  display: flex;
+}
+.dt-war > * {
+  flex: 1 0;
+}
+
+.detal-wr-img {
+  display: flex;
+  justify-content: center;
+}
+
+.detal-wr-img img {
+  max-height: 250px;
+  max-width: 300px;
+}
+.detal-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.wr-guardian {
+  margin-left: 25px;
+}
+
+.detal-wrapper .proper {
+  width: 200px;
+}
+
+.detal-wrapper .value {
+  width: 70%;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+button:focus {
+  outline: none;
+}
+.dn-table-y-ip {
+  padding: 0;
+  background-color: unset;
+  width: 150px;
+  border-width: 1px;
+  border-radius: 3px;
+}
+
+.dn-chart-y-select {
+  padding-bottom: 0px;
+  background-color: unset;
+  color: white;
+  height: 25px;
+  padding-top: 0px;
+}
+
+select.dn-chart-y-select option {
+  margin: 40px;
+  background: #505768;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dn-list-y-select {
+  border-width: 2px;
+  padding: 6px;
+  background-image: unset;
+  padding-bottom: 0px;
+  background-color: unset;
+  color: black;
+  height: 25px;
+  padding-top: 0px;
 }

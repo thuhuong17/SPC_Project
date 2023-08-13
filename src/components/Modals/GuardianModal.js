@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import JoditEditor from "jodit-react";
 import usePrivateApi from "api/usePrivateApi";
 import privateFormDataApi from "api/privateFormDataApi";
+import { reunicode, regexPhoneNumber } from "constant/Regrex";
 
 export const GuardianModal = ({
   childId,
@@ -25,31 +25,85 @@ export const GuardianModal = ({
     relationshipType: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    firstName: "",
+    lastName: "",
+    birthDay: "",
+    nationality: "",
+    addressPermanent: "",
+    phoneNumber: "",
+    relationshipType: "",
+  });
+  function isValid(str) {
+    return reunicode.test(str);
+  }
+
+  const validateBDay = (dob1) => {
+    if (!dob1) {
+      return false;
+    }
+    var today = new Date();
+    var birthDate = new Date(dob1);
+    if (birthDate > today) return false;
+    return true;
+  };
+
   const [errors, setErrors] = useState("");
+
   const validateForm = () => {
-    // if (
-    //   formState.firstname &&
-    //   formState.lastname &&
-    //   formState.birthday &&
-    //   formState.gender &&
-    //   formState.address_temporary &&
-    //   formState.address_permanent &&
-    //   formState.citizen &&
-    //   formState.date_in &&
-    //   formState.status
-    // ) {
-    //   setErrors("");
-    //   return true;
-    // } else {
-    //   let errorFields = [];
-    //   for (const [key, value] of Object.entries(formState)) {
-    //     if (!value) {
-    //       errorFields.push(key);
-    //     }
-    //   }
-    //   setErrors(errorFields.join(", "));
-    //   return false;
-    // }
+    let result = true;
+    if (!isValid(formState.firstName)) {
+      var fNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var fNameErr = "";
+    }
+
+    if (formState.lastName.trim() === "") {
+      var lNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var lNameErr = "";
+    }
+
+    if (formState.nationality.trim() === "") {
+      var lNationErr = "Vui lòng điền trường này";
+      result = false;
+    } else {
+      var lNationErr = "";
+    }
+
+    if (!validateBDay(formState.birthDay)) {
+      var bDayErr = "Vui lòng chọn ngày sinh hợp lệ";
+      result = false;
+    } else {
+      var bDayErr = "";
+    }
+
+    if (formState.addressPermanent.trim() === "") {
+      var lAddressErr = "Vui lòng điền trường này";
+      result = false;
+    } else {
+      var lAddressErr = "";
+    }
+
+    if (!formState.phoneNumber.match(regexPhoneNumber)) {
+      var phonesErr = "Vui lòng điền số điện thoại hợp lệ";
+      result = false;
+    } else {
+      var phonesErr = "";
+    }
+
+    setFormErrors({
+      firstName: fNameErr,
+      lastName: lNameErr,
+      addressPermanent: lAddressErr,
+      nationality: lNationErr,
+      birthDay: bDayErr,
+      phoneNumber: phonesErr,
+    });
+
+    return result;
   };
   // update danh sách
   const handleChange = (e) => {
@@ -61,7 +115,9 @@ export const GuardianModal = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!validateForm()) {
+      return;
+    }
     var newDate = new Date(formState.birthDay);
     let dateMDY = `${newDate.getDate()}-${
       newDate.getMonth() + 1
@@ -70,11 +126,8 @@ export const GuardianModal = ({
     formState.birthDay = dateMDY;
     formState.fullName = `${formState.lastName} ${formState.firstName}`;
 
-    console.log(childId);
-    console.log(formState);
     const response = await privateApi.addGuardianForChild(childId, formState);
     console.log(response);
-
     closeModal();
     onSubmit();
   };
@@ -100,61 +153,85 @@ export const GuardianModal = ({
             <input
               type="text"
               name="firstName"
-              placeholder="Tên"
+              placeholder="Tên*"
               value={formState.firstName}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.firstName && <i>* {formErrors.firstName}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
               type="text"
               name="lastName"
-              placeholder="Họ và tên đệm"
+              placeholder="Họ và tên đệm*"
               value={formState.lastName}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.lastName && <i>* {formErrors.lastName}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
               name="relationshipType"
-              placeholder="Mối quan hệ với trẻ"
+              placeholder="Mối quan hệ với trẻ*"
               value={formState.relationshipType}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.relationshipType && (
+                <i>* {formErrors.relationshipType}</i>
+              )}
+            </span>
           </div>
           <div className="form-group">
             <div className="flex justify-between fl-inputs">
-              <input
-                name="birthDay"
-                value={formState.birthDay}
-                placeholder="Ngày sinh*"
-                type="text"
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
-                onChange={handleChange}
-              />
-              <select
-                id="gender"
-                name="gender"
-                value={formState.gender}
-                onChange={handleChange}
-              >
-                <option value="nam" selected>
-                  Nam/Male
-                </option>
-                <option value="nữ">Nữ/Female</option>
-                <option value="khác">Khác/Other</option>
-              </select>
+              <div>
+                <input
+                  name="birthDay"
+                  value={formState.birthDay}
+                  placeholder="Ngày sinh*"
+                  type="text"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => (e.target.type = "text")}
+                  onChange={handleChange}
+                />
+                <span className="text-sm text-red-500 text-bold">
+                  {formErrors.birthDay && <i>* {formErrors.birthDay}</i>}
+                </span>
+              </div>
+
+              <div>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formState.gender}
+                  onChange={handleChange}
+                >
+                  <option value="nam" selected>
+                    Nam/Male
+                  </option>
+                  <option value="nữ">Nữ/Female</option>
+                  <option value="khác">Khác/Other</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div className="form-group">
             <input
               name="addressPermanent"
-              placeholder="Địa chỉ thường trú"
+              placeholder="Địa chỉ thường trú*"
               value={formState.addressPermanent}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.addressPermanent && (
+                <i>* {formErrors.addressPermanent}</i>
+              )}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -166,11 +243,15 @@ export const GuardianModal = ({
           </div>
           <div className="form-group">
             <input
+              type="number"
               name="phoneNumber"
-              placeholder="Số điện thoại"
+              placeholder="Số điện thoại*"
               value={formState.phoneNumber}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.phoneNumber && <i>* {formErrors.phoneNumber}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -183,10 +264,13 @@ export const GuardianModal = ({
           <div className="form-group">
             <input
               name="nationality"
-              placeholder="Quốc tịch"
+              placeholder="Quốc tịch*"
               value={formState.nationality}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.nationality && <i>* {formErrors.nationality}</i>}
+            </span>
           </div>
 
           {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
