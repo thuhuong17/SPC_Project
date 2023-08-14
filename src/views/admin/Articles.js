@@ -109,6 +109,7 @@ const Articles = (color) => {
       // call API
     const data = new FormData();
     e.preventDefault();
+    // await fetch("http://localhost:8080/social-protection-api/articles")
     data.append(
         "article",
         new Blob(
@@ -217,7 +218,7 @@ const Articles = (color) => {
                 />
               </div>
               <div className="form-group">
-                <Label htmlFor="title" id="title-lable">Chọn ảnh <p className="validata-star">(*)</p></Label>
+                <Label htmlFor="title" id="title-lable">Chọn ảnh</Label>
                 <input
                   ref={imgRef}
                   id="image"

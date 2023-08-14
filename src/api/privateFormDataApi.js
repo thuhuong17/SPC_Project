@@ -15,7 +15,7 @@ const PrivateFormDataApi = () => {
     addArticle: (params) => {
       const url = "articles";
       return axiosPrivate.post(url, params);
-    },
+    }
   };
 
   return privateFDataApi;

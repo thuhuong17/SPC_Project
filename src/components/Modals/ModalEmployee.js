@@ -12,7 +12,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
     firstName: "",
     lastName: "",
     birthDay: "",
-    gender: "nam",
+    gender: "",
     nationality: "",
     addressTemporary: "",
     addressPermanent: "",
@@ -21,10 +21,10 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
     fromDate: "",
     salary: "",
     job: {
-      jobId: null,
+      jobId: "",
     },
     shift: {
-      shiftId: null,
+      shiftId: "",
     },
   });
 
@@ -68,8 +68,13 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   const handleChange = (e) => {
+    // validate input salary
+    let { value, min, max } = e.target;
+    value = Math.max(Number(min), Math.min(Number(max)), Number.value)
+    // this.setFormState({value})
     setFormState({
       ...formState,
+      [e.target.number]: e.target.value,
       [e.target.name]: e.target.value,
     });
   };
@@ -195,8 +200,8 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
                 name="gender"
                 value={formState.gender}
                 onChange={handleChange}
-              >
-                <option value="nam" selected>
+              > 
+                <option value="nam">
                   Nam/Male
                 </option>
                 <option value="nữ">Nữ/Female</option>
@@ -291,6 +296,8 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
               placeholder="Lương"
               value={formState.salary}
               onChange={handleChange}
+              min="1000000"
+              max="50000000"
             />
           </div>
           <div className="form-group">
