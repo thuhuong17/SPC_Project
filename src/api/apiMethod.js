@@ -26,7 +26,11 @@ const apiMethod = {
     return axiosClient.get(url, params);
   },
   getArticle: (id, params) => {
-    const url = "articles/" + id;
+    const url = "articles" + id;
+    return axiosClient.get(url, params);
+  },
+  postArticle: (id, params) => {
+    const url = "articles" + id;
     return axiosClient.get(url, params);
   },
   getArticles: (params) => {
