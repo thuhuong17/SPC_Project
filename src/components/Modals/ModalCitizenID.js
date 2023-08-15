@@ -15,26 +15,55 @@ export const ModalCitizenID = ({
     }
   );
 
+  const [formErrors, setFormErrors] = useState({
+    citizenIdentNumber: "",
+    issueDate: "",
+    expireDate: "",
+    issuePlace: "",
+  });
+
   const [errors, setErrors] = useState("");
   const validateForm = () => {
-    if (
-      formState.citizenIdentNumber &&
-      formState.issueDate &&
-      formState.issuePlace &&
-      formState.expireDate
-    ) {
-      setErrors("");
-      return true;
+    let result = true;
+
+    const today = new Date();
+
+    if (!(formState.citizenIdentNumber.length == 12)) {
+      var IdentNumErr = "Vui lòng điền đúng định dạng";
+      result = false;
     } else {
-      let errorFields = [];
-      for (const [key, value] of Object.entries(formState)) {
-        if (!value) {
-          errorFields.push(key);
-        }
-      }
-      setErrors(errorFields.join(", "));
-      return false;
+      var IdentNumErr = "";
     }
+
+    var isDate = new Date(formState.issueDate);
+    var exDate = new Date(formState.expireDate);
+    if (!formState.issueDate || isDate > today) {
+      var isDateErr = "Vui lòng chọn ngày hợp lệ";
+      result = false;
+    } else {
+      var isDateErr = "";
+    }
+    if (!formState.expireDate || exDate < today) {
+      var exDateErr = "Vui lòng chọn ngày hợp lệ";
+      result = false;
+    } else {
+      var exDateErr = "";
+    }
+
+    if (formState.issuePlace.trim() === "") {
+      var issuePlaceErr = "Vui lòng điền trường này";
+      result = false;
+    } else {
+      var issuePlaceErr = "";
+    }
+
+    setFormErrors({
+      citizenIdentNumber: IdentNumErr,
+      issueDate: isDateErr,
+      expireDate: exDateErr,
+      issuePlace: issuePlaceErr,
+    });
+    return result;
   };
 
   const handleChange = (e) => {
@@ -62,7 +91,7 @@ export const ModalCitizenID = ({
     formState.expireDate = dateExMDY;
 
     onSubmit(formState);
-    // closeModal();
+    closeModal();
   };
 
   return (
@@ -82,10 +111,19 @@ export const ModalCitizenID = ({
           <div className="form-group">
             <input
               placeholder="Số căn cước công dân"
+              type="number"
+              inputmode="numeric"
+              maxLength={12}
+              minLength={12}
               name="citizenIdentNumber"
               value={formState.citizenIdentNumber}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.citizenIdentNumber && (
+                <i>* {formErrors.citizenIdentNumber}</i>
+              )}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -97,6 +135,9 @@ export const ModalCitizenID = ({
               value={formState.issueDate}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.issueDate && <i>* {formErrors.issueDate}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -108,6 +149,9 @@ export const ModalCitizenID = ({
               value={formState.expireDate}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.expireDate && <i>* {formErrors.expireDate}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -117,6 +161,9 @@ export const ModalCitizenID = ({
               value={formState.issuePlace}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.issuePlace && <i>* {formErrors.issuePlace}</i>}
+            </span>
           </div>
           {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
           <button type="submit" className="btn" onClick={handleSubmit}>

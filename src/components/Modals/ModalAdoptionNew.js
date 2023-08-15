@@ -61,7 +61,7 @@ export const ModalAdoptionNew = ({ closeModal, defaultValue, onSubmit }) => {
                             </div>
                             <div className="block-inf">
                                 <h3 className="inf-title">Thu nhập: </h3>
-                                <p className="inf-desc">{it?.income}</p>
+                                <p className="inf-desc">{(it?.income)?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}/tháng</p>
                             </div>
                             <div className="block-inf">
                                 <h3 className="inf-title">Địa chỉ: </h3>

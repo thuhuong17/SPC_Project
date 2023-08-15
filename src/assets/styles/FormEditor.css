@@ -53,3 +53,22 @@
 #reset:hover{
     background-color: #CD0000;
 }
+
+.notification {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .success {
+    background-color: #43a047;
+  }
+  
+  .back-link {
+    color: white;
+    text-decoration: underline;
+    margin-left: 10px;
+  }
+  

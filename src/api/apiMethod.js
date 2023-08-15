@@ -26,7 +26,7 @@ const apiMethod = {
     return axiosClient.get(url, params);
   },
   getArticle: (id, params) => {
-    const url = "articles" + id;
+    const url = "articles/" + id;
     return axiosClient.get(url, params);
   },
   postArticle: (id, params) => {
@@ -61,6 +61,15 @@ const apiMethod = {
   },
   gelTotalDonationAmount: () => {
     const url = "donations/amount";
+    return axiosClient.get(url);
+  },
+  getDonationByMonthInYear: (year, month, params) => {
+    let url = "year/" + year + "/month/" + month + "/donations/pagination?";
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        url = url + `${key}=${value}&`;
+      }
+    }
     return axiosClient.get(url);
   },
 };

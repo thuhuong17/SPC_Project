@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
+import { Pagination } from "@mui/material";
+import usePrivateApi from "api/usePrivateApi";
 
 export default function CardTableAdoptionNew({ color, adoption, editRow }) {
+    const adt = [].concat(adoption).reverse();
+
     return (
         <>
             <div className={
@@ -38,7 +42,7 @@ export default function CardTableAdoptionNew({ color, adoption, editRow }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {adoption.map((row, idx) => {
+                                {adt.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
                                         <td className="expand4">{row?.adopters[0]?.fullName}</td>

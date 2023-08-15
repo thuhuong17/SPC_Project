@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 import { Link } from "react-router-dom";
 import "../../assets/styles/tableItems.css"
-import usePrivateApi from "api/usePrivateApi";
+// import usePrivateApi from "api/usePrivateApi";
 
 export default function CardTablePost({ color, articles, deleteRow, editRow }) {
 
@@ -69,7 +69,7 @@ export default function CardTablePost({ color, articles, deleteRow, editRow }) {
                           <td>
                             <span className="actions">
                               <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(post.articleId)}/>
-                              <BsFillPencilFill onClick={() => editRow(idx)}/>
+                              {/* <BsFillPencilFill onClick={() => editRow(idx)}/> */}
                             </span>
                           </td>
                         </tr>

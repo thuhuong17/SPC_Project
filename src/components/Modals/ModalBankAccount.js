@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePrivateApi from "api/usePrivateApi";
 
 import "../../assets/styles/modal.css";
@@ -12,9 +12,24 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
         balance: 0,
     });
 
+    const [listBank, setListBank] = useState([])
+
+    useEffect(() => {
+        const getBudget = async () => {
+            try {
+                const response = await fetch("https://api.vietqr.io/v2/banks");
+                const bank = await response.json();
+                setListBank(bank.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getBudget()
+    }, [])
+
     const [errors, setErrors] = useState("");
     const validateForm = () => {
-        if (formState.accountName && formState.accountNumber && formState.bankName && formState.balance) {
+        if (formState.accountName && formState.accountNumber && formState.bankName) {
             setErrors("");
             return true;
         } else {
@@ -42,10 +57,10 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
+
         if (defaultValue?.bankAccountId) {
             try {
-                const newForm = { ...formState, balance: Number(formState.balance) }
-                await api.putBankAccount(defaultValue?.bankAccountId, newForm)
+                await api.putBankAccount(defaultValue?.bankAccountId, formState)
                 alert("Update Success!")
                 onSubmit();
             } catch (error) {
@@ -55,8 +70,7 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
             }
         } else {
             try {
-                const newForm = { ...formState, balance: Number(formState.balance) }
-                await api.postBankAccount(newForm)
+                await api.postBankAccount(formState)
                 onSubmit();
             } catch (error) {
                 if (!error?.response) {
@@ -65,7 +79,8 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
             }
         }
         closeModal();
-    };
+    }
+    
     return (
         <div
             className="modal-container"
@@ -74,12 +89,13 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
             }}
         >
             <div className="modal">
+                <h1 className="modal-header">{formState?.accountName ? "Sửa tài khoản" : "Thêm tài khoản"}</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="accountName">Tên chủ tài khoản</label>
                         <input
                             name="accountName"
-                            value={formState.accountName}
+                            value={formState?.accountName}
                             onChange={handleChange}
                         />
                     </div>
@@ -88,26 +104,19 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
                         <label htmlFor="accountNumber">Số thẻ</label>
                         <input
                             name="accountNumber"
-                            value={formState.accountNumber}
+                            value={formState?.accountNumber}
                             onChange={handleChange}
                         />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="bankName">Ngân hàng</label>
-                        <input
-                            name="bankName"
-                            value={formState.bankName}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="balance">Số dư</label>
-                        <input
-                            name="balance"
-                            value={formState.balance}
-                            onChange={handleChange}
-                        />
+                        <select name="bankName" onChange={handleChange}>
+                            <option value="">-- Chọn ngân hàng --</option>
+                            {listBank.map(iAcc =>
+                                <option value={iAcc.shortName} key={iAcc?.code}>{iAcc?.code} - {iAcc?.shortName}</option>
+                            )}
+                        </select>
                     </div>
                     {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
                     <button type="submit" className="btn" onClick={handleSubmit}>

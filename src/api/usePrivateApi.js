@@ -24,21 +24,21 @@ const usePrivateApi = () => {
       const url = "users";
       return axPrivate.post(url, params);
     },
-    getBudget: (params) => {
-      const url = "budgets";
-      return axPrivate.get(url, params);
-    },
     getAllChildren: (params) => {
       let url = "children?";
       if (params) {
         for (const [key, value] of Object.entries(params)) {
-          url = url + `${key}=${value}`;
+          url = url + `${key}=${value}&`;
         }
       }
       return axPrivate.get(url);
     },
     getAllEmployees: (params) => {
       const url = "employees";
+      return axPrivate.get(url, params);
+    },
+    getEmployeesByJob: (job, params) => {
+      const url = "job/" + job + "/employees";
       return axPrivate.get(url, params);
     },
     getChildrenByEmployee: (employeeId, params) => {
@@ -49,6 +49,43 @@ const usePrivateApi = () => {
       const url = "donations";
       return axPrivate.get(url, params);
     },
+    getDonationsPagin: (params) => {
+      let url = "donations/pagination?";
+      if (params) {
+        for (const [key, value] of Object.entries(params)) {
+          url = url + `${key}=${value}&`;
+        }
+      }
+      return axPrivate.get(url);
+    },
+    getDonationsByNamePagin: (name, params) => {
+      let url = "/name/" + name + "/donations/pagination?";
+      if (params) {
+        for (const [key, value] of Object.entries(params)) {
+          url = url + `${key}=${value}&`;
+        }
+      }
+      return axPrivate.get(url);
+    },
+    getDonationsByTime: (startDate, endDate, params) => {
+      let url =
+        "start/" + startDate + "/end/" + endDate + "/donations/pagination?";
+      if (params) {
+        for (const [key, value] of Object.entries(params)) {
+          url = url + `${key}=${value}&`;
+        }
+      }
+      return axPrivate.get(url);
+    },
+    getMonthDonationAmountsByYear: (year, params) => {
+      let url = "year/" + year + "/donations/months/amounts";
+      return axPrivate.get(url);
+    },
+    getYearsDonationAmounts: (params) => {
+      let url = "donations/years/amounts";
+      return axPrivate.get(url);
+    },
+
     addCitizenIdForChild: (childId, params) => {
       const url = "children/" + childId + "/citizenid";
       return axPrivate.post(url, params);
@@ -63,6 +100,10 @@ const usePrivateApi = () => {
     },
     addEmployeeForChild: (childId, employeeId, params) => {
       const url = "children/" + childId + "/employee/" + employeeId;
+      return axPrivate.post(url, params);
+    },
+    changeStatusForChild: (childId, statusId, params) => {
+      const url = "children/" + childId + "/status/" + statusId;
       return axPrivate.post(url, params);
     },
     getChildrenTypes: (params) => {
@@ -89,6 +130,10 @@ const usePrivateApi = () => {
       const url = "budgets";
       return axPrivate.get(url, params);
     },
+    getPageBudget: (p) => {
+      const url = `/budgets/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postBudget: (params) => {
       const url = "budgets";
       return axPrivate.post(url, params);
@@ -104,6 +149,10 @@ const usePrivateApi = () => {
     getIncome: (params) => {
       const url = "incomes";
       return axPrivate.get(url, params);
+    },
+    getPageIncome: (p) => {
+      const url = `/incomes/page?p=${p}`;
+      return axPrivate.get(url);
     },
     postIncome: (params) => {
       const url = "incomes";
@@ -125,7 +174,10 @@ const usePrivateApi = () => {
       const url = "expenses";
       return axPrivate.get(url, params);
     },
-
+    getPageExpense: (p) => {
+      const url = `/expenses/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postExpense: (params) => {
       const url = "expenses";
       return axPrivate.post(url, params);
@@ -142,6 +194,10 @@ const usePrivateApi = () => {
       const url = "bank-account";
       return axPrivate.get(url, params);
     },
+    getPageBankAccount: (p) => {
+      const url = `/bank-account/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postBankAccount: (params) => {
       const url = "bank-account";
       return axPrivate.post(url, params);
@@ -153,6 +209,15 @@ const usePrivateApi = () => {
     deleteBankAccount: (id) => {
       const url = `bank-account/${id}`;
       return axPrivate.delete(url);
+    },
+    getChildrenPagination: (params) => {
+      let url = "children/pagination?";
+      if (params) {
+        for (const [key, value] of Object.entries(params)) {
+          url = url + `${key}=${value}&`;
+        }
+      }
+      return axPrivate.get(url);
     },
     getAllArticles: (params) => {
       const url = "articles";

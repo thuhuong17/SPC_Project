@@ -43,6 +43,10 @@
   width: 80%;
 }
 
+.expand3 {
+  width: calc(100% / 3);
+}
+
 .expand4 {
   width: calc(100% / 4);
 }

@@ -155,8 +155,13 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
       data.append("image", image);
 
       const response = await privateFDataApi.addEmployee(data);
-      onSubmit();
       closeModal();
+      if (response.status == 200) {
+        alert("Đã thêm thành công");
+      } else {
+        alert("Thất bại");
+      }
+      onSubmit();
     }
   };
 

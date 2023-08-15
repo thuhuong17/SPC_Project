@@ -1,5 +1,6 @@
 export default function Validation(post){
     const errors = {}
+    
 
     if(post.title === ""){
         errors.title = "Vui lòng nhập tiêu đề bài viết"
@@ -16,6 +17,6 @@ export default function Validation(post){
     if(post.image === ""){
         errors.image = "Vui lòng chọn ảnh"
     }
-
+    
     return errors
 }

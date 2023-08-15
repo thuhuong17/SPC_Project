@@ -15,6 +15,8 @@ import "../../assets/styles/FormEditor.css";
 import apiMethod from "api/apiMethod";
 import PrivateFormDataApi from "api/privateFormDataApi";
 import Validation from "./Validate";
+import { Link } from "react-router-dom";
+// import { Alert } from "reactstrap";
 
 const Articles = (color) => {
 // Khai báo
@@ -54,12 +56,13 @@ const Articles = (color) => {
     setPost({ ...post, [e.target.name]: e.target.value });
     
   };
+  
+  const [isPostSuccessful, setIsPostSuccessful] = useState(false);
 
 
-
-  const handleFileChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   setImage(e.target.files[0]);
+  // };
 
   const handleCategoryChange = (e) => {
     const category = post.category;
@@ -76,49 +79,80 @@ const Articles = (color) => {
 
 
   const handleSubmit = async (e) => {
-    
-      setErrors(Validation(post))
-        // call API
-      const data = new FormData();
       e.preventDefault();
+      setErrors(Validation(post))
+      if (Object.keys(errors).length === 0) {
+        setIsPostSuccessful(true);
+        // call API
+        const data = new FormData();
         // await fetch("http://localhost:8080/social-protection-api/articles")
-      data.append(
-        "article",
-         new Blob(
-         [
-            JSON.stringify({
-            title: post.title,
-            content: post.content,
-            articleUrl: post.articleUrl,
-            category: post.category,
-            }),
-         ],
-            {
-               type: "application/json",
-            }
-          )
-        );
+        data.append(
+          "article",
+          new Blob(
+          [
+              JSON.stringify({
+              title: post.title,
+              content: post.content,
+              articleUrl: post.articleUrl,
+              category: post.category,
+              }),
+          ],
+              {
+                type: "application/json",
+              }
+            )
+          );
         data.append("image", image);
         console.log(image);
         const response = await privateFDataApi.addArticle(data);
         console.log(response);
-      
-      // setPost({
-      //   title: "",
-      //   content: "",
-      //   articleUrl: "",
-      //   category: {
-      //     categoryId: null,
-      //   },
-      // });
-      // setImage();
-      // editor.current.value = "";
-      // imgRef.current.value = "";
-      // cateRef.current.value = -1;
-    
-    
+
+        
+         
+        // Reset the form
+        setPost({
+          title: "",
+          content: "",
+          articleUrl: "",
+          category: {
+            categoryId: null,
+          },
+        });
+        setImage(null);
+        editor.current.valueOf = "";
+        imgRef.current.valueOf = "";
+        cateRef.current.valueOf = -1;
+      }
   };
 
+  // Validate file ảnh
+  const isValidImage = (file) => {
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    const maxFileSize = 5 * 1024 * 1024; // 5 MB
+  
+    if (!allowedTypes.includes(file.type)) {
+      return false;
+    }
+  
+    if (file.size > maxFileSize) {
+      return false;
+    }
+  
+    return true;
+  };
+
+  const [imageError, setImageError] = useState("");
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+  
+    if (selectedFile && !isValidImage(selectedFile)) {
+      setImageError("File ảnh không hợp lệ. Vui lòng chọn file JPEG, PNG hoặc GIF, và kích thước không quá 5MB.");
+    } else {
+      setImageError("");
+      setImage(selectedFile);
+    }
+  };
   
   return (
     <>
@@ -197,7 +231,7 @@ const Articles = (color) => {
                   type="file"
                   onChange={handleFileChange}
                 />
-                {errors.image && <p style={{color: "red"}}>{errors.image}</p>}
+                {imageError && <p style={{ color: "red" }}>{imageError}</p>}
               </div>
               <div className="form-group">
                 <Label htmlFor="title" id="title-lable">Nội dung<p className="validata-star">(*)</p></Label>
@@ -226,6 +260,15 @@ const Articles = (color) => {
                   Reset
                 </Button>
               </Container>
+
+              {isPostSuccessful && (
+                <div className="notification success">
+                  Bài viết đã được đăng thành công!
+                  <Link to="/admin/website" className="back-link">
+                    Quay lại danh sách bài viết
+                  </Link>
+                </div>
+              )}
             </Form>
           </CardBody>
         </Card>
