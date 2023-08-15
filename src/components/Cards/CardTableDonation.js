@@ -32,8 +32,8 @@ export default function CardTableDonation({ onChangeLayoutClick }) {
   });
 
   const [sort, setSort] = useState({
-    sortBy: "",
-    sortDirec: "",
+    sortBy: "donateTime",
+    sortDirec: "DESC",
   });
 
   useEffect(() => {
@@ -356,7 +356,13 @@ export default function CardTableDonation({ onChangeLayoutClick }) {
                   }-${date.getFullYear()}`;
                   totalAmount = totalAmount + donation.amount;
                   return (
-                    <tr key={index}>
+                    <tr
+                      style={{ cursor: "pointer" }}
+                      key={index}
+                      onClick={() => {
+                        alert(donation.donationId);
+                      }}
+                    >
                       <td>{index + 1}</td>
                       <td>{donation.donor?.fullName}</td>
                       <td>{donation.donor?.birthDay}</td>

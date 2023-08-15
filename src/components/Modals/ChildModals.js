@@ -97,7 +97,7 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
       var fNameErr = "";
     }
 
-    if (!isValid(formState.lastName)) {
+    if (formState.lastName.trim() === "") {
       var lNameErr = "Vui lòng điền đúng định dạng";
       result = false;
     } else {
@@ -217,8 +217,14 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
 
       const response = await privateFDataApi.addChild(data);
       console.log(response);
-      onSubmit();
+
       closeModal();
+      if (response.status == 200) {
+        alert("Đã thêm thành công");
+      } else {
+        alert("Thất bại");
+      }
+      onSubmit();
     }
   };
 

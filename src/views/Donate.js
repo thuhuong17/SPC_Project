@@ -58,14 +58,14 @@ export default function Donate() {
 
   const validate = () => {
     let result = true;
-    if (!formInfor.firstName.match(letters)) {
+    if (formInfor.firstName.trim() === "") {
       var fNameErr = "Vui lòng điền đúng định dạng";
       result = false;
     } else {
       var fNameErr = "";
     }
 
-    if (!formInfor.lastName.match(letters)) {
+    if (formInfor.lastName.trim() === "") {
       var lNameErr = "Vui lòng điền đúng định dạng";
       result = false;
     } else {
@@ -215,7 +215,7 @@ export default function Donate() {
     try {
       const response = await apiMethod.postDonation(params);
       console.log(response);
-      // window.location.replace(response.urlRedirect);
+      window.location.replace(response.urlRedirect);
     } catch (error) {
       if (!error?.response) {
         console.log("No server response");

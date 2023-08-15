@@ -128,6 +128,11 @@ export const GuardianModal = ({
 
     const response = await privateApi.addGuardianForChild(childId, formState);
     console.log(response);
+    if (response.status == 204) {
+      alert("Đã thêm thành công");
+    } else {
+      alert("Thất bại");
+    }
     closeModal();
     onSubmit();
   };

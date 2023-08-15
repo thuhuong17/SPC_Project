@@ -137,7 +137,12 @@ export default function CardTableChild({ color, isAddChild }) {
     );
     setCurrentChildAddId(0);
     setModalCitizenId(false);
-    alert("Thành công!");
+    if (response.status == 204) {
+      alert("Đã thêm thành công");
+      setIsDataChange(!isDataChange);
+    } else {
+      alert("Thất bại");
+    }
   };
 
   const handleEmployeeChange = async (e) => {
