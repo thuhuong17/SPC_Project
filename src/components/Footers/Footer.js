@@ -30,7 +30,8 @@ export default function Footer() {
                 Hãy khám phá ngay trang của chúng tôi!
               </h4>
               <h5 className="text-lg mt-0 mb-2 text-white">
-                Mỗi một sự hỗ trợ từ mọi người là đóng góp cho mái ấm thêm niềm tin, động lực cho chúng tôi!
+                Mỗi một sự hỗ trợ từ mọi người là đóng góp cho mái ấm thêm niềm
+                tin, động lực cho chúng tôi!
               </h5>
               <div className="mt-6 lg:mb-0 mb-6">
                 <button
@@ -77,7 +78,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="/thong-tin/:categoryUrl/:articleUrl/:id"
+                        href="/thong-tin/blog/7"
                       >
                         Blog
                       </a>
@@ -85,12 +86,11 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="/thong-tin/:categoryUrl/:articleUrl/:id"
+                        href="/donation/list"
                       >
                         Danh sách nhà tài trợ
                       </a>
                     </li>
-                    
                   </ul>
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
@@ -140,10 +140,7 @@ export default function Footer() {
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-white font-semibold py-1">
                 Copyright © {new Date().getFullYear()} Notus React by{" "}
-                <a
-                  href=""
-                  className="text-white hover:text-blueGray-800"
-                >
+                <a href="" className="text-white hover:text-blueGray-800">
                   Social Protection Center - SPC
                 </a>
                 .
