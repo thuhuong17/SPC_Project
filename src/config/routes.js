@@ -107,8 +107,13 @@ const privateRoutes = [
         layout: Admin,
       },
       {
-        path: "/admin/budgets",
-        component: TableBudgets,
+        path: "/admin/dashboard",
+        component: Dashboard,
+        layout: Admin,
+      },
+      {
+        path: "/admin/website",
+        component: Articles,
         layout: Admin,
       },
     ],
@@ -122,16 +127,10 @@ const privateRoutes = [
         component: TablesAccount,
         layout: Admin,
       },
-      {
-        path: "/admin/dashboard",
-        component: Dashboard,
-        layout: Admin,
-      },
     ],
   },
   {
     roles: [ROLES.admin, ROLES.superAdmin],
-
     routes: [
       {
         path: "/admin/maps",
@@ -163,11 +162,7 @@ const privateRoutes = [
         component: Employee,
         layout: Admin,
       },
-      {
-        path: "/admin/website",
-        component: Articles,
-        layout: Admin,
-      },
+
       {
         path: "/admin/adopters",
         component: TablesAdopters,
@@ -186,6 +181,11 @@ const privateRoutes = [
       {
         path: "/admin/finance",
         component: TableFinance,
+        layout: Admin,
+      },
+      {
+        path: "/admin/budgets",
+        component: TableBudgets,
         layout: Admin,
       },
       // {

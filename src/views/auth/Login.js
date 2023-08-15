@@ -161,7 +161,7 @@ export default function Login() {
                           required
                         />
                       </div>
-                      <div>
+                      {/* <div>
                         <label className="inline-flex items-center cursor-pointer">
                           <input
                             id="customCheckLogin"
@@ -172,7 +172,7 @@ export default function Login() {
                             Remember me
                           </span>
                         </label>
-                      </div>
+                      </div> */}
 
                       <div className="text-center mt-6">
                         <button

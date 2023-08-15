@@ -356,13 +356,7 @@ export default function CardTableDonation({ onChangeLayoutClick }) {
                   }-${date.getFullYear()}`;
                   totalAmount = totalAmount + donation.amount;
                   return (
-                    <tr
-                      style={{ cursor: "pointer" }}
-                      key={index}
-                      onClick={() => {
-                        alert(donation.donationId);
-                      }}
-                    >
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{donation.donor?.fullName}</td>
                       <td>{donation.donor?.birthDay}</td>

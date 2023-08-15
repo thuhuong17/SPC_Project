@@ -174,6 +174,7 @@ export default function CardTableChild({ color, isAddChild }) {
 
   const handleChildStateChange = async (e) => {
     if (e.target.value == -1) {
+      setCurrentChildChangeState(0);
     } else {
       try {
         const response = await privateApi.changeStatusForChild(
@@ -537,10 +538,10 @@ export default function CardTableChild({ color, isAddChild }) {
                             <BsFillPencilFill />
                             <span className="text-center ml-1"> Sửa</span>
                           </button>
-                          <button className="flex items-center ">
+                          {/* <button className="flex items-center ">
                             <BsFillTrashFill />
                             <span className="text-center ml-1"> Xóa</span>
-                          </button>
+                          </button> */}
                         </div>
                       </td>
                     </tr>
