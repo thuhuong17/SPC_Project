@@ -26,6 +26,7 @@ import About_1 from "views/About_1";
 import About_2 from "views/About_2";
 import Catalog from "views/Catalog";
 import Article from "views/Article";
+import DonationList from "views/DonationList";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -87,6 +88,10 @@ const publicRoutes = [
   {
     path: "/thong-tin/:categoryUrl/:articleUrl/:id",
     component: Article,
+  },
+  {
+    path: "/donation/list",
+    component: DonationList,
   },
 ];
 

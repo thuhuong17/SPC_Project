@@ -1,4 +1,5 @@
 .modal-container {
+<<<<<<< HEAD
     position: fixed;
     z-index: 10;
     left: 0;
@@ -10,177 +11,192 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.4);
     margin-bottom: 20px;
+=======
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+>>>>>>> origin/Nbtrien
 }
 
 .modal {
-    border-radius: 5px;
-    padding: 1rem;
-    background-color: white;
-    width: 40em;
-    margin-bottom: 20px;
-    overflow: auto;
-    height: 450px;
+  /* display: unset !important; */
+  position: unset !important;
+  display: unset !important;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: white;
+  width: 40em;
+  margin-bottom: 20px;
+  overflow: auto !important;
+  height: 450px;
 }
 
 .modal .firstname {
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
-    /* margin-radius:5px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 45%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  /* margin-radius:5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 45%;
 }
 
 .modal .lastname {
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 45%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 45%;
 }
 
 .modal .birthday {
-    padding: 5px;
-    margin-left: 5px;
-    /* margin-radius:5px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 36%;
+  padding: 5px;
+  margin-left: 5px;
+  /* margin-radius:5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 36%;
 }
 
 .modal .gender {
-    margin-left: 5px;
-    width: 15%;
+  margin-left: 5px;
+  width: 15%;
 }
 
 .modal .form {
-    width: 100%;
-
+  width: 100%;
 }
 
 .modal .female {
-    width: 5%;
+  width: 5%;
 }
 
 .modal .male {
-    width: 5%;
+  width: 5%;
 }
 
 .modal .nationality {
-    width: 30%;
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
-    /* margin-radius:5px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
+  width: 30%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  /* margin-radius:5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
 }
 
 .modal .date_in {
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
-    /* margin-radius:5px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-    width: 40%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  /* margin-radius:5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  width: 40%;
 }
 
 .modal .citizen {
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
-    /* margin-radius: 5px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-    width: 39.4%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  /* margin-radius: 5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  width: 39.4%;
 }
 
 .modal .btn {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 .modal-adoption {
-    width: 51em;
-    padding: 15px 50px;
-    border-radius: 5px;
-    background-color: white;
-    margin-bottom: 20px;
-    overflow: auto;
+  width: 51em;
+  padding: 15px 50px;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 20px;
+  overflow: auto;
 }
 
 .modal-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .error {
-    background-color: #f8d7da;
-    color: #df4759;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    margin-bottom: 1rem;
+  background-color: #f8d7da;
+  color: #df4759;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 .adoption {
-    display: flex;
+  display: flex;
 }
 
 .adop-block {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 
 .adop-block:nth-child(2) {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .adop-block h1 {
-    margin-bottom: 10px;
-    font-weight: bold;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .block-inf {
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
 }
 
 .inf-title {
-    width: 165px;
-    font-weight: 500;
+  width: 165px;
+  font-weight: 500;
 }
 
 .inf-desc {
-    width: 170px;
+  width: 170px;
 }
 
 .adoption-btn button {
-    opacity: 0.8;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 10px;
-    color: white;
-    margin-right: 15px;
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  margin-right: 15px;
 }
 
 .adoption-btn button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .access-btn {
-    background-color: green;
+  background-color: green;
 }
 
 .reject-btn {
-    background-color: red;
+  background-color: red;
 }
 
 .done-btn {
-    background-color: black;
+  background-color: black;
 }

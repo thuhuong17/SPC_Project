@@ -59,6 +59,15 @@ const apiMethod = {
     const url = "donations/amount";
     return axiosClient.get(url);
   },
+  getDonationByMonthInYear: (year, month, params) => {
+    let url = "year/" + year + "/month/" + month + "/donations/pagination?";
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        url = url + `${key}=${value}&`;
+      }
+    }
+    return axiosClient.get(url);
+  },
 };
 
 export default apiMethod;

@@ -7,11 +7,9 @@ import "assets/styles/tailwind.css";
 import { AuthProvider } from "context/AuthProviders";
 import App from "App";
 
-
 ReactDOM.render(
   <AuthProvider>
     <App />
   </AuthProvider>,
   document.getElementById("root")
 );
-

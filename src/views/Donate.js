@@ -8,6 +8,9 @@ import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import "../assets/styles/donation.css";
 import apiMethod from "api/apiMethod";
+import { regexPhoneNumber } from "constant/Regrex";
+import { regexEmail } from "constant/Regrex";
+import { BsChevronDoubleRight } from "react-icons/bs";
 
 export default function Donate() {
   const navigate = useNavigate();
@@ -32,6 +35,86 @@ export default function Donate() {
     phoneNumber: "",
     email: "",
   });
+
+  const [formErrors, setFormErors] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    amount: "",
+    birthDay: "",
+  });
+
+  var letters = /^[A-Za-z]+$/;
+
+  const changeDate = (date) => {
+    var newD = new Date(date);
+    let dateMDY = `${
+      newD.getMonth() + 1
+    }/${newD.getDate()}/${newD.getFullYear()}`;
+    let reDate = new Date(dateMDY);
+    return reDate;
+  };
+
+  const validate = () => {
+    let result = true;
+    if (formInfor.firstName.trim() === "") {
+      var fNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var fNameErr = "";
+    }
+
+    if (formInfor.lastName.trim() === "") {
+      var lNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var lNameErr = "";
+    }
+
+    if (!formInfor.phoneNumber.match(regexPhoneNumber)) {
+      var phonesErr = "Vui lòng điền số điện thoại hợp lệ";
+      result = false;
+    } else {
+      var phonesErr = "";
+    }
+
+    if (!formInfor.email.toLowerCase().match(regexEmail)) {
+      var emailErr = "Vui lòng điền email hợp lệ";
+      result = false;
+    } else {
+      var emailErr = "";
+    }
+
+    if (amount < 100000) {
+      var amountErr =
+        "Vui lòng nhập tối thiểu 100.000 VND hoặc bạn có thể chọn mức tài trợ ở trên";
+      result = false;
+    } else {
+      var amountErr = "";
+    }
+
+    if (formInfor.birthDay) {
+      if (changeDate(formInfor.birthDay) > new Date()) {
+        var birthDErr = "Vui lòng chọn ngày sinh hợp lệ";
+      } else {
+        var birthDErr = "";
+      }
+    } else {
+      var birthDErr = "";
+    }
+
+    setFormErors({
+      firstName: fNameErr,
+      lastName: lNameErr,
+      phoneNumber: phonesErr,
+      email: emailErr,
+      amount: amountErr,
+      birthDay: birthDErr,
+    });
+
+    return result;
+  };
 
   useEffect(() => {
     const getCity = async () => {
@@ -99,12 +182,10 @@ export default function Donate() {
     });
   };
 
-  console.log(message);
-
   const handleBtnClick = async () => {
-    // window.location.replace(
-    //   "https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html#danh-s%C3%A1ch-tham-s%E1%BB%91-1"
-    // );
+    console.log(amount);
+    if (!validate()) return;
+    console.log("ok");
 
     let address = formInfor.addressPermanent;
     if (ward.Name != undefined) address = address + ", " + ward.Name;
@@ -114,11 +195,13 @@ export default function Donate() {
 
     formInfor.fullName = formInfor.lastName + " " + formInfor.firstName;
 
-    var newDate = new Date(formInfor.birthDay);
-    let dateMDY = `${newDate.getDate()}-${
-      newDate.getMonth() + 1
-    }-${newDate.getFullYear()}`;
-    formInfor.birthDay = dateMDY;
+    if (formInfor.birthDay) {
+      var newDate = new Date(formInfor.birthDay);
+      let dateMDY = `${newDate.getDate()}-${
+        newDate.getMonth() + 1
+      }-${newDate.getFullYear()}`;
+      formInfor.birthDay = dateMDY;
+    }
 
     const params = {
       donor: formInfor,
@@ -129,8 +212,6 @@ export default function Donate() {
 
     console.log(params);
 
-    // console.log(formInfor);
-    // console.log(amount);
     try {
       const response = await apiMethod.postDonation(params);
       console.log(response);
@@ -142,7 +223,6 @@ export default function Donate() {
         console.log(error.response);
       }
     }
-    // console.log(response);
   };
 
   return (
@@ -163,7 +243,7 @@ export default function Donate() {
             ></span>
           </div>
           <div className="container relative mx-auto">
-            <div className="items-center flex flex-wrap">
+            <div className="items-center pt-8">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
@@ -176,6 +256,16 @@ export default function Donate() {
                     khăn.
                   </p>
                 </div>
+              </div>
+              <div className="mt-16 text-white flex">
+                <Link
+                  to="/donation/list"
+                  target="_blank"
+                  className="ml-auto mr-auto flex"
+                  style={{ textDecoration: "underline" }}
+                >
+                  Xem danh sách các nhà tài trợ khác
+                </Link>
               </div>
             </div>
           </div>
@@ -253,6 +343,9 @@ export default function Donate() {
                       />
                     </div>
                   </div>
+                  <span className="text-sm text-red-500 text-bold">
+                    {formErrors.amount && <i>* {formErrors.amount}</i>}
+                  </span>
                 </div>
 
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
@@ -281,20 +374,34 @@ export default function Donate() {
                   </div>
                   <div className="form-group">
                     <div className="flex justify-between fl-inputs">
-                      <input
-                        name="firstName"
-                        value={formInfor.firstName}
-                        type="text"
-                        placeholder="Tên*"
-                        onChange={handleInputChange}
-                      />
-                      <input
-                        name="lastName"
-                        value={formInfor.lastName}
-                        type="text"
-                        placeholder="Họ và tên đệm*"
-                        onChange={handleInputChange}
-                      />
+                      <div>
+                        <input
+                          name="firstName"
+                          value={formInfor.firstName}
+                          type="text"
+                          placeholder="Tên*"
+                          onChange={handleInputChange}
+                        />
+                        <span className="text-sm text-red-500 text-bold">
+                          {formErrors.firstName && (
+                            <i>* {formErrors.firstName}</i>
+                          )}
+                        </span>
+                      </div>
+                      <div>
+                        <input
+                          name="lastName"
+                          value={formInfor.lastName}
+                          type="text"
+                          placeholder="Họ và tên đệm*"
+                          onChange={handleInputChange}
+                        />
+                        <span className="text-sm text-red-500 text-bold">
+                          {formErrors.lastName && (
+                            <i>* {formErrors.lastName}</i>
+                          )}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -308,6 +415,9 @@ export default function Donate() {
                       onBlur={(e) => (e.target.type = "text")}
                       onChange={handleInputChange}
                     />
+                    <span className="text-sm text-red-500 text-bold">
+                      {formErrors.birthDay && <i>* {formErrors.birthDay}</i>}
+                    </span>
                   </div>
                   <div className="form-group">
                     <select
@@ -381,9 +491,14 @@ export default function Donate() {
                       name="phoneNumber"
                       value={formInfor.phoneNumber}
                       placeholder="Số điện thoại*"
-                      type="text"
+                      type="number"
                       onChange={handleInputChange}
                     />
+                    <span className="text-sm text-red-500 text-bold">
+                      {formErrors.phoneNumber && (
+                        <i>* {formErrors.phoneNumber}</i>
+                      )}
+                    </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -393,6 +508,9 @@ export default function Donate() {
                       type="text"
                       onChange={handleInputChange}
                     />
+                    <span className="text-sm text-red-500 text-bold">
+                      {formErrors.email && <i>* {formErrors.email}</i>}
+                    </span>
                   </div>
 
                   <div className="form-group">

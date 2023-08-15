@@ -1,9 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 import JoditEditor from "jodit-react";
 import usePrivateApi from "api/usePrivateApi";
+<<<<<<< HEAD
 import PrivateFormDataApi from "api/privateFormDataApi";
 // import "../../assets/styles/modal1.css"
+=======
+import privateFormDataApi from "api/privateFormDataApi";
+import { reunicode, birthDateValid } from "constant/Regrex";
+import moment from "moment";
+
+>>>>>>> origin/Nbtrien
 export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
+  function isValid(str) {
+    return reunicode.test(str);
+  }
   const privateApi = usePrivateApi();
   const privateFDataApi = PrivateFormDataApi();
   const [orphanTypes, setOrphanTypes] = useState([]);
@@ -22,6 +32,19 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
     circumstance: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    firstName: "",
+    lastName: "",
+    birthDay: "",
+    gender: "nam",
+    nationality: "",
+    addressPermanent: "",
+    dateIn: "",
+    typeOfOrphan: "",
+    circumstance: "",
+    image: "",
+  });
+
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -38,23 +61,99 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   const [errors, setErrors] = useState("");
-  const validateForm = () => {
-    if (
-      formState.firstName &&
-      formState.lastName &&
-      formState.birthDay &&
-      formState.gender &&
-      formState.addressPermanent &&
-      formState.addressTemporary &&
-      formState.dateIn &&
-      formState.nationality
-    ) {
-      setErrors("");
-      return true;
-    } else {
-      setErrors("Vui lòng điền đầy đủ thông tin");
+
+  const validateBDay = (dob1) => {
+    if (!dob1) {
       return false;
     }
+    var today = new Date();
+    var birthDate = new Date(dob1);
+    if (birthDate > today) return false;
+
+    var age_now = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age_now--;
+    }
+    // console.log(age_now);
+    if (age_now > birthDateValid) {
+      return false;
+    }
+    return true;
+  };
+
+  const validateInDay = (dob1) => {
+    if (!dob1) {
+      return false;
+    }
+    var today = new Date();
+    var birthDate = new Date(dob1);
+    if (birthDate > today) return false;
+    return true;
+  };
+
+  const validateForm = () => {
+    let result = true;
+
+    if (!isValid(formState.firstName)) {
+      var fNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var fNameErr = "";
+    }
+
+    if (formState.lastName.trim() === "") {
+      var lNameErr = "Vui lòng điền đúng định dạng";
+      result = false;
+    } else {
+      var lNameErr = "";
+    }
+
+    if (formState.addressPermanent.trim() === "") {
+      var lAddressErr = "Vui lòng điền trường này";
+      result = false;
+    } else {
+      var lAddressErr = "";
+    }
+
+    if (formState.nationality.trim() === "") {
+      var lNationErr = "Vui lòng điền trường này";
+      result = false;
+    } else {
+      var lNationErr = "";
+    }
+
+    if (!validateBDay(formState.birthDay)) {
+      var bDayErr = "Vui lòng chọn ngày sinh hợp lệ";
+      result = false;
+    } else {
+      var bDayErr = "";
+    }
+
+    if (!validateInDay(formState.dateIn)) {
+      var dInErr = "Vui lòng chọn ngày hợp lệ";
+      result = false;
+    } else {
+      var dInErr = "";
+    }
+
+    if (!formState.typeOfOrphan.orphanTypeId) {
+      var orpTypeErr = "Vui lòng chọn loại trẻ";
+      result = false;
+    } else {
+      var orpTypeErr = "";
+    }
+
+    setFormErrors({
+      firstName: fNameErr,
+      lastName: lNameErr,
+      addressPermanent: lAddressErr,
+      nationality: lNationErr,
+      birthDay: bDayErr,
+      dateIn: dInErr,
+      typeOfOrphan: orpTypeErr,
+    });
+    return result;
   };
 
   const handleChange = (e) => {
@@ -90,7 +189,6 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
       }-${newDate.getFullYear()}`;
 
       formState.birthDay = dateMDY;
-
       var newDateIn = new Date(formState.birthDay);
       let dateInMDY = `${newDateIn.getDate()}-${
         newDateIn.getMonth() + 1
@@ -124,8 +222,14 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
 
       const response = await privateFDataApi.addChild(data);
       console.log(response);
-      onSubmit();
+
       closeModal();
+      if (response.status == 200) {
+        alert("Đã thêm thành công");
+      } else {
+        alert("Thất bại");
+      }
+      onSubmit();
     }
   };
 
@@ -141,59 +245,77 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
         <h1 className="font-semibold text-xl text-center ">
           Nhập thông tin trẻ
         </h1>
-        {/* <br /> */}
         <form>
           <div className="form-group">
             <input
               type="text"
               name="firstName"
-              placeholder="Tên"
+              placeholder="Tên*"
               value={formState.firstName}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.firstName && <i>* {formErrors.firstName}</i>}
+            </span>
           </div>
           <div className="form-group">
             <input
               type="text"
               name="lastName"
-              placeholder="Họ và tên đệm"
+              placeholder="Họ và tên đệm*"
               value={formState.lastName}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.lastName && <i>* {formErrors.lastName}</i>}
+            </span>
           </div>
           <div className="form-group">
             <div className="flex justify-between fl-inputs">
-              <input
-                name="birthDay"
-                value={formState.birthDay}
-                placeholder="Ngày sinh*"
-                type="text"
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
-                onChange={handleChange}
-              />
-              <select
-                id="gender"
-                name="gender"
-                value={formState.gender}
-                onChange={handleChange}
-              >
-                <option value="nam" selected>
-                  Nam/Male
-                </option>
-                <option value="nữ">Nữ/Female</option>
-                <option value="khác">Khác/Other</option>
-              </select>
+              <div>
+                <input
+                  name="birthDay"
+                  value={formState.birthDay}
+                  placeholder="Ngày sinh*"
+                  type="text"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => (e.target.type = "text")}
+                  maxDate={moment()}
+                  onChange={handleChange}
+                />
+                <span className="text-sm text-red-500 text-bold">
+                  {formErrors.birthDay && <i>* {formErrors.birthDay}</i>}
+                </span>
+              </div>
+              <div>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formState.gender}
+                  onChange={handleChange}
+                >
+                  <option value="nam" selected>
+                    Nam/Male
+                  </option>
+                  <option value="nữ">Nữ/Female</option>
+                  <option value="khác">Khác/Other</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div className="form-group">
             <input
               name="addressPermanent"
-              placeholder="Địa chỉ thường trú"
+              placeholder="Địa chỉ thường trú*"
               value={formState.addressPermanent}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.addressPermanent && (
+                <i>* {formErrors.addressPermanent}</i>
+              )}
+            </span>
           </div>
           <div className="form-group">
             <input
@@ -206,38 +328,55 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="nationality"
-              placeholder="Quốc tịch"
+              placeholder="Quốc tịch*"
               value={formState.nationality}
               onChange={handleChange}
             />
+            <span className="text-sm text-red-500 text-bold">
+              {formErrors.nationality && <i>* {formErrors.nationality}</i>}
+            </span>
           </div>
           <div className="form-group">
             <div className="flex justify-between fl-inputs">
-              <input
-                name="dateIn"
-                value={formState.dateIn}
-                placeholder="Ngày tiếp nhận"
-                type="text"
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
-                onChange={handleChange}
-              />
-
-              <select
-                name="typeOfOrphan"
-                value={formState.typeOfOrphan.orphanTypeId}
-                onChange={handleTypeOChange}
-              >
-                {orphanTypes.map((orphanType, index) => (
-                  <option key={index} value={orphanType.orphanTypeId}>
-                    {index + 1}. {orphanType.orphanTypeName}
+              <div>
+                <input
+                  name="dateIn"
+                  value={formState.dateIn}
+                  placeholder="Ngày tiếp nhận*"
+                  type="text"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => (e.target.type = "text")}
+                  onChange={handleChange}
+                />
+                <span className="text-sm text-red-500 text-bold">
+                  {formErrors.dateIn && <i>* {formErrors.dateIn}</i>}
+                </span>
+              </div>
+              <div>
+                <select
+                  name="typeOfOrphan"
+                  value={formState.typeOfOrphan.orphanTypeId}
+                  onChange={handleTypeOChange}
+                >
+                  <option value={0} selected disabled>
+                    Chọn loại trẻ
                   </option>
-                ))}
-              </select>
+                  {orphanTypes.map((orphanType, index) => (
+                    <option key={index} value={orphanType.orphanTypeId}>
+                      {index + 1}. {orphanType.orphanTypeName}
+                    </option>
+                  ))}
+                </select>
+                <span className="text-sm text-red-500 text-bold">
+                  {formErrors.typeOfOrphan && (
+                    <i>* {formErrors.typeOfOrphan}</i>
+                  )}
+                </span>
+              </div>
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="image">Chọn ảnh của trẻ</label>
+            <label htmlFor="image">Chọn ảnh của trẻ*</label>
             <input type="file" id="image" onChange={handleImageChoose} />
           </div>
           <div className="form-group">
