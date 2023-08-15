@@ -3,14 +3,12 @@ import "../../assets/styles/modal.css"
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
         title: "",
-        datePost: "",
-        image: "",
-        url:"",
+        postDate: ""
     });
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.title && formState.datePost){
+        if(formState.title && formState.postDate){
             setErrors("")
             return true;
         } else {
@@ -48,14 +46,14 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                 <form>
                     <div className='form-group'>
                         <label htmlFor="title">Tiêu đề</label>
-                        <input name='title' value={formState.title} onChange={handleChange} />
+                        <input name='title' value={formState?.title} onChange={handleChange} />
                     </div>
     
                     <div className='form-group'>
                         <label htmlFor="datePost">Ngày đăng</label>
-                        <textarea name='datePost' value={formState.datePost} onChange={handleChange} />
+                        <textarea name='datePost' value={formState?.postDate} onChange={handleChange} />
                     </div>
-                    {errors && <div className='error'>{`Vui lòng điền: ${errors}`}</div>}
+                    {/* {errors && <div className='error'>{`Vui lòng điền: ${errors}`}</div>} */}
                     <button type='submit' className='btn' onClick={handleSubmit}>Submit</button>
                 </form>
             </div>

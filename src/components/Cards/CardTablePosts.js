@@ -5,17 +5,8 @@ import { Link } from "react-router-dom";
 import "../../assets/styles/tableItems.css"
 import usePrivateApi from "api/usePrivateApi";
 
-export default function CardTablePost({ color, rows, deleteRow, editRow }) {
-  const privateApi = usePrivateApi();
-  const [articles, setArticles] = useState([]);
-  useEffect(() => {
-    const getArticles = async () =>{
-      const response = await privateApi.getAllArticles();
-      setArticles(response.data)
-    }
-    getArticles();
-  },[])
-  console.log(articles);
+export default function CardTablePost({ color, articles, deleteRow, editRow }) {
+
   return (
     <>
     {/* Bảng 1: Danh sách bài viết */}
@@ -64,7 +55,11 @@ export default function CardTablePost({ color, rows, deleteRow, editRow }) {
                           <td>{post.title}</td>
                           <td className="expand"><img src={post.image.imageUrl}/></td>
                           <td>{post.postDate}</td>
-                          <td><Link to={`../thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}>{`http://localhost:3000/thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}</Link></td>
+                          <td>
+                            <Link to={`../thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}>
+                              {`http://localhost:3000/thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}
+                            </Link>
+                          </td>
                           {/* <link */}
                           {/* <td>
                             <span className={`label label-${rows.status}`}>
@@ -73,7 +68,7 @@ export default function CardTablePost({ color, rows, deleteRow, editRow }) {
                           </td> */}
                           <td>
                             <span className="actions">
-                              <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)}/>
+                              <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(post.articleId)}/>
                               <BsFillPencilFill onClick={() => editRow(idx)}/>
                             </span>
                           </td>

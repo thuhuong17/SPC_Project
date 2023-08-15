@@ -117,6 +117,10 @@ const usePrivateApi = () => {
       const url = `incomes/${id}`;
       return axPrivate.delete(url);
     },
+    deleteListPost: (id) => {
+      const url = `articles/${id}`;
+      return axPrivate.delete(url);
+    },
     getExpense: (params) => {
       const url = "expenses";
       return axPrivate.get(url, params);
