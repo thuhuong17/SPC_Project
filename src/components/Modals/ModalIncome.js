@@ -66,24 +66,20 @@ export const ModalIncome = ({ budget, accBank, income, closeModal, onSubmit, def
 
     const checkAmount = () => {
         if (formState?.budget) {
+            let sum = 0;
             const amountBud = JSON.parse(formState?.budget)
-            if (amountBud.amout <= formState?.amount) {
-                console.log("qua");
+            const same = income.filter((ic) => ic.budget.budgetId == amountBud.budgetId);
+            if (same) {
+                same.forEach(iSame => {
+                    sum = sum + iSame.amount
+                })
+            }
+            if ((formState?.amount + sum) <= amountBud.amout) {
                 return true
             }
-            console.log("khong qua");
             return false
         }
     }
-
-    // if (formState?.budget) {
-    //     const amountBud = JSON.parse(formState?.budget)
-    //     console.log(amountBud);
-        
-    //     const same = income.filter((ic) => ic.budget.budgetId == amountBud.budgetId);
-
-    //     console.log(same);
-    // }
 
     const api = usePrivateApi()
 
@@ -91,7 +87,7 @@ export const ModalIncome = ({ budget, accBank, income, closeModal, onSubmit, def
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        if (checkAmount()) {
+        if (!checkAmount()) {
             alert("Số tiền vượt quá ngân sách!")
             return
         }
