@@ -11,7 +11,6 @@ export default function About_1() {
     <>
       <Navbar transparent />
       <main>
-         
         {/* start layout 1 */}
         <section className="pb-20 bg-blueGray-200 -mt-50">
           <div className="container mx-auto px-4">
@@ -66,7 +65,6 @@ export default function About_1() {
           </div>
         </section>
 {/* ///// */}
-       
         
       </main>
       <Footer />

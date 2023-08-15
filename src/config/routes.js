@@ -28,6 +28,7 @@ import Employee from "../views/admin/Employee.js";
 import Articles from "../views/admin/Articles.js";
 import TableAdoptionNew from "../views/admin/TableAdoptionNew.js";
 import TablesFinance from "../views/admin/TablesFinance.js";
+import thongKe from "../views/thongke.js";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -45,6 +46,10 @@ const publicRoutes = [
   {
     path: "/event",
     component: Event,
+  },
+  {
+    path: "/thongKe",
+    component: thongKe,
   },
   {
     path: "/event/event_detail",
