@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function About_2() {
   return (
@@ -38,7 +38,7 @@ export default function About_2() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src={require("assets/img/tre_em1.jpg").default}
+                  src={require("../assets/img/tre_em1.jpg").default}
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto px-4 -mt-50">
@@ -58,8 +58,77 @@ export default function About_2() {
               </div>
             </div>
           </div>
+        
         </section>
-        <section className="pt-5 pb-40">
+        <section className="pt-20 pb-48">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center text-center mb-24">
+              <div className="w-full lg:w-6/12 px-4">
+                <h2 className="text-4xl font-semibold">
+                GIÁ TRỊ CỐT LÕI
+                </h2>
+              </div>
+              </div>
+            <div className="flex flex-wrap">
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ CAN ĐẢM</h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ TIN TƯỞNG</h5>
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ MINH BẠCH</h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ CAM KẾT</h5>
+                  
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <section className="pt-5 pb-40">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-4">
               <div className="w-full lg:w-6/12 px-4">
@@ -69,7 +138,7 @@ export default function About_2() {
                 <p className="text-xl">Sự tin tưởng</p>
                 <p className="text-xl">Sự minh bạch</p>
                 <p className="text-xl">Sự cam kết</p>
-                </div>
+</div>
               </div>
             </div>
             <div className="flex flex-wrap">
@@ -77,14 +146,14 @@ export default function About_2() {
                 <div className="">
                   <img
                     alt=""
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded "
                   />
                 </div>
               </div>
             </div>
             </div>
-        </section>
+        </section> */}
 
       </main>
       <Footer />

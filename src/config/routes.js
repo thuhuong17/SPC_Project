@@ -27,6 +27,9 @@ import About_2 from "views/About_2";
 import Catalog from "views/Catalog";
 import Article from "views/Article";
 import DonationList from "views/DonationList";
+import Condi_adop from "views/Condition_adoption";
+import Infor_payment from "views/Infor_payment";
+import TablesListPost from "views/admin/TablesListPost";
 
 const ROLES = {
   superAdmin: "SUPER_ADMIN",
@@ -64,6 +67,14 @@ const publicRoutes = [
   {
     path: "/about/tam-nhin-va-su-menh",
     component: About_2,
+  },
+  {
+    path: "/about/thong-tin-chuyen-khoan",
+    component: Infor_payment,
+  },
+  {
+    path: "/about/dieu-kien-nhan-nuoi",
+    component: Condi_adop,
   },
   {
     path: "/adoption",
@@ -165,6 +176,12 @@ const privateRoutes = [
       },
       {
         path: "/admin/website",
+        component: TablesListPost,
+        layout: Admin,
+      },
+
+      {
+        path: "/admin/add-page",
         component: Articles,
         layout: Admin,
       },

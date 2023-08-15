@@ -206,7 +206,6 @@ const usePrivateApi = () => {
       const url = `bank-account/${id}`;
       return axPrivate.delete(url);
     },
-
     getChildrenPagination: (params) => {
       let url = "children/pagination?";
       if (params) {
@@ -216,6 +215,10 @@ const usePrivateApi = () => {
       }
       return axPrivate.get(url);
     },
+    getAllArticles: (params) => {
+      const url = "articles";
+      return axPrivate.get(url, params);
+    }
   };
 
   return privateApi;

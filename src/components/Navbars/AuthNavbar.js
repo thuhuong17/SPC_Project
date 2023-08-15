@@ -2,7 +2,6 @@
 import AboutDropDown from "components/Dropdowns/AboutDropdown";
 import AdoptionDropDown from "components/Dropdowns/AdoptionDropdown";
 import EventDropDown from "components/Dropdowns/EventDropdown";
-import PagesDropdown from "components/Dropdowns/PagesDropdown";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
@@ -62,22 +61,7 @@ export default function Navbar(props) {
 
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               {/* search */}
-              <li className="flex items-center justify-between">
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm... "
-                  name="search"
-                  className="rounded h-1 d-inline-block"
-                />
-                <IoMdSearch
-                  style={{ right: "2rem", position: "relative" }}
-                  color="#A0A0A0"
-                  size="1.2em"
-                />
-                <div className="input-group-btn">
-                  <i className="lg:text-blueGray-200 far fa-solid fa-magnifying-glass text-blueGray-400 leading-lg mr-1"></i>
-                </div>
-              </li>
+        
 
               <li className="flex items-center">
                 <button

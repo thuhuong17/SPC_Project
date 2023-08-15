@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "../components/Navbars/AuthNavbar.js";
+import Footer from "../components/Footers/Footer.js";
 
 export default function About() {
   return (
@@ -70,7 +70,7 @@ export default function About() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                Chúng tôi là ai ?</h3>
+Chúng tôi là ai ?</h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                 Trung tâm chúng tôi hoạt động vì trẻ em tại Việt Nam với vai trò là một tổ chức phát 
                   triển xã hội độc lập, phi chính phủ, phi chính trị và phi tôn giáo. 
@@ -84,7 +84,7 @@ export default function About() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="w-full align-middle rounded-t-lg"
                   />
                   <blockquote className="relative p-8 mb-4">
@@ -130,7 +130,7 @@ export default function About() {
                 className="text-white fill-current"
                 points="2560 0 2560 100 0 100"
               ></polygon>
-            </svg>
+</svg>
           </div>
 
           <div className="container mx-auto px-4">
@@ -139,7 +139,7 @@ export default function About() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src={require("assets/img/tre_em1.jpg").default}
+                  src={require("../assets/img/tre_em1.jpg").default}
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -164,6 +164,73 @@ export default function About() {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
+                <h2 className="text-4xl font-semibold">
+                GIÁ TRỊ CỐT LÕI
+                </h2>
+              </div>
+            </div>
+            <div className="flex flex-wrap">
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ CAN ĐẢM</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+<h5 className="text-xl font-bold">SỰ TIN TƯỞNG</h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ MINH BẠCH</h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+                <div className="px-6">
+                  <img
+                    alt="..."
+                    src={require("../assets/img/tre_em1.jpg").default}
+                    className="shadow-lg rounded mx-auto max-w-250-px"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">SỰ CAM KẾT</h5>
+                  
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <section className="pt-20 pb-48">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center text-center mb-24">
+              <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-5xl font-semibold">Giá trị cốt lõi</h2>
                 <p className="text-xl">Sự can đảm</p>
                 <p className="text-xl">Sự tin tưởng</p>
@@ -176,7 +243,7 @@ export default function About() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("assets/img/tre_em1.jpg").default}
+                    src={require("../assets/img/tre_em1.jpg").default}
                     className="shadow-lg rounded mx-auto max-w-250-px"
                   />
                   
@@ -184,7 +251,7 @@ export default function About() {
               </div>
             </div>
             </div>
-        </section>
+        </section> */}
         
       </main>
       <Footer />
