@@ -3,13 +3,14 @@ import "../../assets/styles/modal.css"
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     const [formState, setFormState] = useState(defaultValue || {
         title: "",
-        description: "",
-        status: "live",
+        datePost: "",
+        image: "",
+        url:"",
     });
 
     const [errors, setErrors] = useState("")
     const validateForm = () => {
-        if(formState.title && formState.description && formState.status){
+        if(formState.title && formState.datePost){
             setErrors("")
             return true;
         } else {
@@ -51,16 +52,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                     </div>
     
                     <div className='form-group'>
-                        <label htmlFor="description">Mô tả</label>
-                        <textarea name='description' value={formState.description} onChange={handleChange} />
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor="status">Trạng thái</label>
-                        <select name='status' value={formState.status} onChange={handleChange}>
-                            <option value="live">Live</option>
-                            <option value="draft">Draft</option>
-                            <option value="error">Error</option>
-                        </select>
+                        <label htmlFor="datePost">Ngày đăng</label>
+                        <textarea name='datePost' value={formState.datePost} onChange={handleChange} />
                     </div>
                     {errors && <div className='error'>{`Vui lòng điền: ${errors}`}</div>}
                     <button type='submit' className='btn' onClick={handleSubmit}>Submit</button>

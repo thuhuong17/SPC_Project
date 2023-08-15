@@ -150,6 +150,10 @@ const usePrivateApi = () => {
       const url = `bank-account/${id}`;
       return axPrivate.delete(url);
     },
+    getAllArticles: (params) => {
+      const url = "articles";
+      return axPrivate.get(url, params);
+    }
   };
 
   return privateApi;

@@ -21,13 +21,8 @@ const Articles = (color) => {
   const editor = useRef('');
   const imgRef = useRef('');
   const cateRef = useRef('');
-
   const privateFDataApi = PrivateFormDataApi();
-  // const [title, setTitle] = useState('');
-  // const [content, setContent] = useState('');
-  // const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
-  // const [user, setUser] = useState(undefined);
   const [post, setPost] = useState({
     title: "",
     content: "",
@@ -52,11 +47,10 @@ const Articles = (color) => {
     getCategories();
   }, []);
 
-
-
   // Handle function
   const handleInputChange = (e) => {
     // setPost({ ...post, title: e.target.value });
+
     setPost({ ...post, [e.target.name]: e.target.value });
     
   };
@@ -81,55 +75,34 @@ const Articles = (color) => {
   };
 
 
-  // // validate form
-  // const [validataMsg, setValidateMsg] = useState('')
-
-  // const validataAll = () => {
-  //   const msg = {}
-  //   if(isEmpty(title)){
-  //     msg.title = "Vui lòng nhập tiêu đề bài viết"
-  //   }
-  //   if(isEmpty(category)){
-  //     msg.category = "Vui lòng chọn danh mục bài viết"
-  //   }
-    
-  //   if(isEmpty(content)){
-  //     msg.content = "Vui lòng nhập nội dung bài viết"
-  //   }
-
-  //   setValidateMsg(msg)
-  //   if(Object.keys(msg).length > 0) return false
-
-  //   return true
-  // }
-
   const handleSubmit = async (e) => {
-    // const isValid = validataAll()
-    // if (!isValid) return
-      // call API
-    const data = new FormData();
-    e.preventDefault();
-    // await fetch("http://localhost:8080/social-protection-api/articles")
-    data.append(
+    
+      setErrors(Validation(post))
+        // call API
+      const data = new FormData();
+      e.preventDefault();
+        // await fetch("http://localhost:8080/social-protection-api/articles")
+      data.append(
         "article",
-        new Blob(
-          [
+         new Blob(
+         [
             JSON.stringify({
-              title: post.title,
-              content: post.content,
-              articleUrl: post.articleUrl,
-              category: post.category,
+            title: post.title,
+            content: post.content,
+            articleUrl: post.articleUrl,
+            category: post.category,
             }),
-          ],
-          {
-            type: "application/json",
-          }
-        )
-      );
-    data.append("image", image);
-    console.log(image);
-    const response = await privateFDataApi.addArticle(data);
-    console.log(response);
+         ],
+            {
+               type: "application/json",
+            }
+          )
+        );
+        data.append("image", image);
+        console.log(image);
+        const response = await privateFDataApi.addArticle(data);
+        console.log(response);
+      
       // setPost({
       //   title: "",
       //   content: "",
@@ -146,10 +119,7 @@ const Articles = (color) => {
     
   };
 
-  function handleValidation(e){
-    e.preventDefault()
-    setErrors(Validation(post))
-  }
+  
   return (
     <>
       <div
@@ -176,7 +146,7 @@ const Articles = (color) => {
       <div className="wrapper">
         <Card className="shadow-sm border-0 mt-2">
           <CardBody className="p-8">
-            <Form onSubmit={handleValidation}>
+            <Form onSubmit={handleSubmit}>
               <div className="form-group">
                 <Label htmlFor="title" id="title-lable">Tiêu đề <p className="validata-star">(*)</p></Label>
                 <input
@@ -207,6 +177,7 @@ const Articles = (color) => {
                 </select>
                 {errors.category && <p style={{color: "red"}}>{errors.category}</p>}
               </div>
+
               <div className="form-group">
                 <Label htmlFor="title" id="title-lable">Đường dẫn</Label>
                 <input
@@ -218,7 +189,7 @@ const Articles = (color) => {
                 />
               </div>
               <div className="form-group">
-                <Label htmlFor="title" id="title-lable">Chọn ảnh</Label>
+                <Label htmlFor="title" id="title-lable">Chọn ảnh <p className="validata-star">(*)</p></Label>
                 <input
                   ref={imgRef}
                   id="image"
@@ -226,7 +197,7 @@ const Articles = (color) => {
                   type="file"
                   onChange={handleFileChange}
                 />
-                
+                {errors.image && <p style={{color: "red"}}>{errors.image}</p>}
               </div>
               <div className="form-group">
                 <Label htmlFor="title" id="title-lable">Nội dung<p className="validata-star">(*)</p></Label>

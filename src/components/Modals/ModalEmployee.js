@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import usePrivateApi from "api/usePrivateApi";
 import privateFormDataApi from "api/privateFormDataApi";
-
+import { useForm } from "react-hook-form";
 export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
   const privateApi = usePrivateApi();
   const privateFDataApi = privateFormDataApi();
   const [jobs, setJobs] = useState([]);
   const [shifts, setShifts] = useState([]);
-
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -59,13 +58,22 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
       formState.phoneNumber &&
       formState.nationality
     ) {
+      if (formState.salary < 1000000) {
+        setErrors("Lương nhân viên phải lớn hơn 1.000.000 VND")
+      }
+      if (formState.salary > 50000000) {
+        setErrors("Lương nhân viên phải nhỏ hơn 50.000.000 VND")
+      }
       setErrors("");
       return true;
-    } else {
+    }
+
+    else {
       setErrors("Vui lòng điền đầy đủ thông tin");
       return false;
     }
   };
+
 
   const handleChange = (e) => {
     // validate input salary
@@ -164,13 +172,14 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
         <h1 className="font-semibold text-xl text-center ">
           Nhập thông tin nhân viên
         </h1>
+        <h6 className="font-semibold italic text-center mb-5 text-blue-500">(*) Bắt buộc phải nhập</h6>
         {/* <br /> */}
         <form>
           <div className="form-group">
             <input
               type="text"
               name="firstName"
-              placeholder="Tên"
+              placeholder="Tên (*)"
               value={formState.firstName}
               onChange={handleChange}
             />
@@ -179,7 +188,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
             <input
               type="text"
               name="lastName"
-              placeholder="Họ và tên đệm"
+              placeholder="Họ và tên đệm (*)"
               value={formState.lastName}
               onChange={handleChange}
             />
@@ -201,6 +210,9 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
                 value={formState.gender}
                 onChange={handleChange}
               > 
+                <option value="select">
+                  Giới tính (*)
+                </option>
                 <option value="nam">
                   Nam/Male
                 </option>
@@ -213,7 +225,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="addressPermanent"
-              placeholder="Địa chỉ thường trú"
+              placeholder="Địa chỉ thường trú (*)"
               value={formState.addressPermanent}
               onChange={handleChange}
             />
@@ -221,7 +233,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="addressTemporary"
-              placeholder="Địa chỉ tạm trú"
+              placeholder="Địa chỉ tạm trú (*)"
               value={formState.addressTemporary}
               onChange={handleChange}
             />
@@ -229,7 +241,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="phoneNumber"
-              placeholder="Số điện thoại"
+              placeholder="Số điện thoại (*)"
               value={formState.phoneNumber}
               onChange={handleChange}
             />
@@ -237,7 +249,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="email"
-              placeholder="Địa chỉ email"
+              placeholder="Địa chỉ email (*)"
               value={formState.email}
               onChange={handleChange}
             />
@@ -245,7 +257,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <input
               name="nationality"
-              placeholder="Quốc tịch"
+              placeholder="Quốc tịch (*)"
               value={formState.nationality}
               onChange={handleChange}
             />
@@ -254,7 +266,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
             <input
               name="fromDate"
               value={formState.fromDate}
-              placeholder="Ngày bắt đầu làm việc"
+              placeholder="Ngày bắt đầu làm việc (*)"
               type="text"
               onFocus={(e) => (e.target.type = "date")}
               onBlur={(e) => (e.target.type = "text")}
@@ -268,7 +280,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
                 value={formState.job.jobId}
                 onChange={handleJobChange}
               >
-                <option value={-1}>Chọn công việc</option>
+                <option value={-1}>Chọn công việc (*)</option>
                 {jobs.map((job, index) => (
                   <option key={index} value={job.jobId}>
                     {job.jobTitle}
@@ -280,7 +292,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
                 value={formState.shift.shiftId}
                 onChange={handleShiftChange}
               >
-                <option value={-1}>Chọn ca làm việc</option>
+                <option value={-1}>Chọn ca làm việc (*)</option>
                 {shifts.map((shift, index) => (
                   <option key={index} value={shift.shiftId}>
                     {shift.shiftTitle}
@@ -293,7 +305,7 @@ export const ModalEmployee = ({ closeModal, onSubmit, defaultValue }) => {
             <input
               name="salary"
               type="number"
-              placeholder="Lương"
+              placeholder="Lương (*)"
               value={formState.salary}
               onChange={handleChange}
               min="1000000"

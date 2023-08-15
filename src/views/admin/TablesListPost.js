@@ -16,7 +16,7 @@ export default function TablesListPost() {
   // }
 
   const [rows, setRows] = useState([
-    {stt:"1", title:"Hỗ trợ trẻ em miền núi", description:"Trẻ em thuộc dân tộc thiểu số, sinh sống ở vùng sâu vùng xa", status:"live"}
+    {stt:"1", title:"Hỗ trợ trẻ em miền núi", datePost:"15/08/2023", url: "service", image:""}
   ])
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -50,6 +50,8 @@ export default function TablesListPost() {
               <Link to="/admin/add-page">
               <button className="btn">Thêm</button>
               </Link>
+
+
           </div>
         </div>
       </div>

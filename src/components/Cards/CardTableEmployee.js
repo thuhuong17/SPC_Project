@@ -15,9 +15,9 @@ export default function CardTableEmployee({ color, rows, deleteRow, editRow }) {
   const privateApi = usePrivateApi();
   const [modalCitizenId, setModalCitizenId] = useState(false);
   const [currentEmployeeAddId, setCurrentEmployeeAddId] = useState(0);
-
+  
   const [modalChildrenId, setModalChildrenId] = useState(0);
-
+  
   const handleAddCitizenClick = (id) => {
     setCurrentEmployeeAddId(id);
     setModalCitizenId(true);
@@ -110,8 +110,6 @@ export default function CardTableEmployee({ color, rows, deleteRow, editRow }) {
                             setModalChildrenId(employee.employeeId);
                           }}
                         >
-                          <BsListNested />
-                          <span className="text-center ml-1"> DS Trẻ</span>
                         </button>
                         {!employee.citizenId && (
                           <button
