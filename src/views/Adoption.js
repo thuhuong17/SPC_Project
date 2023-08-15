@@ -4,14 +4,19 @@ import "../assets/styles/FormAdoption.css"
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import apiMethod from "api/apiMethod";
+import isEmpty from "validator/lib/isEmpty"
+import isNumeric from "validator/lib/isNumeric"
+import isEmail from 'validator/lib/isEmail';
+import isMobilePhone from 'validator/lib/isMobilePhone';
+import isLength from 'validator/lib/isLength';
 
 import "assets/styles/FormAdoption.css"
-import { Link } from "react-router-dom";
 
 export default function Adoption() {
 
   const [adopter, setAdopter] = useState(0)
   const [status, setStatus] = useState(0)
+  const [reason, setReason] = useState("")
   const [formData, setFormData] = useState({
     firstname: [],
     lastname: [],
@@ -32,14 +37,148 @@ export default function Adoption() {
     expireDate: [],
   });
 
+  const [errors, setErrors] = useState({});
+  const validateForm = () => {
+    const msg = {}
+    if (isEmpty(formData.lastname[0] ?? "", { ignore_whitespace: true })) {
+      msg.lastname1 = "Vui lòng nhập họ!"
+    }
+    if (isEmpty(formData.firstname[0] ?? "", { ignore_whitespace: true })) {
+      msg.firstname1 = "Vui lòng nhập tên!"
+    }
+    if (isEmpty(formData.gender[0] ?? "")) {
+      msg.gender1 = "Vui lòng chọn giới tính!"
+    }
+    if (isEmpty(formData.nationality[0] ?? "")) {
+      msg.nationality1 = "Vui lòng chọn dân tộc!"
+    }
+    if (isEmpty(formData.addressPermanent[0] ?? "", { ignore_whitespace: true })) {
+      msg.addressPermanent1 = "Vui lòng nhập địa chỉ!"
+    }
+    if (isEmpty(formData.addressTemporary[0] ?? "", { ignore_whitespace: true })) {
+      msg.addressTemporary1 = "Vui lòng nhập địa chỉ!"
+    }
+    if (isEmpty(formData.birthday[0] ?? "", { ignore_whitespace: true })) {
+      msg.birthday1 = "Vui lòng nhập ngày sinh!"
+    }
+    if (isEmpty(formData.phoneNumber[0] ?? "", { ignore_whitespace: true })) {
+      msg.phoneNumber1 = "Vui lòng nhập số điện thoại!"
+    } else if (!isNumeric(formData.phoneNumber[0])) {
+      msg.phoneNumber1 = "Vui lòng nhập số!"
+    } else if (!(isMobilePhone(formData.phoneNumber[0], 'vi-VN'))) {
+      msg.phoneNumber1 = "Số điện thoại ko đúng định dạng!"
+    }
+    if (isEmpty(formData.email[0] ?? "", { ignore_whitespace: true })) {
+      msg.email1 = "Vui lòng nhập email!"
+    } else if (!isEmail(formData.email[0])) {
+      msg.email1 = "Email không đúng đinh dạng!"
+    }
+    if (isEmpty(formData.nation[0] ?? "", { ignore_whitespace: true })) {
+      msg.nation1 = "Vui lòng nhập quốc tịch!"
+    }
+    if (isEmpty(formData.occupation[0] ?? "", { ignore_whitespace: true })) {
+      msg.occupation1 = "Vui lòng nhập nghề nghiệp!"
+    }
+    if (isEmpty(formData.income[0] ?? "", { ignore_whitespace: true })) {
+      msg.income1 = "Vui lòng nhập thu nhập!"
+    } else if (!isNumeric(formData.income[0])) {
+      msg.income1 = "Vui lòng nhập số!"
+    }
+    if (isEmpty(formData.relationship[0] ?? "")) {
+      msg.relationship1 = "Vui lòng chọn tình trạng!"
+    }
+    if (isEmpty(formData.citizenIdentNumber[0] ?? "", { ignore_whitespace: true })) {
+      msg.citizenIdentNumber1 = "Vui lòng nhập căn cước!"
+    } else if (!isNumeric(formData.citizenIdentNumber[0])) {
+      msg.citizenIdentNumber1 = "Vui lòng nhập số!"
+    } else if (!isLength(formData.citizenIdentNumber[0], {min: 12, max: undefined})) {
+      msg.citizenIdentNumber1 = "Căn cước không đúng định dạng!"
+    }
+    if (isEmpty(formData.issuePlace[0] ?? "", { ignore_whitespace: true })) {
+      msg.issuePlace1 = "Vui lòng nhập nơi cấp!"
+    }
+    if (isEmpty(formData.issueDate[0] ?? "", { ignore_whitespace: true })) {
+      msg.issueDate1 = "Vui lòng nhập ngày cấp!"
+    }
+    if (isEmpty(formData.expireDate[0] ?? "", { ignore_whitespace: true })) {
+      msg.expireDate1 = "Vui lòng nhập hạn!"
+    }
+
+    if (adopter === 2) {
+      if (isEmpty(formData.lastname[1] ?? "", { ignore_whitespace: true })) {
+        msg.lastname2 = "Vui lòng nhập họ!"
+      }
+      if (isEmpty(formData.firstname[1] ?? "", { ignore_whitespace: true })) {
+        msg.firstname2 = "Vui lòng nhập tên!"
+      }
+      if (isEmpty(formData.gender[1] ?? "")) {
+        msg.gender2 = "Vui lòng chọn giới tính!"
+      }
+      if (isEmpty(formData.nationality[1] ?? "")) {
+        msg.nationality2 = "Vui lòng chọn dân tộc!"
+      }
+      if (isEmpty(formData.addressPermanent[1] ?? "", { ignore_whitespace: true })) {
+        msg.addressPermanent2 = "Vui lòng nhập địa chỉ!"
+      }
+      if (isEmpty(formData.addressTemporary[1] ?? "", { ignore_whitespace: true })) {
+        msg.addressTemporary2 = "Vui lòng nhập địa chỉ!"
+      }
+      if (isEmpty(formData.birthday[1] ?? "", { ignore_whitespace: true })) {
+        msg.birthday2 = "Vui lòng nhập ngày sinh!"
+      }
+      if (isEmpty(formData.phoneNumber[1] ?? "", { ignore_whitespace: true })) {
+        msg.phoneNumber2 = "Vui lòng nhập số điện thoại!"
+      } else if (!isNumeric(formData.phoneNumber[1])) {
+        msg.phoneNumber2 = "Vui lòng nhập số!"
+      } else if (!(isMobilePhone(formData.phoneNumber[1], 'vi-VN'))) {
+        msg.phoneNumber2 = "Số điện thoại ko đúng định dạng!"
+      }
+      if (isEmpty(formData.email[1] ?? "", { ignore_whitespace: true })) {
+        msg.email2 = "Vui lòng nhập email!"
+      } else if (!isEmail(formData.email[1])) {
+        msg.email2 = "Email không đúng đinh dạng!"
+      }
+      if (isEmpty(formData.nation[1] ?? "", { ignore_whitespace: true })) {
+        msg.nation2 = "Vui lòng nhập quốc tịch!"
+      }
+      if (isEmpty(formData.occupation[1] ?? "", { ignore_whitespace: true })) {
+        msg.occupation2 = "Vui lòng nhập nghề nghiệp!"
+      }
+      if (isEmpty(formData.income[1] ?? "", { ignore_whitespace: true })) {
+        msg.income2 = "Vui lòng nhập thu nhập!"
+      } else if (!isNumeric(formData.income[1])) {
+        msg.income2 = "Vui lòng nhập số!"
+      }
+      if (isEmpty(formData.relationship[1] ?? "")) {
+        msg.relationship2 = "Vui lòng chọn tình trạng!"
+      }
+      if (isEmpty(formData.citizenIdentNumber[1] ?? "", { ignore_whitespace: true })) {
+        msg.citizenIdentNumber2 = "Vui lòng nhập căn cước!"
+      } else if (!isNumeric(formData.citizenIdentNumber[1])) {
+        msg.citizenIdentNumber2 = "Vui lòng nhập số!"
+      }
+      if (isEmpty(formData.issuePlace[1] ?? "", { ignore_whitespace: true })) {
+        msg.issuePlace2 = "Vui lòng nhập nơi cấp!"
+      }
+      if (isEmpty(formData.issueDate[1] ?? "", { ignore_whitespace: true })) {
+        msg.issueDate2 = "Vui lòng nhập ngày cấp!"
+      }
+      if (isEmpty(formData.expireDate[1] ?? "", { ignore_whitespace: true })) {
+        msg.expireDate2 = "Vui lòng nhập hạn!"
+      }
+    }
+
+    setErrors(msg)
+    if (Object.keys(msg).length > 0) return false
+    return true
+  };
+
   const handleInputChange = (event, i) => {
     const { name, value } = event.target;
-    // const iChange = 
     formData[name][i] = value
-    // setFormData((prevFormData) => ({
-    //   ...prevFormData,
-    //   [name]: [...formData[name], value]
-    // }));
+    setFormData({
+      ...formData,
+    })
   };
 
   const handleAdopterChange = (event) => {
@@ -48,6 +187,7 @@ export default function Adoption() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!validateForm()) return;
 
     try {
       const currentDate = new Date();
@@ -62,7 +202,7 @@ export default function Adoption() {
 
       const newForm = {
         registerDate: currentDateValue,
-        reason: "ohhh",
+        reason: reason,
         status: 0,
         adopters: [
           {
@@ -123,7 +263,6 @@ export default function Adoption() {
         newForm.adopters.push(adopter2)
       }
 
-      console.log(newForm);
       await apiMethod.postAdoption(newForm)
       setStatus(1)
     } catch (error) {
@@ -146,23 +285,43 @@ export default function Adoption() {
               <input
                 type="text"
                 name="lastname"
-                placeholder="Nhập họ..."
+                placeholder="Nhập họ (*)"
                 id="lastname"
                 className="formbold-form-input"
                 value={formData?.lastname[i]}
                 onChange={(e) => handleInputChange(e, i)}
+                style={{
+                  borderColor: i === 0 ? errors?.lastname1 ? "red" : "black"
+                    : errors?.lastname2 ? "red" : "black"
+                }}
               />
+              <span style={{
+                color: "red",
+                paddingTop: "5px"
+              }}>
+                {i === 0 ? errors?.lastname1 : errors?.lastname2}
+              </span>
             </div>
             <div>
               <input
                 type="text"
                 name="firstname"
-                placeholder="Nhập tên..."
+                placeholder="Nhập tên (*)"
                 id="firstname"
                 className="formbold-form-input"
                 value={formData?.firstname[i]}
                 onChange={(e) => handleInputChange(e, i)}
+                style={{
+                  borderColor: i === 0 ? errors?.firstname1 ? "red" : "black"
+                    : errors?.firstname2 ? "red" : "black"
+                }}
               />
+              <span style={{
+                color: "red",
+                paddingTop: "5px"
+              }}>
+                {i === 0 ? errors?.firstname1 : errors?.firstname2}
+              </span>
             </div>
           </div>
 
@@ -176,12 +335,21 @@ export default function Adoption() {
                 className="formbold-form-input"
                 value={formData?.gender[i]}
                 onChange={(e) => handleInputChange(e, i)}
-              >
-                <option value="">-- Chọn giới tính --</option>
-                <option value="male">Nam</option>
-                <option value="female">Nữ</option>
-                <option value="other">Khác</option>
+                style={{
+                  borderColor: i === 0 ? errors?.gender1 ? "red" : "black"
+                    : errors?.gender2 ? "red" : "black"
+                }}>
+                <option value="">Chọn giới tính (*)</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
               </select>
+              <span style={{
+                color: "red",
+                paddingTop: "5px"
+              }}>
+                {i === 0 ? errors?.gender1 : errors?.gender2}
+              </span>
             </div>
 
             <div>
@@ -191,8 +359,11 @@ export default function Adoption() {
                 className="formbold-form-input"
                 value={formData?.nationality[i]}
                 onChange={(e) => handleInputChange(e, i)}
-              >
-                <option value="">-- Chọn dân tộc --</option>
+                style={{
+                  borderColor: i === 0 ? errors?.nationality1 ? "red" : "black"
+                    : errors?.nationality2 ? "red" : "black"
+                }}>
+                <option value="">Chọn dân tộc (*)</option>
                 <option value="Kinh">Kinh</option>
                 <option value="Tày">Tày</option>
                 <option value="Thái">Thái</option>
@@ -250,6 +421,12 @@ export default function Adoption() {
                 <option value="Hoa">Hoa</option>
                 <option value="Ngái">Ngái</option>
               </select>
+              <span style={{
+                color: "red",
+                paddingTop: "5px"
+              }}>
+                {i === 0 ? errors?.nationality1 : errors?.nationality2}
+              </span>
             </div>
           </div>
 
@@ -258,11 +435,21 @@ export default function Adoption() {
               type="text"
               name="addressPermanent"
               id="addressPermanent"
-              placeholder="Nhập địa chỉ thường trú..."
+              placeholder="Nhập địa chỉ thường trú (*)"
               className="formbold-form-input"
               value={formData?.addressPermanent[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.addressPermanent1 ? "red" : "black"
+                  : errors?.addressPermanent2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.addressPermanent1 : errors?.addressPermanent2}
+            </span>
           </div>
           <br />
           <div>
@@ -270,11 +457,21 @@ export default function Adoption() {
               type="text"
               name="addressTemporary"
               id="addressTemporary"
-              placeholder="Nhập địa chỉ tạm trú..."
+              placeholder="Nhập địa chỉ tạm trú (*)"
               className="formbold-form-input"
               value={formData?.addressTemporary[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.addressTemporary1 ? "red" : "black"
+                  : errors?.addressTemporary2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.addressTemporary1 : errors?.addressTemporary2}
+            </span>
           </div>
         </div>
         <br />
@@ -283,30 +480,50 @@ export default function Adoption() {
             <input
               type="text"
               name="phoneNumber"
-              placeholder="Nhập số điện thoại..."
+              placeholder="Nhập số điện thoại (*)"
               id="phonenumber"
               className="formbold-form-input"
               value={formData?.phoneNumber[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.phoneNumber1 ? "red" : "black"
+                  : errors?.phoneNumber2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.phoneNumber1 : errors?.phoneNumber2}
+            </span>
           </div>
           <div>
             <input
               type="text"
               name="nation"
-              placeholder="Nhập quốc tịch..."
+              placeholder="Nhập quốc tịch (*)"
               id="nation"
               className="formbold-form-input"
               value={formData?.nation[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.nation1 ? "red" : "black"
+                  : errors?.nation2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.nation1 : errors?.nation2}
+            </span>
           </div>
         </div>
         <div className="formbold-input-flex">
           <div>
             <input
               type="text"
-              placeholder="Chọn ngày sinh..."
+              placeholder="Chọn ngày sinh (*)"
               onFocus={e => e.target.type = "date"}
               onBlur={e => e.target.type = "text"}
               name="birthday"
@@ -314,18 +531,38 @@ export default function Adoption() {
               className="formbold-form-input"
               value={formData?.birthday[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.birthday1 ? "red" : "black"
+                  : errors?.birthday2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.birthday1 : errors?.birthday2}
+            </span>
           </div>
           <div>
             <input
               type="email"
               name="email"
-              placeholder="Nhập email..."
+              placeholder="Nhập email (*)"
               id="email"
               className="formbold-form-input"
               value={formData?.email[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.email1 ? "red" : "black"
+                  : errors?.email2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.email1 : errors?.email2}
+            </span>
           </div>
         </div>
         <div className="formbold-input-flex">
@@ -333,23 +570,43 @@ export default function Adoption() {
             <input
               type="text"
               name="occupation"
-              placeholder="Nhập nghề nghiệp..."
+              placeholder="Nhập nghề nghiệp (*)"
               id="occupation"
               className="formbold-form-input"
               value={formData?.occupation[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.occupation1 ? "red" : "black"
+                  : errors?.occupation2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.occupation1 : errors?.occupation2}
+            </span>
           </div>
           <div>
             <input
               type="text"
               name="income"
-              placeholder="Mức thu nhập..."
+              placeholder="Mức thu nhập/tháng (*)"
               id="income"
               className="formbold-form-input"
               value={formData?.income[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.income1 ? "red" : "black"
+                  : errors?.income2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.income1 : errors?.income2}
+            </span>
           </div>
         </div>
         <div>
@@ -361,30 +618,49 @@ export default function Adoption() {
             className="formbold-form-input"
             value={formData?.relationship[i]}
             onChange={(e) => handleInputChange(e, i)}
-          >
-            <option value="">-- Chọn tình trạng hôn nhân --</option>
-            <option value="single">Độc thân</option>
-            <option value="maried">Đã kết hôn</option>
+            style={{
+              borderColor: i === 0 ? errors?.relationship1 ? "red" : "black"
+                : errors?.relationship2 ? "red" : "black"
+            }}>
+            <option value="">Chọn tình trạng hôn nhân (*)</option>
+            <option value="Độc thân">Độc thân</option>
+            <option value="Đã kết hôn">Đã kết hôn</option>
           </select>
+          <span style={{
+            color: "red",
+            paddingTop: "5px"
+          }}>
+            {i === 0 ? errors?.relationship1 : errors?.relationship2}
+          </span>
         </div>
         <br />
         <div>
           <input
             type="text"
             name="citizenIdentNumber"
-            placeholder="Nhập Số CCCD..."
+            placeholder="Nhập Số CCCD (*)"
             id="citizenIdentNumber"
             className="formbold-form-input"
             value={formData?.citizenIdentNumber[i]}
             onChange={(e) => handleInputChange(e, i)}
+            style={{
+              borderColor: i === 0 ? errors?.citizenIdentNumber1 ? "red" : "black"
+                : errors?.citizenIdentNumber2 ? "red" : "black"
+            }}
           />
+          <span style={{
+            color: "red",
+            paddingTop: "5px"
+          }}>
+            {i === 0 ? errors?.citizenIdentNumber1 : errors?.citizenIdentNumber2}
+          </span>
         </div>
         <br />
         <div className="formbold-input-flex">
           <div>
             <input
               type="text"
-              placeholder="Chọn ngày cấp..."
+              placeholder="Chọn ngày cấp (*)"
               onFocus={e => e.target.type = "date"}
               onBlur={e => e.target.type = "text"}
               name="issueDate"
@@ -392,13 +668,23 @@ export default function Adoption() {
               className="formbold-form-input"
               value={formData?.issueDate[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.issueDate1 ? "red" : "black"
+                  : errors?.issueDate2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.issueDate1 : errors?.issueDate2}
+            </span>
           </div>
 
           <div>
             <input
               type="text"
-              placeholder="Chọn ngày hạn..."
+              placeholder="Chọn ngày hạn (*)"
               onFocus={e => e.target.type = "date"}
               onBlur={e => e.target.type = "text"}
               name="expireDate"
@@ -406,7 +692,17 @@ export default function Adoption() {
               className="formbold-form-input"
               value={formData?.expireDate[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.expireDate1 ? "red" : "black"
+                  : errors?.expireDate2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.expireDate1 : errors?.expireDate2}
+            </span>
           </div>
         </div>
         <div>
@@ -414,12 +710,21 @@ export default function Adoption() {
             type="text"
             name="issuePlace"
             id="issuePlace"
-            placeholder="Nhập địa chỉ cấp..."
+            placeholder="Nhập địa chỉ cấp (*)"
             className="formbold-form-input"
             value={formData?.issuePlace[i]}
             onChange={(e) => handleInputChange(e, i)}
-          >
-          </input>
+            style={{
+              borderColor: i === 0 ? errors?.issuePlace1 ? "red" : "black"
+                : errors?.issuePlace2 ? "red" : "black"
+            }}
+          />
+          <span style={{
+            color: "red",
+            paddingTop: "5px"
+          }}>
+            {i === 0 ? errors?.issuePlace1 : errors?.issuePlace2}
+          </span>
         </div>
         {/* Form */}
         < br />
@@ -431,7 +736,6 @@ export default function Adoption() {
     <>
       <Navbar transparent />
       <main>
-
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -479,7 +783,6 @@ export default function Adoption() {
             </svg>
           </div>
         </div>
-
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
@@ -493,12 +796,12 @@ export default function Adoption() {
                     <div className="formbold-steps">
                       <h1>Nhập thông tin để đăng ký nhận nuôi</h1>
                     </div>
-
                     <div>
                       <select
                         value={adopter}
                         onChange={handleAdopterChange}
                         className="formbold-form-input"
+                        style={{ textAlign: "center" }}
                       >
                         <option value="0">-- Chọn số người nhận nuôi --</option>
                         <option value="1">1 người đăng ký nhận nuôi</option>
@@ -507,11 +810,21 @@ export default function Adoption() {
                     </div>
                     <br />
                     {/* Form */}
-
                     {adopter !== 0 ?
                       <>
                         {renderedItems}
-
+                        <div>
+                          <textarea
+                            rows="4"
+                            type="text"
+                            name="reason"
+                            placeholder="Nhập lý do đăng ký nhận nuôi..."
+                            id="reason"
+                            className="formbold-form-input"
+                            value={formData?.reason}
+                            onChange={(e) => setReason(e.target.value)}
+                          />
+                        </div>
                         <button className="formbold-btn" onClick={handleSubmit}>
                           XÁC NHẬN
                         </button>
@@ -519,16 +832,12 @@ export default function Adoption() {
                   </form>
                 </div>
                 : <>
-                  <div className="formbold-steps">
+                  <div className="formbold-steps noti">
                     <h1>Đăng ký thành công!</h1>
                     <h1>Đơn đăng ký của bạn sẽ được chúng tôi kiểm tra và xác nhận trong thời gian sớm nhất.</h1>
-                    <Link to="/home" >
-                      <h1>VỀ TRANG CHỦ</h1>
-                    </Link>
                   </div>
                 </>}
             </div>
-
           </div>
         </section>
       </main>

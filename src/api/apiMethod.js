@@ -29,6 +29,10 @@ const apiMethod = {
     const url = "articles/" + id;
     return axiosClient.get(url, params);
   },
+  postArticle: (id, params) => {
+    const url = "articles" + id;
+    return axiosClient.get(url, params);
+  },
   getArticles: (params) => {
     let url = "articles?";
     if (params) {
@@ -50,6 +54,10 @@ const apiMethod = {
   postAdoption: (params) => {
     const url = "adoption";
     return axiosClient.post(url, params);
+  },
+  putAdoption: (id, params) => {
+    const url = `adoption/${id}`;
+    return axiosClient.put(url, params);
   },
   gelTotalDonationAmount: () => {
     const url = "donations/amount";

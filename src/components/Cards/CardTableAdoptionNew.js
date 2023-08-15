@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
+import { Pagination } from "@mui/material";
+import usePrivateApi from "api/usePrivateApi";
 
-export default function CardTableAdoptionNew({ color, adoption, deleteRow, editRow }) {
+export default function CardTableAdoptionNew({ color, adoption, editRow }) {
+    const adt = [].concat(adoption).reverse();
+
     return (
         <>
             <div className={
@@ -38,19 +42,41 @@ export default function CardTableAdoptionNew({ color, adoption, deleteRow, editR
                                 </tr>
                             </thead>
                             <tbody>
-                                {adoption.map((row, idx) => {
+                                {adt.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
                                         <td className="expand4">{row?.adopters[0]?.fullName}</td>
                                         <td className="expand4">{row?.adopters[1]?.fullName}</td>
                                         <td className="expand4">{row?.registerDate}</td>
-                                        <td className="expand4">
-                                            {
-                                                row?.status == 1 ? "Đã xác nhận"
-                                                    : row?.status == 2 ? "Từ chối"
-                                                        : row?.status == 3 ? "Hoàn thành nhận nuôi"
-                                                            : "Chờ xác nhận"}
-                                        </td>
+                                        {
+                                            row?.status == 1 ?
+                                                <td className="expand4" style={{
+                                                    backgroundColor: "rgba(0, 128, 0, 0.75)",
+                                                    color: "white"
+                                                }}>
+                                                    Đã xác nhận
+                                                </td>
+                                                : row?.status == 2 ?
+                                                    <td className="expand4" style={{
+                                                        backgroundColor: "rgba(255, 0, 0, 0.75)",
+                                                        color: "white"
+                                                    }}>
+                                                        Từ chối
+                                                    </td>
+                                                    : row?.status == 3 ?
+                                                        <td className="expand4" style={{
+                                                            backgroundColor: "rgba(0, 0, 255, 0.75)",
+                                                            color: "white"
+                                                        }}>
+                                                            Hoàn thành nhận nuôi
+                                                        </td>
+                                                        :
+                                                        <td className="expand4" style={{
+                                                            backgroundColor: "rgba(0, 0, 0, 0.75)",
+                                                            color: "white"
+                                                        }}>
+                                                            Chờ xác nhận
+                                                        </td>}
                                         <td>
                                             <span className="actions">
                                                 <p

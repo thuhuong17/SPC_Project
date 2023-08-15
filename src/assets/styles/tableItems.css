@@ -40,7 +40,11 @@
 }
 
 .expand {
-  width: 100%;
+  width: 80%;
+}
+
+.expand3 {
+  width: calc(100% / 3);
 }
 
 .expand4 {
@@ -84,4 +88,8 @@
 
 .delete-btn {
   color: #d9534f;
+}
+
+.table {
+  border: unset;
 }

@@ -58,7 +58,6 @@ export default function TableAdoptionNew () {
         <div className="w-full px-4">
           <div className="tableStyle">
             <CardTable adoption={adoption}
-              deleteRow={handleDeleteRow}
               editRow={handleEditRow} />
             {/* <button className="btn" onClick={() => setModalOpen(true)}>Add</button> */}
             {modalOpen && <ModalAdoptionNew

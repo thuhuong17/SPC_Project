@@ -20,8 +20,8 @@ export default function DonationList() {
   const [totalElement, setTotalElement] = useState(0);
 
   const [sort, setSort] = useState({
-    sortBy: "",
-    sortDirec: "",
+    sortBy: "donateTime",
+    sortDirec: "DESC",
   });
 
   useEffect(() => {

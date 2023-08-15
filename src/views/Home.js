@@ -24,24 +24,31 @@ export default function Home() {
   useEffect(() => {
     const getChildrenCount = async () => {
       const response = await apiMethod.countChildren();
+
       setChildrenCount(response);
     };
+    getChildrenCount();
+  }, []);
+  useEffect(() => {
     const getAdoptCount = async () => {
       const params = {
         status: "Đã được nhận nuôi",
       };
       const response = await apiMethod.countChildren(params);
+      console.log(response);
       setAdoptCount(response);
     };
+    getAdoptCount();
+  }, []);
+
+  useEffect(() => {
     const getAmount = async () => {
       const response = await apiMethod.gelTotalDonationAmount();
       setAmount(response);
     };
-    getChildrenCount();
-    getAdoptCount();
     getAmount();
   }, []);
-  // console.log(adoptCount);
+
   return (
     <>
       <Navbar transparent />
@@ -105,7 +112,9 @@ export default function Home() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                       <i className="fas fa-child"></i>
                     </div>
-                    <h1 className="text-xl font-semibold">{childrenCount}</h1>
+                    <h1 className="text-xl font-semibold">
+                      {childrenCount ? childrenCount : 0}
+                    </h1>
                     <h6 className="text-xl font-semibold">
                       Tổng số trẻ đã và đang được nuôi dưỡng tại trung tâm
                     </h6>
@@ -138,7 +147,9 @@ export default function Home() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                       <i className="fas fa-heart"></i>
                     </div>
-                    <h1 className="text-xl font-semibold">{adoptCount}</h1>
+                    <h1 className="text-xl font-semibold">
+                      {adoptCount ? adoptCount : 0}
+                    </h1>
                     <h6 className="text-xl font-semibold">
                       Số trẻ đã được các gia đình nhận nuôi
                     </h6>

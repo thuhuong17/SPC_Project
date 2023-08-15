@@ -1,0 +1,17 @@
+.modal {
+    padding: 0;
+}
+
+.modal-header {
+    padding: 10px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+}
+
+.modal form {
+    padding: 15px 30px;
+}
+
+.form-group input {
+    padding: 5px 15px;
+}

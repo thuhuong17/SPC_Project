@@ -27,10 +27,10 @@ export default function Footer() {
           <div className="flex flex-wrap text-center lg:text-left">
             <div className="w-full lg:w-6/12 px-4">
               <h4 className="text-3xl font-semibold text-white">
-                Let's keep in touch!
+                Hãy khám phá ngay trang của chúng tôi!
               </h4>
               <h5 className="text-lg mt-0 mb-2 text-white">
-                Find us on any of these platforms, we respond 1-2 business days.
+                Mỗi một sự hỗ trợ từ mọi người là đóng góp cho mái ấm thêm niềm tin, động lực cho chúng tôi!
               </h5>
               <div className="mt-6 lg:mb-0 mb-6">
                 <button
@@ -63,21 +63,21 @@ export default function Footer() {
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-white text-sm font-semibold mb-2">
-                    Useful Links
+                    Thông tin chung
                   </span>
                   <ul className="list-unstyled">
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=nr-footer"
+                        href="/thong-tin/:categoryUrl/:articleUrl/:id"
                       >
-                        About Us
+                        Thông tin nhận nuôi
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com?ref=nr-footer"
+                        href="/thong-tin/:categoryUrl/:articleUrl/:id"
                       >
                         Blog
                       </a>
@@ -85,56 +85,49 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial?ref=nr-footer"
+                        href="/thong-tin/:categoryUrl/:articleUrl/:id"
                       >
-                        Github
+                        Danh sách nhà tài trợ
                       </a>
                     </li>
-                    <li>
-                      <a
-                        className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free?ref=nr-footer"
-                      >
-                        Free Products
-                      </a>
-                    </li>
+                    
                   </ul>
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
                   <span className="block uppercase text-white text-sm font-semibold mb-2">
-                    Other Resources
+                    Về chúng tôi
                   </span>
                   <ul className="list-unstyled">
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md?ref=nr-footer"
+                        href="/about"
                       >
-                        MIT License
+                        Giới thiệu
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nr-footer"
+                        href="/about/tam-nhin-va-su-menh"
                       >
-                        Terms & Conditions
+                        Tầm nhìn và sứ mệnh
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=nr-footer"
+                        href="/about/thong-tin-chuyen-khoan"
                       >
-                        Privacy Policy
+                        Thông tin tài khoản
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-white hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us?ref=nr-footer"
+                        href="/about/dieu-kien-nhan-nuoi"
                       >
-                        Contact Us
+                        Điều kiện nhận nuôi
                       </a>
                     </li>
                   </ul>
@@ -148,7 +141,7 @@ export default function Footer() {
               <div className="text-sm text-white font-semibold py-1">
                 Copyright © {new Date().getFullYear()} Notus React by{" "}
                 <a
-                  href="https://www.creative-tim.com?ref=nr-footer"
+                  href=""
                   className="text-white hover:text-blueGray-800"
                 >
                   Social Protection Center - SPC

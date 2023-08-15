@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
+import { Pagination } from "@mui/material";
+import usePrivateApi from "api/usePrivateApi";
 
 export default function CardTableExpense ({ color, expense, deleteRow, editRow }) {
+    const api = usePrivateApi()
+
+    const [page, setPage] = useState(1);
+    const [pageExpense, setPageExpense] = useState([]);
+
+    const getExpense = async () => {
+        try {
+            const response = await api.getPageExpense(page - 1);
+            setPageExpense(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getExpense()
+    }, [page, expense])
+
+    const count = Math.ceil(expense.length / 5);
+
+    const handleChange = (e, p) => {
+        setPage(p);
+    };
 
     return (
         <>
@@ -42,7 +67,7 @@ export default function CardTableExpense ({ color, expense, deleteRow, editRow }
                                 </tr>
                             </thead>
                             <tbody>
-                                {expense.map((row, idx) => {
+                                {pageExpense.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
                                         <td className="expand6">{row?.expenseName}</td>
@@ -53,8 +78,8 @@ export default function CardTableExpense ({ color, expense, deleteRow, editRow }
                                         <td className="expand6">{row?.dateTime}</td>
                                         <td>
                                             <span className="actions">
-                                                <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)} />
-                                                <BsFillPencilFill onClick={() => editRow(idx)} />
+                                                <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.expenseId)} />
+                                                <BsFillPencilFill onClick={() => editRow(row?.expenseId)} />
                                             </span>
                                         </td>
                                     </tr>
@@ -64,6 +89,13 @@ export default function CardTableExpense ({ color, expense, deleteRow, editRow }
                     </div>
                 </div>
             </div>
+            <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                shape="rounded"
+                onChange={handleChange}
+            />
         </>
     );
 }

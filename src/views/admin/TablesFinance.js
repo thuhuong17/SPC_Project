@@ -10,8 +10,11 @@ import CardTableIncome from "components/Cards/CardTableIncome";
 import { ModalIncome } from "components/Modals/ModalIncome";
 import { ModalExpense } from "components/Modals/ModalExpense";
 import CardTableExpense from "components/Cards/CardTableExpense";
+import { useLocation } from "react-router-dom";
 
 export default function TablesFinance() {
+  const location = useLocation();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [budget, setBudget] = useState([])
   const [income, setIncome] = useState([])
@@ -67,7 +70,7 @@ export default function TablesFinance() {
 
   const handleDeleteRow = async (targetIndex) => {
     try {
-      await api.deleteBudget(budget[targetIndex].budgetId)
+      await api.deleteBudget(targetIndex)
       getBudget()
     } catch (error) {
       console.log(error)
@@ -76,7 +79,7 @@ export default function TablesFinance() {
 
   const handleDeleteAccBank = async (targetIndex) => {
     try {
-      await api.deleteBankAccount(accBank[targetIndex].bankAccountId)
+      await api.deleteBankAccount(targetIndex)
       getBankAccount()
     } catch (error) {
       console.log(error)
@@ -85,7 +88,7 @@ export default function TablesFinance() {
 
   const handleDeleteIncome = async (targetIndex) => {
     try {
-      await api.deleteIncome(income[targetIndex].incomeId)
+      await api.deleteIncome(targetIndex)
       getIncome()
     } catch (error) {
       console.log(error)
@@ -94,7 +97,7 @@ export default function TablesFinance() {
 
   const handleDeleteExpense = async (targetIndex) => {
     try {
-      await api.deleteExpense(expense[targetIndex].expenseId)
+      await api.deleteExpense(targetIndex)
       getExpense()
     } catch (error) {
       console.log(error)
@@ -183,7 +186,7 @@ export default function TablesFinance() {
                       editRow={handleEditRow} />
                     : <></>
             }
-            <button className="btn" onClick={() => setModalOpen(true)}>Add</button>
+            <button className="btn" onClick={() => setModalOpen(true)}>Thêm</button>
             {modalOpen &&
               ((window.location.href.split("?")[1] === "budget")
                 ? <ModalFinance
@@ -192,17 +195,17 @@ export default function TablesFinance() {
                     setRowToEdit(null);
                   }}
                   onSubmit={handleSubmitBudget}
-                  defaultValue={rowToEdit !== null && budget[rowToEdit]} />
+                  defaultValue={rowToEdit !== null && budget.find(x => x.budgetId === rowToEdit)} />
 
                 // Modal Income
                 : (window.location.href.split("?")[1] === "income")
-                  ? <ModalIncome budget={budget} accBank={accBank}
+                  ? <ModalIncome budget={budget} accBank={accBank} income={income}
                     closeModal={() => {
                       setModalOpen(false);
                       setRowToEdit(null);
                     }}
                     onSubmit={handleSubmitIncome}
-                    defaultValue={rowToEdit !== null && income[rowToEdit]} />
+                    defaultValue={rowToEdit !== null && income.find(x => x.incomeId === rowToEdit)} />
 
                   // Modal Expense
                   : (window.location.href.split("?")[1] === "expense")
@@ -212,7 +215,7 @@ export default function TablesFinance() {
                         setRowToEdit(null);
                       }}
                       onSubmit={handleSubmitExpense}
-                      defaultValue={rowToEdit !== null && expense[rowToEdit]} />
+                      defaultValue={rowToEdit !== null && expense.find(x => x.expenseId === rowToEdit)} />
 
                     // Modal Bank Account
                     : (window.location.href.split("?")[1] === "account")
@@ -222,7 +225,7 @@ export default function TablesFinance() {
                           setRowToEdit(null);
                         }}
                         onSubmit={handleSubmitAccBank}
-                        defaultValue={rowToEdit !== null && accBank[rowToEdit]} />
+                        defaultValue={rowToEdit !== null && accBank.find(x => x.bankAccountId === rowToEdit)} />
                       : <></>)
             }
           </div>

@@ -8,8 +8,13 @@ export const ChildDetailModal = ({ onClose, child }) => {
       style={{ zIndex: "100", paddingTop: "15px" }}
     >
       <div
-        className="modal max-w-580-px"
-        style={{ height: "700px", width: "auto", maxWidth: "1024px" }}
+        className="modal max-w-580-px p-4"
+        style={{
+          height: "700px",
+          width: "auto",
+          maxWidth: "1024px",
+          padding: "1rem",
+        }}
       >
         <h1 className="font-semibold text-xl text-center ">Thông tin trẻ</h1>
         <br />

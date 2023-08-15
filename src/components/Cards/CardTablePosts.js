@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
-// components
+import { Link } from "react-router-dom";
 import "../../assets/styles/tableItems.css"
+import usePrivateApi from "api/usePrivateApi";
 
 export default function CardTablePost({ color, rows, deleteRow, editRow }) {
+  const privateApi = usePrivateApi();
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    const getArticles = async () =>{
+      const response = await privateApi.getAllArticles();
+      setArticles(response.data)
+    }
+    getArticles();
+  },[])
+  console.log(articles);
   return (
     <>
     {/* Bảng 1: Danh sách bài viết */}
@@ -36,25 +47,30 @@ export default function CardTablePost({ color, rows, deleteRow, editRow }) {
                     <tr>
                       <th>STT</th>
                       <th>Tiêu đề bài viết</th>
-                      <th className="Expand">Mô tả</th>
-                      <th>Trạng thái</th>
+                      <th className="expand">Hình ảnh</th>
+                      <th>Ngày đăng</th>
+                      <th>Đường dẫn</th>
+                      
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {
-                      rows.map((row, idx)=> {
-                        const statusText = row.status.charAt(0).toUpperCase() + row.status.slice(1);
+                      articles.map((post, idx)=> {
+                        // const statusText = row.status.charAt(0).toUpperCase() + row.status.slice(1);
 
                         return <tr key={idx}>
-                          <td>{row.stt}</td>
-                          <td>{row.title}</td>
-                          <td className="expand">{row.description}</td>
-                          <td>
-                            <span className={`label label-${row.status}`}>
+                          <td> {idx+1} </td>
+                          <td>{post.title}</td>
+                          <td className="expand"><img src={post.image.imageUrl}/></td>
+                          <td>{post.postDate}</td>
+                          <td><Link to={`../thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}>{`http://localhost:3000/thong-tin/${post.category.categoryUrl}/${post.articleUrl}/${post.articleId}`}</Link></td>
+                          {/* <link */}
+                          {/* <td>
+                            <span className={`label label-${rows.status}`}>
                               {statusText}
                             </span>
-                          </td>
+                          </td> */}
                           <td>
                             <span className="actions">
                               <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(idx)}/>

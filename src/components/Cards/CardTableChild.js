@@ -71,7 +71,7 @@ export default function CardTableChild({ color, isAddChild }) {
         setTotalElement(response.data.totalElements);
         setChildren(response.data.content);
       } catch (error) {
-        console.log(err);
+        console.log(error);
       }
     };
     const getChildrenByStatus = async () => {
@@ -82,7 +82,7 @@ export default function CardTableChild({ color, isAddChild }) {
         setTotalElement(response.data.totalElements);
         setChildren(response.data.content);
       } catch (error) {
-        console.log(err);
+        console.log(error);
       }
     };
     const getChildrenByName = async () => {
@@ -93,7 +93,7 @@ export default function CardTableChild({ color, isAddChild }) {
         setTotalElement(response.data.totalElements);
         setChildren(response.data.content);
       } catch (error) {
-        console.log(err);
+        console.log(error);
       }
     };
     if (nameSearch) {
