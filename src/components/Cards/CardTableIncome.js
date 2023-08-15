@@ -63,7 +63,7 @@ export default function CardTableIncome({ color, income, deleteRow, editRow }) {
                                     <th className="expand6">Ngân sách</th>
                                     <th className="expand6">Tài khoản ngân hàng</th>
                                     <th className="expand6">Ngày thu</th>
-                                    <th>Action</th>
+                                    {/* <th>Action</th> */}
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,14 +74,18 @@ export default function CardTableIncome({ color, income, deleteRow, editRow }) {
                                         <td className="expand6">{row?.incomeDescription}</td>
                                         <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
                                         <td className="expand6">{row?.budget?.budgetName}</td>
-                                        <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
+                                        <td className="expand6">
+                                            Tên: {row?.bankAccount?.accountName}
+                                            <br />
+                                            STK: {row?.bankAccount?.accountNumber}
+                                        </td>
                                         <td className="expand6">{row?.dateTime}</td>
-                                        <td>
+                                        {/* <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.incomeId)} />
                                                 <BsFillPencilFill onClick={() => editRow(row?.incomeId)} />
                                             </span>
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 })}
                             </tbody>

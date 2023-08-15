@@ -186,7 +186,7 @@ export const ModalIncome = ({ budget, accBank, income, closeModal, onSubmit, def
                             style={{
                                 borderColor: errors?.budget ? "red" : "black"
                             }}>
-                            <option value="">-- Chọn ngân sách --</option>
+                            <option value={formState?.budget ? formState?.budget : ""}>{formState?.budget ? formState?.budget?.budgetName : "-- Chọn ngân sách --"}</option>
                             {budget.map(iBud =>
                                 <option value={JSON.stringify(iBud)} key={iBud.budgetName}>ID: {iBud.budgetId} ({iBud.budgetName}: {iBud?.amout.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })})</option>
                             )}
@@ -204,7 +204,7 @@ export const ModalIncome = ({ budget, accBank, income, closeModal, onSubmit, def
                             style={{
                                 borderColor: errors?.bankAccount ? "red" : "black"
                             }}>
-                            <option value="">-- Chọn tài khoản ngân hàng --</option>
+                            <option value={formState?.bankAccount ? formState?.bankAccount : ""}>{formState?.bankAccount ? `${formState?.bankAccount?.accountNumber} (${formState?.bankAccount?.accountName})` : "-- Chọn tài khoản ngân hàng --"}</option>
                             {accBank.map(iAcc =>
                                 <option value={JSON.stringify(iAcc)} key={iAcc.accountName} > ID: {iAcc.bankAccountId} ({iAcc.accountName} - {iAcc.accountNumber})</option>
                             )}
