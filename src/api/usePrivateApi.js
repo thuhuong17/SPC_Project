@@ -205,9 +205,6 @@ const usePrivateApi = () => {
     deleteBankAccount: (id) => {
       const url = `bank-account/${id}`;
       return axPrivate.delete(url);
-<<<<<<< HEAD
-    }
-=======
     },
 
     getChildrenPagination: (params) => {
@@ -219,7 +216,6 @@ const usePrivateApi = () => {
       }
       return axPrivate.get(url);
     },
->>>>>>> origin/Nbtrien
   };
 
   return privateApi;
