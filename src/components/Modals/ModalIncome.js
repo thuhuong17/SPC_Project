@@ -9,7 +9,7 @@ import isEmpty from "validator/lib/isEmpty"
 import isNumeric from "validator/lib/isNumeric"
 import isLength from "validator/lib/isLength";
 
-export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValue }) => {
+export const ModalIncome = ({ budget, accBank, income, closeModal, onSubmit, defaultValue }) => {
     const [dateIncome, setDateIncome] = useState(new Date());
     const endDateValue = `${dateIncome.getDate()}-${dateIncome.getMonth()}-${dateIncome.getFullYear()}`
 
@@ -64,12 +64,38 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
         setDateIncome(date)
     };
 
+    const checkAmount = () => {
+        if (formState?.budget) {
+            const amountBud = JSON.parse(formState?.budget)
+            if (amountBud.amout <= formState?.amount) {
+                console.log("qua");
+                return true
+            }
+            console.log("khong qua");
+            return false
+        }
+    }
+
+    // if (formState?.budget) {
+    //     const amountBud = JSON.parse(formState?.budget)
+    //     console.log(amountBud);
+        
+    //     const same = income.filter((ic) => ic.budget.budgetId == amountBud.budgetId);
+
+    //     console.log(same);
+    // }
+
     const api = usePrivateApi()
 
     // submit account vừa thêm
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
+        if (checkAmount()) {
+            alert("Số tiền vượt quá ngân sách!")
+            return
+        }
+        // if ()
         if (defaultValue?.incomeId) {
             try {
                 const newForm = { ...formState, budget: JSON.parse(formState?.budget), bankAccount: JSON.parse(formState?.bankAccount), amount: Number(formState.amount) }
@@ -166,7 +192,7 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
                             }}>
                             <option value="">-- Chọn ngân sách --</option>
                             {budget.map(iBud =>
-                                <option value={JSON.stringify(iBud)} key={iBud.budgetName}>ID: {iBud.budgetId} ({iBud.budgetName})</option>
+                                <option value={JSON.stringify(iBud)} key={iBud.budgetName}>ID: {iBud.budgetId} ({iBud.budgetName}: {iBud?.amout.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })})</option>
                             )}
                         </select>
                         <span style={{

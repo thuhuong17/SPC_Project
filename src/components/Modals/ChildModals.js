@@ -1,21 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import JoditEditor from "jodit-react";
 import usePrivateApi from "api/usePrivateApi";
-<<<<<<< HEAD
-import PrivateFormDataApi from "api/privateFormDataApi";
-// import "../../assets/styles/modal1.css"
-=======
 import privateFormDataApi from "api/privateFormDataApi";
 import { reunicode, birthDateValid } from "constant/Regrex";
 import moment from "moment";
 
->>>>>>> origin/Nbtrien
 export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
   function isValid(str) {
     return reunicode.test(str);
   }
   const privateApi = usePrivateApi();
-  const privateFDataApi = PrivateFormDataApi();
+  const privateFDataApi = privateFormDataApi();
   const [orphanTypes, setOrphanTypes] = useState([]);
   const [formState, setFormState] = useState({
     firstName: "",

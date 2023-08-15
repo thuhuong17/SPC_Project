@@ -1,10 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import usePrivateApi from "api/usePrivateApi";
-<<<<<<< HEAD
-=======
 import privateFormDataApi from "api/privateFormDataApi";
 import { reunicode, regexPhoneNumber } from "constant/Regrex";
->>>>>>> origin/Nbtrien
 
 export const GuardianModal = ({
   childId,

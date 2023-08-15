@@ -199,7 +199,7 @@ export default function TablesFinance() {
 
                 // Modal Income
                 : (window.location.href.split("?")[1] === "income")
-                  ? <ModalIncome budget={budget} accBank={accBank}
+                  ? <ModalIncome budget={budget} accBank={accBank} income={income}
                     closeModal={() => {
                       setModalOpen(false);
                       setRowToEdit(null);
