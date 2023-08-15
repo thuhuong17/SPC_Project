@@ -68,11 +68,11 @@ const publicRoutes = [
     component: About_2,
   },
   {
-    path: "/thong-tin/thong-tin-chuyen-khoan",
+    path: "/about/thong-tin-chuyen-khoan",
     component: Infor_payment,
   },
   {
-    path: "/thong-tin/dieu-kien-nhan-nuoi",
+    path: "/about/dieu-kien-nhan-nuoi",
     component: Condi_adop,
   },
   {

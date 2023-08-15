@@ -60,7 +60,22 @@ const AboutDropDown = () => {
         >
           Giới thiệu
         </Link>
-       
+        <Link
+          to="/about/thong-tin-chuyen-khoan"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+        >
+          Thông tin tài khoản
+        </Link>
+        <Link
+          to="/about/dieu-kien-nhan-nuoi"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+        >
+          Điều kiện nhận nuôi
+        </Link>
        
       </div>
     </>
