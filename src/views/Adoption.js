@@ -7,6 +7,8 @@ import apiMethod from "api/apiMethod";
 import isEmpty from "validator/lib/isEmpty"
 import isNumeric from "validator/lib/isNumeric"
 import isEmail from 'validator/lib/isEmail';
+import isMobilePhone from 'validator/lib/isMobilePhone';
+import isLength from 'validator/lib/isLength';
 
 import "assets/styles/FormAdoption.css"
 
@@ -38,10 +40,10 @@ export default function Adoption() {
   const [errors, setErrors] = useState({});
   const validateForm = () => {
     const msg = {}
-    if (isEmpty(formData.lastname[0] ?? "" , { ignore_whitespace: true })) {
+    if (isEmpty(formData.lastname[0] ?? "", { ignore_whitespace: true })) {
       msg.lastname1 = "Vui lòng nhập họ!"
     }
-    if (isEmpty(formData.firstname[0] ?? "")) {
+    if (isEmpty(formData.firstname[0] ?? "", { ignore_whitespace: true })) {
       msg.firstname1 = "Vui lòng nhập tên!"
     }
     if (isEmpty(formData.gender[0] ?? "")) {
@@ -50,32 +52,34 @@ export default function Adoption() {
     if (isEmpty(formData.nationality[0] ?? "")) {
       msg.nationality1 = "Vui lòng chọn dân tộc!"
     }
-    if (isEmpty(formData.addressPermanent[0] ?? "")) {
+    if (isEmpty(formData.addressPermanent[0] ?? "", { ignore_whitespace: true })) {
       msg.addressPermanent1 = "Vui lòng nhập địa chỉ!"
     }
-    if (isEmpty(formData.addressTemporary[0] ?? "")) {
+    if (isEmpty(formData.addressTemporary[0] ?? "", { ignore_whitespace: true })) {
       msg.addressTemporary1 = "Vui lòng nhập địa chỉ!"
     }
-    if (isEmpty(formData.birthday[0] ?? "")) {
-      msg.birthday1 = "Vui lòng nhập địa chỉ!"
+    if (isEmpty(formData.birthday[0] ?? "", { ignore_whitespace: true })) {
+      msg.birthday1 = "Vui lòng nhập ngày sinh!"
     }
-    if (isEmpty(formData.phoneNumber[0] ?? "")) {
+    if (isEmpty(formData.phoneNumber[0] ?? "", { ignore_whitespace: true })) {
       msg.phoneNumber1 = "Vui lòng nhập số điện thoại!"
     } else if (!isNumeric(formData.phoneNumber[0])) {
       msg.phoneNumber1 = "Vui lòng nhập số!"
+    } else if (!(isMobilePhone(formData.phoneNumber[0], 'vi-VN'))) {
+      msg.phoneNumber1 = "Số điện thoại ko đúng định dạng!"
     }
-    if (isEmpty(formData.email[0] ?? "")) {
+    if (isEmpty(formData.email[0] ?? "", { ignore_whitespace: true })) {
       msg.email1 = "Vui lòng nhập email!"
     } else if (!isEmail(formData.email[0])) {
       msg.email1 = "Email không đúng đinh dạng!"
     }
-    if (isEmpty(formData.nation[0] ?? "")) {
+    if (isEmpty(formData.nation[0] ?? "", { ignore_whitespace: true })) {
       msg.nation1 = "Vui lòng nhập quốc tịch!"
     }
-    if (isEmpty(formData.occupation[0] ?? "")) {
+    if (isEmpty(formData.occupation[0] ?? "", { ignore_whitespace: true })) {
       msg.occupation1 = "Vui lòng nhập nghề nghiệp!"
     }
-    if (isEmpty(formData.income[0] ?? "")) {
+    if (isEmpty(formData.income[0] ?? "", { ignore_whitespace: true })) {
       msg.income1 = "Vui lòng nhập thu nhập!"
     } else if (!isNumeric(formData.income[0])) {
       msg.income1 = "Vui lòng nhập số!"
@@ -83,20 +87,28 @@ export default function Adoption() {
     if (isEmpty(formData.relationship[0] ?? "")) {
       msg.relationship1 = "Vui lòng chọn tình trạng!"
     }
-    if (isEmpty(formData.citizenIdentNumber[0] ?? "")) {
+    if (isEmpty(formData.citizenIdentNumber[0] ?? "", { ignore_whitespace: true })) {
       msg.citizenIdentNumber1 = "Vui lòng nhập căn cước!"
     } else if (!isNumeric(formData.citizenIdentNumber[0])) {
       msg.citizenIdentNumber1 = "Vui lòng nhập số!"
+    } else if (!isLength(formData.citizenIdentNumber[0], {min: 12, max: undefined})) {
+      msg.citizenIdentNumber1 = "Căn cước không đúng định dạng!"
     }
-    if (isEmpty(formData.issuePlace[0] ?? "")) {
+    if (isEmpty(formData.issuePlace[0] ?? "", { ignore_whitespace: true })) {
       msg.issuePlace1 = "Vui lòng nhập nơi cấp!"
+    }
+    if (isEmpty(formData.issueDate[0] ?? "", { ignore_whitespace: true })) {
+      msg.issueDate1 = "Vui lòng nhập ngày cấp!"
+    }
+    if (isEmpty(formData.expireDate[0] ?? "", { ignore_whitespace: true })) {
+      msg.expireDate1 = "Vui lòng nhập hạn!"
     }
 
     if (adopter === 2) {
-      if (isEmpty(formData.lastname[1] ?? "")) {
+      if (isEmpty(formData.lastname[1] ?? "", { ignore_whitespace: true })) {
         msg.lastname2 = "Vui lòng nhập họ!"
       }
-      if (isEmpty(formData.firstname[1] ?? "")) {
+      if (isEmpty(formData.firstname[1] ?? "", { ignore_whitespace: true })) {
         msg.firstname2 = "Vui lòng nhập tên!"
       }
       if (isEmpty(formData.gender[1] ?? "")) {
@@ -105,32 +117,34 @@ export default function Adoption() {
       if (isEmpty(formData.nationality[1] ?? "")) {
         msg.nationality2 = "Vui lòng chọn dân tộc!"
       }
-      if (isEmpty(formData.addressPermanent[1] ?? "")) {
+      if (isEmpty(formData.addressPermanent[1] ?? "", { ignore_whitespace: true })) {
         msg.addressPermanent2 = "Vui lòng nhập địa chỉ!"
       }
-      if (isEmpty(formData.addressTemporary[1] ?? "")) {
+      if (isEmpty(formData.addressTemporary[1] ?? "", { ignore_whitespace: true })) {
         msg.addressTemporary2 = "Vui lòng nhập địa chỉ!"
       }
-      if (isEmpty(formData.birthday[1] ?? "")) {
-        msg.birthday2 = "Vui lòng nhập địa chỉ!"
+      if (isEmpty(formData.birthday[1] ?? "", { ignore_whitespace: true })) {
+        msg.birthday2 = "Vui lòng nhập ngày sinh!"
       }
-      if (isEmpty(formData.phoneNumber[1] ?? "")) {
+      if (isEmpty(formData.phoneNumber[1] ?? "", { ignore_whitespace: true })) {
         msg.phoneNumber2 = "Vui lòng nhập số điện thoại!"
       } else if (!isNumeric(formData.phoneNumber[1])) {
         msg.phoneNumber2 = "Vui lòng nhập số!"
+      } else if (!(isMobilePhone(formData.phoneNumber[1], 'vi-VN'))) {
+        msg.phoneNumber2 = "Số điện thoại ko đúng định dạng!"
       }
-      if (isEmpty(formData.email[1] ?? "")) {
+      if (isEmpty(formData.email[1] ?? "", { ignore_whitespace: true })) {
         msg.email2 = "Vui lòng nhập email!"
       } else if (!isEmail(formData.email[1])) {
         msg.email2 = "Email không đúng đinh dạng!"
       }
-      if (isEmpty(formData.nation[1] ?? "")) {
+      if (isEmpty(formData.nation[1] ?? "", { ignore_whitespace: true })) {
         msg.nation2 = "Vui lòng nhập quốc tịch!"
       }
-      if (isEmpty(formData.occupation[1] ?? "")) {
+      if (isEmpty(formData.occupation[1] ?? "", { ignore_whitespace: true })) {
         msg.occupation2 = "Vui lòng nhập nghề nghiệp!"
       }
-      if (isEmpty(formData.income[1] ?? "")) {
+      if (isEmpty(formData.income[1] ?? "", { ignore_whitespace: true })) {
         msg.income2 = "Vui lòng nhập thu nhập!"
       } else if (!isNumeric(formData.income[1])) {
         msg.income2 = "Vui lòng nhập số!"
@@ -138,13 +152,19 @@ export default function Adoption() {
       if (isEmpty(formData.relationship[1] ?? "")) {
         msg.relationship2 = "Vui lòng chọn tình trạng!"
       }
-      if (isEmpty(formData.citizenIdentNumber[1] ?? "")) {
+      if (isEmpty(formData.citizenIdentNumber[1] ?? "", { ignore_whitespace: true })) {
         msg.citizenIdentNumber2 = "Vui lòng nhập căn cước!"
       } else if (!isNumeric(formData.citizenIdentNumber[1])) {
         msg.citizenIdentNumber2 = "Vui lòng nhập số!"
       }
-      if (isEmpty(formData.issuePlace[1] ?? "")) {
+      if (isEmpty(formData.issuePlace[1] ?? "", { ignore_whitespace: true })) {
         msg.issuePlace2 = "Vui lòng nhập nơi cấp!"
+      }
+      if (isEmpty(formData.issueDate[1] ?? "", { ignore_whitespace: true })) {
+        msg.issueDate2 = "Vui lòng nhập ngày cấp!"
+      }
+      if (isEmpty(formData.expireDate[1] ?? "", { ignore_whitespace: true })) {
+        msg.expireDate2 = "Vui lòng nhập hạn!"
       }
     }
 
@@ -571,7 +591,7 @@ export default function Adoption() {
             <input
               type="text"
               name="income"
-              placeholder="Mức thu nhập (*)"
+              placeholder="Mức thu nhập/tháng (*)"
               id="income"
               className="formbold-form-input"
               value={formData?.income[i]}
@@ -648,7 +668,17 @@ export default function Adoption() {
               className="formbold-form-input"
               value={formData?.issueDate[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.issueDate1 ? "red" : "black"
+                  : errors?.issueDate2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.issueDate1 : errors?.issueDate2}
+            </span>
           </div>
 
           <div>
@@ -662,7 +692,17 @@ export default function Adoption() {
               className="formbold-form-input"
               value={formData?.expireDate[i]}
               onChange={(e) => handleInputChange(e, i)}
+              style={{
+                borderColor: i === 0 ? errors?.expireDate1 ? "red" : "black"
+                  : errors?.expireDate2 ? "red" : "black"
+              }}
             />
+            <span style={{
+              color: "red",
+              paddingTop: "5px"
+            }}>
+              {i === 0 ? errors?.expireDate1 : errors?.expireDate2}
+            </span>
           </div>
         </div>
         <div>

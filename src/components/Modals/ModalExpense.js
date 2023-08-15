@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import isEmpty from "validator/lib/isEmpty"
 import isNumeric from "validator/lib/isNumeric"
+import isLength from "validator/lib/isLength";
 
 export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultValue }) => {
     const [dateExpense, setDateExpense] = useState(new Date());
@@ -24,16 +25,18 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
     const [errors, setErrors] = useState({});
     const validateForm = () => {
         const msg = {}
-        if (isEmpty(formState?.expenseName)) {
+        if (isEmpty(formState?.expenseName, { ignore_whitespace: true })) {
             msg.expenseName = "Vui lòng nhập tên khoản chi!"
         }
-        if (isEmpty(formState?.expenseDescription)) {
+        if (isEmpty(formState?.expenseDescription, { ignore_whitespace: true })) {
             msg.expenseDescription = "Vui lòng nhập mô tả khoản chi!"
         }
-        if (isEmpty(formState?.amount)) {
+        if (isEmpty(formState?.amount, { ignore_whitespace: true })) {
             msg.amout = "Vui lòng nhập khoản chi!"
         } else if (!isNumeric(formState?.amount)) {
             msg.amout = "Vui lòng nhập số!"
+        } else if (!isLength(formState?.amount, { min: 4, max: undefined })) {
+            msg.amout = "Số tiền tối thiểu là 1.000đ!"
         }
         if (isEmpty(formState?.budget)) {
             msg.budget = "Vui lòng chọn ngân sách!"
@@ -100,6 +103,7 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
             }}
         >
             <div className="modal">
+                <h1 className="modal-header">{formState?.expenseName ? "Sửa khoản chi" : "Thêm khoản chi"}</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="expenseName">Tên khoản chi <span>(*)</span></label>
@@ -138,7 +142,7 @@ export const ModalExpense = ({ budget, accBank, closeModal, onSubmit, defaultVal
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="amount">Số tiền <span>(*)</span></label>
+                        <label htmlFor="amount">Số tiền (vnđ) <span>(*)</span></label>
                         <input
                             name="amount"
                             value={formState?.amount}

@@ -145,6 +145,10 @@ const usePrivateApi = () => {
       const url = "bank-account";
       return axPrivate.get(url, params);
     },
+    getPageBankAccount: (p) => {
+      const url = `/bank-account/page?p=${p}`;
+      return axPrivate.get(url);
+    },
     postBankAccount: (params) => {
       const url = "bank-account";
       return axPrivate.post(url, params);
@@ -156,7 +160,7 @@ const usePrivateApi = () => {
     deleteBankAccount: (id) => {
       const url = `bank-account/${id}`;
       return axPrivate.delete(url);
-    },
+    }
   };
 
   return privateApi;

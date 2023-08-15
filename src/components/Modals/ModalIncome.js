@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import isEmpty from "validator/lib/isEmpty"
 import isNumeric from "validator/lib/isNumeric"
+import isLength from "validator/lib/isLength";
 
 export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValue }) => {
     const [dateIncome, setDateIncome] = useState(new Date());
@@ -24,16 +25,18 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
     const [errors, setErrors] = useState({});
     const validateForm = () => {
         const msg = {}
-        if (isEmpty(formState?.incomeName)) {
+        if (isEmpty(formState?.incomeName, { ignore_whitespace: true })) {
             msg.incomeName = "Vui lòng nhập tên khoản thu!"
         }
-        if (isEmpty(formState?.incomeDescription)) {
+        if (isEmpty(formState?.incomeDescription, { ignore_whitespace: true })) {
             msg.incomeDescription = "Vui lòng nhập mô tả khoản thu!"
         }
-        if (isEmpty(formState?.amount)) {
+        if (isEmpty(formState?.amount, { ignore_whitespace: true })) {
             msg.amout = "Vui lòng nhập khoản thu!"
         } else if (!isNumeric(formState?.amount)) {
             msg.amout = "Vui lòng nhập số!"
+        } else if (!isLength(formState?.amount, { min: 4, max: undefined })) {
+            msg.amout = "Số tiền tối thiểu là 1.000đ!"
         }
         if (isEmpty(formState?.budget)) {
             msg.budget = "Vui lòng chọn ngân sách!"
@@ -100,6 +103,7 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
             }}
         >
             <div className="modal">
+                <h1 className="modal-header">{formState?.incomeName ? "Sửa khoản thu" : "Thêm khoản thu"}</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="incomeName">Tên khoản thu <span>(*)</span></label>
@@ -138,7 +142,7 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="amount">Số tiền <span>(*)</span></label>
+                        <label htmlFor="amount">Số tiền (vnđ) <span>(*)</span></label>
                         <input
                             name="amount"
                             value={formState?.amount}
@@ -162,7 +166,7 @@ export const ModalIncome = ({ budget, accBank, closeModal, onSubmit, defaultValu
                             }}>
                             <option value="">-- Chọn ngân sách --</option>
                             {budget.map(iBud =>
-                                <option value={JSON.stringify(iBud)} key={iBud.budgetName}>ID: {iBud.budgetId} ({iBud.budgetName} - {iBud.budgetDescription})</option>
+                                <option value={JSON.stringify(iBud)} key={iBud.budgetName}>ID: {iBud.budgetId} ({iBud.budgetName})</option>
                             )}
                         </select>
                         <span style={{

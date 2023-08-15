@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import isEmpty from "validator/lib/isEmpty"
 import isNumeric from "validator/lib/isNumeric"
+import isLength from "validator/lib/isLength";
 
 export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     const [startDate, setStartDate] = useState(new Date());
@@ -27,16 +28,18 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
     const [errors, setErrors] = useState({});
     const validateForm = () => {
         const msg = {}
-        if (isEmpty(formState?.budgetName)) {
+        if (isEmpty(formState?.budgetName, { ignore_whitespace: true })) {
             msg.budgetName = "Vui lòng nhập tên ngân sách!"
         }
-        if (isEmpty(formState?.budgetDescription)) {
+        if (isEmpty(formState?.budgetDescription, { ignore_whitespace: true })) {
             msg.budgetDescription = "Vui lòng nhập mô tả ngân sách!"
         }
-        if (isEmpty(formState?.amout)) {
+        if (isEmpty(formState?.amout, { ignore_whitespace: true })) {
             msg.amout = "Vui lòng nhập ngân sách!"
         } else if (!isNumeric(formState?.amout)) {
             msg.amout = "Vui lòng nhập số!"
+        } else if (!isLength(formState?.amout, { min: 8, max: undefined })) {
+            msg.amout = "Số tiền tối thiểu là 10.000.000đ!"
         }
 
         setErrors(msg)
@@ -51,6 +54,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
             [e.target.name]: e.target.value,
         });
     };
+
     const changeStartDate = (date) => {
         setFormState({
             ...formState,
@@ -146,7 +150,7 @@ export const ModalFinance = ({ closeModal, onSubmit, defaultValue }) => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="amout">Ngân sách <span>(*)</span></label>
+                        <label htmlFor="amout">Ngân sách (vnđ) <span>(*)</span></label>
                         <input
                             name="amout"
                             value={formState?.amout}

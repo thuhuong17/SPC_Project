@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 // components
 import "../../assets/styles/tableItems.css"
 import "../../assets/styles/tableFinanceCard.css"
+import usePrivateApi from "api/usePrivateApi";
+import { Pagination } from "@mui/material";
 
-export default function CardBackAccount ({ color, accBank, deleteRow, editRow }) {
+export default function CardBackAccount({ color, accBank, deleteRow, editRow }) {
+    const api = usePrivateApi()
+
+    const [page, setPage] = useState(1);
+    const [pageBankAccount, setPageBankAccount] = useState([]);
+
+    const getBankAccount = async () => {
+        try {
+            const response = await api.getPageBankAccount(page - 1);
+            setPageBankAccount(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getBankAccount()
+    }, [page, accBank])
+
+    const count = Math.ceil(accBank.length / 5);
+
+    const handleChange = (e, p) => {
+        setPage(p);
+    };
+
     return (
         <>
             <div className={
@@ -31,21 +57,19 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th className="expand4">Tên tài khoản</th>
-                                    <th className="expand4">Số tài khoản</th>
-                                    <th className="expand4">Ngân hàng</th>
-                                    <th className="expand4">Số dư</th>
+                                    <th className="expand3">Tên tài khoản</th>
+                                    <th className="expand3">Số tài khoản</th>
+                                    <th className="expand3">Ngân hàng</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {accBank.map((row, idx) => {
+                                {pageBankAccount.map((row, idx) => {
                                     return <tr key={idx}>
                                         <td>{idx + 1}</td>
-                                        <td className="expand4">{row?.accountName}</td>
-                                        <td className="expand4">{row?.accountNumber}</td>
-                                        <td className="expand4">{row?.bankName}</td>
-                                        <td className="expand4">{(row?.balance)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand3">{row?.accountName}</td>
+                                        <td className="expand3">{row?.accountNumber}</td>
+                                        <td className="expand3">{row?.bankName}</td>
                                         <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.bankAccountId)} />
@@ -59,6 +83,13 @@ export default function CardBackAccount ({ color, accBank, deleteRow, editRow })
                     </div>
                 </div>
             </div>
+            <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                shape="rounded"
+                onChange={handleChange}
+            />
         </>
     );
 }
