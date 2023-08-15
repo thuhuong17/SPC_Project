@@ -55,7 +55,6 @@ export default function TablesListPost() {
           </div>
         </div>
       </div>
-
     </>
   );
 }
