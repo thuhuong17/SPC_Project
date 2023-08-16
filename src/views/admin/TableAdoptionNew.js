@@ -5,7 +5,7 @@ import CardTable from "components/Cards/CardTableAdoptionNew.js";
 import { ModalAdoptionNew } from "components/Modals/ModalAdoptionNew";
 import usePrivateApi from "api/usePrivateApi";
 
-export default function TableAdoptionNew () {
+export default function TableAdoptionNew() {
   const [modalOpen, setModalOpen] = useState(false);
   const [adoption, setAdoption] = useState([])
 
@@ -66,7 +66,7 @@ export default function TableAdoptionNew () {
                 setRowToEdit(null);
               }}
               onSubmit={handleSubmitAdoption}
-              defaultValue={rowToEdit !== null && adoption[rowToEdit]} />
+              defaultValue={rowToEdit !== null && adoption.find(a => a?.adoptionId == rowToEdit)} />
             }
           </div>
         </div>

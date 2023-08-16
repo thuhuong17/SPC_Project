@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import usePrivateApi from "api/usePrivateApi";
 
 import "../../assets/styles/modal.css";
+import isEmpty from "validator/lib/isEmpty";
+import isNumeric from "validator/lib/isNumeric";
 
 export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
 
@@ -27,21 +29,25 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
         getBudget()
     }, [])
 
-    const [errors, setErrors] = useState("");
+    const [errors, setErrors] = useState({});
     const validateForm = () => {
-        if (formState.accountName && formState.accountNumber && formState.bankName) {
-            setErrors("");
-            return true;
-        } else {
-            let errorFields = [];
-            for (const [key, value] of Object.entries(formState)) {
-                if (!value) {
-                    errorFields.push(key);
-                }
-            }
-            setErrors(errorFields.join(", "));
-            return false;
+        const msg = {}
+
+        if (isEmpty(formState?.accountName, { ignore_whitespace: true })) {
+            msg.accountName = "Vui lòng nhập tên tài khoản!"
         }
+        if (isEmpty(formState?.accountNumber, { ignore_whitespace: true })) {
+            msg.accountNumber = "Vui lòng nhập số thẻ!"
+        } else if (!isNumeric(formState?.accountNumber)) {
+            msg.accountNumber = "Vui lòng nhập số!"
+        }
+        if (isEmpty(formState?.bankName, { ignore_whitespace: true })) {
+            msg.bankName = "Vui lòng chọn ngân hàng!"
+        }
+
+        setErrors(msg)
+        if (Object.keys(msg).length > 0) return false
+        return true
     };
     // update danh sách
     const handleChange = (e) => {
@@ -80,7 +86,7 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
         }
         closeModal();
     }
-    
+
     return (
         <div
             className="modal-container"
@@ -97,7 +103,16 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
                             name="accountName"
                             value={formState?.accountName}
                             onChange={handleChange}
+                            style={{
+                                borderColor: errors?.accountName ? "red" : "black"
+                            }}
                         />
+                        <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors?.accountName}
+                        </span>
                     </div>
 
                     <div className="form-group">
@@ -106,19 +121,37 @@ export const ModalBankAccount = ({ closeModal, onSubmit, defaultValue }) => {
                             name="accountNumber"
                             value={formState?.accountNumber}
                             onChange={handleChange}
+                            style={{
+                                borderColor: errors?.accountNumber ? "red" : "black"
+                            }}
                         />
+                        <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors?.accountNumber}
+                        </span>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="bankName">Ngân hàng</label>
-                        <select name="bankName" onChange={handleChange}>
-                            <option value="">-- Chọn ngân hàng --</option>
+                        <select name="bankName" onChange={handleChange}
+                            style={{
+                                borderColor: errors?.bankName ? "red" : "black"
+                            }}>
+                            <option value={formState?.bankName ? formState?.bankName : ""}>{formState?.bankName ? formState?.bankName : "-- Chọn ngân hàng --"}</option>
                             {listBank.map(iAcc =>
                                 <option value={iAcc.shortName} key={iAcc?.code}>{iAcc?.code} - {iAcc?.shortName}</option>
                             )}
                         </select>
+                        <span style={{
+                            color: "red",
+                            paddingTop: "5px"
+                        }}>
+                            {errors?.bankName}
+                        </span>
                     </div>
-                    {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>}
+                    {/* {errors && <div className="error">{`Vui lòng điền: ${errors}`}</div>} */}
                     <button type="submit" className="btn" onClick={handleSubmit}>
                         Submit
                     </button>

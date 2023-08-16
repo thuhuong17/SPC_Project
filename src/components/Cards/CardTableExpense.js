@@ -7,7 +7,7 @@ import "../../assets/styles/tableFinanceCard.css"
 import { Pagination } from "@mui/material";
 import usePrivateApi from "api/usePrivateApi";
 
-export default function CardTableExpense ({ color, expense, deleteRow, editRow }) {
+export default function CardTableExpense({ color, expense, deleteRow, editRow }) {
     const api = usePrivateApi()
 
     const [page, setPage] = useState(1);
@@ -63,7 +63,7 @@ export default function CardTableExpense ({ color, expense, deleteRow, editRow }
                                     <th className="expand6">Ngân sách</th>
                                     <th className="expand6">Tài khoản ngân hàng</th>
                                     <th className="expand6">Ngày chi</th>
-                                    <th>Action</th>
+                                    {/* <th>Action</th> */}
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,16 +72,20 @@ export default function CardTableExpense ({ color, expense, deleteRow, editRow }
                                         <td>{idx + 1}</td>
                                         <td className="expand6">{row?.expenseName}</td>
                                         <td className="expand6">{row?.expenseDescription}</td>
-                                        <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</td>
+                                        <td className="expand6">{(row?.amount)?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
                                         <td className="expand6">{row?.budget?.budgetName}</td>
-                                        <td className="expand6">{row?.bankAccount?.accountNumber} ({row?.bankAccount?.accountName})</td>
+                                        <td className="expand6">
+                                            Tên: {row?.bankAccount?.accountName}
+                                            <br />
+                                            STK: {row?.bankAccount?.accountNumber}
+                                        </td>
                                         <td className="expand6">{row?.dateTime}</td>
-                                        <td>
+                                        {/* <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="delete-btn" onClick={() => deleteRow(row?.expenseId)} />
                                                 <BsFillPencilFill onClick={() => editRow(row?.expenseId)} />
                                             </span>
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 })}
                             </tbody>
