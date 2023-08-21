@@ -81,7 +81,7 @@ export default function CardTableAdoptionNew({ color, adoption, editRow }) {
                                             <span className="actions">
                                                 <p
                                                     style={{ textDecoration: "underline", cursor: "pointer" }}
-                                                    onClick={() => editRow(idx)}>
+                                                    onClick={() => editRow(row?.adoptionId)}>
                                                     Xem chi tiết
                                                 </p>
                                             </span>
