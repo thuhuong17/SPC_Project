@@ -81,7 +81,7 @@ const Articles = (color) => {
   const handleSubmit = async (e) => {
       e.preventDefault();
       setErrors(Validation(post))
-      if (Object.keys(errors).length === 0) {
+      if (Object.keys(Validation(post)).length === 0) {
         setIsPostSuccessful(true);
         // call API
         const data = new FormData();
