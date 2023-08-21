@@ -2,8 +2,8 @@ import React from "react";
 
 // components
 
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
+// import CardSettings from "components/Cards/CardSettings.js";
+// import CardProfile from "components/Cards/CardProfile.js";
 import CardTableEmployee from "../../components/Cards/CardTableEmployee";
 export default function Employee() {
   return (
