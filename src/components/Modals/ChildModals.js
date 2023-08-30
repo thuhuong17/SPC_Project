@@ -183,8 +183,12 @@ export const ChildModal = ({ closeModal, onSubmit, defaultValue }) => {
         newDate.getMonth() + 1
       }-${newDate.getFullYear()}`;
 
-      formState.birthDay = dateMDY;
-      var newDateIn = new Date(formState.birthDay);
+       formState.birthDay = dateMDY;
+      // var newDateIn = new Date(formState.birthDay);
+      // let dateInMDY = `${newDateIn.getDate()}-${
+      //   newDateIn.getMonth() + 1
+      // }-${newDateIn.getFullYear()}`;
+      var newDateIn = new Date(formState.dateIn);
       let dateInMDY = `${newDateIn.getDate()}-${
         newDateIn.getMonth() + 1
       }-${newDateIn.getFullYear()}`;
