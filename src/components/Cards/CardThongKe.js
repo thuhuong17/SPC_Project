@@ -60,7 +60,7 @@ export default function CardT () {
                     <i className='fas fa-child'></i>
                     </div>
                     <h1 className='text-xl font-semibold'>
-                    {childrenCount ? childrenCount : 0}
+                    {childrenCount ? childrenCount : 5}
                     </h1>
                     <h6 className='text-xl font-semibold'>
                     Tổng số trẻ đã và đang được nuôi dưỡng tại trung tâm

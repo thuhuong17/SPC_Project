@@ -114,7 +114,7 @@ export default function Home() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                       <i className="fas fa-child"></i>
                     </div>
-                    <h1 className="text-xl font-semibold">{childrenCount ? childrenCount : 0}</h1>
+                    <h1 className="text-xl font-semibold">{childrenCount ? childrenCount : 5}</h1>
                     <h6 className="text-xl font-semibold">
                       Tổng số trẻ đã và đang được nuôi dưỡng tại trung tâm
                     </h6>
